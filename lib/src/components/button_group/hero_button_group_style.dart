@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/hero_tokens.dart';
 import '../button/hero_button_variants.dart';
 import 'hero_button_group.dart';
 
@@ -56,40 +55,16 @@ class HeroButtonGroupStyle {
     // --- Disable press scale inside group ---
     style = style.onPressed(RemixButtonStyle().scale(1.0));
 
-    // --- Outline border collapsing ---
-    if (variant == HeroButtonVariant.outline && !position.isSingle) {
+    // --- Outline border collapsing via negative margin ---
+    // Flutter can't paint non-uniform border widths with borderRadius > 0,
+    // so we overlap adjacent buttons by -1px to hide the duplicate border.
+    if (variant == HeroButtonVariant.outline &&
+        !position.isSingle &&
+        !position.isFirst) {
       if (groupData.orientation == Axis.horizontal) {
-        if (position.isFirst) {
-          style = style.borderRight(
-            color: $border(),
-            width: 0,
-          );
-        } else if (position.isLast) {
-          style = style.borderLeft(
-            color: $border(),
-            width: 0,
-          );
-        } else {
-          style = style
-              .borderLeft(color: $border(), width: 0)
-              .borderRight(color: $border(), width: 0);
-        }
+        style = style.marginLeft(-1);
       } else {
-        if (position.isFirst) {
-          style = style.borderBottom(
-            color: $border(),
-            width: 0,
-          );
-        } else if (position.isLast) {
-          style = style.borderTop(
-            color: $border(),
-            width: 0,
-          );
-        } else {
-          style = style
-              .borderTop(color: $border(), width: 0)
-              .borderBottom(color: $border(), width: 0);
-        }
+        style = style.marginTop(-1);
       }
     }
 
