@@ -3,7 +3,7 @@ import 'package:mix/mix.dart';
 
 import '../tokens/hero_tokens.dart';
 
-class HeroTokenData {
+final class HeroTokenData {
   final Color accent;
   final Color accentHover;
   final Color accentForeground;
@@ -56,8 +56,10 @@ class HeroTokenData {
       defaultColor: effectiveDefault,
       defaultHover: HSLColor.fromColor(effectiveDefault)
           .withLightness(
-            (HSLColor.fromColor(effectiveDefault).lightness - 0.05)
-                .clamp(0.0, 1.0),
+            (HSLColor.fromColor(effectiveDefault).lightness - 0.05).clamp(
+              0.0,
+              1.0,
+            ),
           )
           .toColor(),
       defaultForeground: Colors.grey.shade900,
@@ -77,15 +79,11 @@ class HeroTokenData {
   }
 }
 
-class HeroTheme extends StatelessWidget {
+final class HeroTheme extends StatelessWidget {
   final HeroTokenData tokens;
   final Widget child;
 
-  const HeroTheme({
-    super.key,
-    required this.tokens,
-    required this.child,
-  });
+  const HeroTheme({super.key, required this.tokens, required this.child});
 
   HeroTheme.fromSeeds({
     super.key,
@@ -95,11 +93,11 @@ class HeroTheme extends StatelessWidget {
     Color? border,
     required this.child,
   }) : tokens = HeroTokenData.fromSeeds(
-          accent: accent,
-          danger: danger,
-          defaultColor: defaultColor,
-          border: border,
-        );
+         accent: accent,
+         danger: danger,
+         defaultColor: defaultColor,
+         border: border,
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +128,7 @@ class HeroTheme extends StatelessWidget {
         $buttonHeightMd: 36.0,
         $buttonHeightLg: 40.0,
       },
-      radii: {
-        $buttonRadius: const Radius.circular(24),
-      },
+      radii: {$buttonRadius: const Radius.circular(24)},
       child: child,
     );
   }

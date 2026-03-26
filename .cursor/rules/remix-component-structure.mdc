@@ -1,0 +1,40 @@
+---
+description: Enforce Mix/Remix component structure and positive naming
+alwaysApply: true
+---
+
+# Mix and Remix Component Rule
+
+Use this for every new or updated UI component in `lib/src/components/`.
+
+## Required Architecture
+
+- Build component styling with Mix and Remix primitives.
+- Split each component into exactly two files:
+  - `<component_name>_style.dart`
+  - `<component_name>.dart`
+- Keep style definitions in the style file and widget composition in the widget file.
+
+## Naming Convention
+
+- Prefer positive names and flags.
+- Use `enabled` instead of `disabled`.
+- Use `isVisible` instead of `isHidden`.
+- Use `canInteract` instead of `cannotInteract`.
+
+## Example
+
+```dart
+// hero_button_style.dart
+class HeroButtonStyle {
+  final bool enabled;
+}
+```
+
+```dart
+// hero_button.dart
+class HeroButton extends StatelessWidget {
+  const HeroButton({required this.enabled, super.key});
+  final bool enabled;
+}
+```

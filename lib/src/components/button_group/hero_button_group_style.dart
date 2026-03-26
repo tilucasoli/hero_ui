@@ -1,22 +1,39 @@
+import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
+import '../../tokens/hero_tokens.dart';
 import '../button/hero_button_style.dart';
-import 'hero_button_group.dart';
 
-class HeroButtonGroupStyle {
+final class HeroButtonGroupStyle {
   HeroButtonGroupStyle._();
 
-  static RemixButtonStyle buttonOverride({
-    required HeroButtonGroupData groupData,
+  static RemixButtonStyle buttonOverride() {
+    return RemixButtonStyle()
+        .borderRounded(0)
+        .border(.none)
+        .onPressed(.new().scale(1.0));
+  }
+
+  static FlexBoxStyler groupStyle({
+    required Axis orientation,
+    required bool fullWidth,
     required HeroButtonVariant variant,
   }) {
-    // All buttons in a group get radius 0 — the group's ClipRRect
-    // handles the outer rounding.
-    var style = RemixButtonStyle().borderRounded(0);
+    final outlineStyle =
+        FlexBoxStyler() //
+            .border(
+              .all(
+                .color(
+                  $border(),
+                ).strokeAlign(BorderSide.strokeAlignOutside).width(1),
+              ),
+            );
 
-    // Disable press scale inside group
-    style = style.onPressed(RemixButtonStyle().scale(1.0));
-
-    return style;
+    return FlexBoxStyler()
+        .direction(orientation)
+        .mainAxisSize(fullWidth ? .max : .min)
+        .borderRounded(24)
+        .clipBehavior(.antiAlias)
+        .merge(variant == .outline ? outlineStyle : null);
   }
 }
