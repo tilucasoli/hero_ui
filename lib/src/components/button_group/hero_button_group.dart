@@ -1,34 +1,22 @@
 import 'package:flutter/material.dart';
-
-import '../button/hero_button_variants.dart';
-
-class HeroButtonPosition {
-  final bool isFirst;
-  final bool isLast;
-
-  const HeroButtonPosition({required this.isFirst, required this.isLast});
-
-  bool get isSingle => isFirst && isLast;
-  bool get isMiddle => !isFirst && !isLast;
-}
+import 'package:hero_ui/src/tokens/hero_tokens.dart';
+import '../button/hero_button_style.dart';
 
 class HeroButtonGroupData extends InheritedWidget {
   final HeroButtonVariant? variant;
   final HeroButtonSize? size;
-  final bool? isDisabled;
-  final bool? fullWidth;
+  final bool isDisabled;
+  final bool fullWidth;
   final Axis orientation;
-  final HeroButtonPosition position;
 
   const HeroButtonGroupData({
     super.key,
     required super.child,
     this.variant,
     this.size,
-    this.isDisabled,
-    this.fullWidth,
+    this.isDisabled = false,
+    this.fullWidth = false,
     required this.orientation,
-    required this.position,
   });
 
   static HeroButtonGroupData? maybeOf(BuildContext context) {
@@ -41,9 +29,7 @@ class HeroButtonGroupData extends InheritedWidget {
         size != oldWidget.size ||
         isDisabled != oldWidget.isDisabled ||
         fullWidth != oldWidget.fullWidth ||
-        orientation != oldWidget.orientation ||
-        position.isFirst != oldWidget.position.isFirst ||
-        position.isLast != oldWidget.position.isLast;
+        orientation != oldWidget.orientation;
   }
 }
 
@@ -67,53 +53,30 @@ class HeroButtonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Identify button positions (excluding separators)
-    final buttonIndices = <int>[];
-    for (var i = 0; i < children.length; i++) {
-      if (children[i] is! HeroButtonGroupSeparator) {
-        buttonIndices.add(i);
-      }
-    }
-
     final wrappedChildren = <Widget>[];
     for (var i = 0; i < children.length; i++) {
       final child = children[i];
-
-      if (child is HeroButtonGroupSeparator) {
-        wrappedChildren.add(
-          HeroButtonGroupData(
-            variant: variant,
-            size: size,
-            isDisabled: isDisabled ? true : null,
-            fullWidth: fullWidth ? true : null,
-            orientation: orientation,
-            position: const HeroButtonPosition(isFirst: false, isLast: false),
-            child: child,
-          ),
-        );
-      } else {
-        final buttonIndex = buttonIndices.indexOf(i);
-        final isFirst = buttonIndex == 0;
-        final isLast = buttonIndex == buttonIndices.length - 1;
-
-        wrappedChildren.add(
-          HeroButtonGroupData(
-            variant: variant,
-            size: size,
-            isDisabled: isDisabled ? true : null,
-            fullWidth: fullWidth ? true : null,
-            orientation: orientation,
-            position: HeroButtonPosition(isFirst: isFirst, isLast: isLast),
-            child: fullWidth ? Expanded(child: child) : child,
-          ),
-        );
-      }
+      wrappedChildren.add(
+        HeroButtonGroupData(
+          variant: variant,
+          size: size,
+          isDisabled: isDisabled,
+          fullWidth: fullWidth,
+          orientation: orientation,
+          child: fullWidth && child is! HeroButtonGroupSeparator
+              ? Expanded(child: child)
+              : child,
+        ),
+      );
     }
 
-    return Flex(
-      direction: orientation,
-      mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
-      children: wrappedChildren,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: Flex(
+        direction: orientation,
+        mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
+        children: wrappedChildren,
+      ),
     );
   }
 }
@@ -124,27 +87,46 @@ class HeroButtonGroupSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final groupData = HeroButtonGroupData.maybeOf(context);
-    final isHorizontal =
-        (groupData?.orientation ?? Axis.horizontal) == Axis.horizontal;
 
-    return SizedBox(
-      width: isHorizontal ? 0 : null,
-      height: isHorizontal ? null : 0,
-      child: OverflowBox(
-        maxWidth: isHorizontal ? 1 : null,
-        maxHeight: isHorizontal ? null : 1,
-        child: FractionallySizedBox(
-          widthFactor: isHorizontal ? null : 0.5,
-          heightFactor: isHorizontal ? 0.5 : null,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: IconTheme.of(context).color?.withValues(alpha: 0.15) ??
-                  Colors.grey.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-        ),
+    return CustomPaint(
+      size: const Size(0, 20),
+      painter: _SeparatorPainter(
+        color: $border.resolve(context).withValues(alpha: 0.50),
+        thickness: 1,
+        orientation: groupData?.orientation ?? Axis.horizontal,
       ),
     );
+  }
+}
+
+class _SeparatorPainter extends CustomPainter {
+  final Color color;
+  final double thickness;
+  final Axis orientation;
+
+  _SeparatorPainter({
+    required this.color,
+    required this.thickness,
+    required this.orientation,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1;
+
+    if (orientation == Axis.horizontal) {
+      canvas.drawLine(Offset.zero, Offset(size.width, size.height), paint);
+    } else {
+      canvas.drawLine(Offset.zero, Offset(size.width, size.height), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_SeparatorPainter oldDelegate) {
+    return color != oldDelegate.color ||
+        thickness != oldDelegate.thickness ||
+        orientation != oldDelegate.orientation;
   }
 }
