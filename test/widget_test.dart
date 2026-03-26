@@ -5,9 +5,8 @@ import 'package:mix/mix.dart';
 
 Widget wrapWithTheme(Widget child) {
   return MaterialApp(
-    home: HeroTheme.fromSeeds(
-      accent: Colors.blue,
-      danger: Colors.red,
+    home: HeroTheme(
+      data: HeroThemeData.light(),
       child: Scaffold(body: Center(child: child)),
     ),
   );

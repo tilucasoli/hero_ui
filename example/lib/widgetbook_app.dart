@@ -235,12 +235,12 @@ class HeroUiWidgetbookApp extends StatelessWidget {
         TextScaleAddon(),
         BuilderAddon(
           name: 'Hero Theme',
-          builder: (_, child) {
-            return HeroTheme.fromSeeds(
-              accent: Colors.blueAccent,
-              danger: Colors.redAccent,
-              child: child,
-            );
+          builder: (context, child) {
+            final brightness = Theme.of(context).brightness;
+            final data = brightness == Brightness.dark
+                ? HeroThemeData.dark()
+                : HeroThemeData.light();
+            return HeroTheme(data: data, child: child);
           },
         ),
       ],
