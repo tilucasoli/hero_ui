@@ -174,6 +174,53 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroSlider',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final size = context.knobs.object.dropdown<HeroSliderSize>(
+                      label: 'Size',
+                      options: HeroSliderSize.values,
+                      initialOption: .md,
+                      labelBuilder: (value) => value.name,
+                    );
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+                    final initialValue = context.knobs.double.slider(
+                      label: 'Initial value',
+                      initialValue: 30,
+                      min: 0,
+                      max: 100,
+                    );
+                    final showOutput = context.knobs.boolean(
+                      label: 'Show output',
+                      initialValue: true,
+                    );
+                    final label = context.knobs.string(
+                      label: 'Label',
+                      initialValue: 'Volume',
+                    );
+
+                    return _preview(
+                      SizedBox(
+                        width: 320,
+                        child: _InteractiveHeroSlider(
+                          size: size,
+                          enabled: enabled,
+                          initiallyValue: initialValue,
+                          label: label.isEmpty ? null : label,
+                          showOutput: showOutput,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],
@@ -246,6 +293,55 @@ class _InteractiveHeroSwitchState extends State<_InteractiveHeroSwitch> {
           : (_) {},
       enabled: widget.enabled,
       size: widget.size,
+    );
+  }
+}
+
+class _InteractiveHeroSlider extends StatefulWidget {
+  final HeroSliderSize size;
+  final bool enabled;
+  final double initiallyValue;
+  final String? label;
+  final bool showOutput;
+
+  const _InteractiveHeroSlider({
+    required this.size,
+    required this.enabled,
+    required this.initiallyValue,
+    required this.label,
+    required this.showOutput,
+  });
+
+  @override
+  State<_InteractiveHeroSlider> createState() => _InteractiveHeroSliderState();
+}
+
+class _InteractiveHeroSliderState extends State<_InteractiveHeroSlider> {
+  late double value = widget.initiallyValue;
+
+  @override
+  void didUpdateWidget(covariant _InteractiveHeroSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initiallyValue != widget.initiallyValue) {
+      value = widget.initiallyValue;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HeroSlider(
+      value: value,
+      onChanged: widget.enabled
+          ? (nextValue) {
+              setState(() {
+                value = nextValue;
+              });
+            }
+          : (_) {},
+      enabled: widget.enabled,
+      size: widget.size,
+      label: widget.label,
+      showOutput: widget.showOutput,
     );
   }
 }

@@ -15,3 +15,7 @@ export 'src/components/button_group/hero_button_group_style.dart';
 // Switch
 export 'src/components/switch/hero_switch.dart';
 export 'src/components/switch/hero_switch_style.dart';
+
+// Slider
+export 'src/components/slider/hero_slider.dart';
+export 'src/components/slider/hero_slider_style.dart';
