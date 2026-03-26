@@ -30,10 +30,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  mix:
+    git:
+      url: https://github.com/btwld/mix.git
+      ref: main
+      path: packages/mix
+  remix:
+    git:
+      url: https://github.com/btwld/remix.git
+      ref: main
+      path: packages/remix
+
+dependency_overrides:
+  mix:
+    git:
+      url: https://github.com/btwld/mix.git
+      ref: main
+      path: packages/mix
+  mix_annotations:
+    git:
+      url: https://github.com/btwld/mix.git
+      ref: main
+      path: packages/mix_annotations
 
 dev_dependencies:
   flutter_test:

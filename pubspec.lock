@@ -131,6 +131,32 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  mix:
+    dependency: "direct main"
+    description:
+      path: "packages/mix"
+      ref: main
+      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
+      url: "https://github.com/btwld/mix.git"
+    source: git
+    version: "2.0.0"
+  mix_annotations:
+    dependency: "direct overridden"
+    description:
+      path: "packages/mix_annotations"
+      ref: main
+      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
+      url: "https://github.com/btwld/mix.git"
+    source: git
+    version: "2.0.0-rc.1"
+  naked_ui:
+    dependency: transitive
+    description:
+      name: naked_ui
+      sha256: "7c908f67a5b37d6434183bf261d0adc9cd53a52b62e58dca6f1e2e78929b29f7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0-beta.7"
   path:
     dependency: transitive
     description:
@@ -139,6 +165,31 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  prism:
+    dependency: transitive
+    description:
+      name: prism
+      sha256: cb5b80867392ed138ca7651d55c1c0013903f20355e3e015e2f6be5c1dcf7020
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  prism_flutter:
+    dependency: transitive
+    description:
+      name: prism_flutter
+      sha256: c915d488b864d92dc605091f28e631748a723f77d5c755d08dc4b70726a7bef4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  remix:
+    dependency: "direct main"
+    description:
+      path: "packages/remix"
+      ref: main
+      resolved-ref: e673bdab8a2f8c0fc2058ac0fafed68b021f08c5
+      url: "https://github.com/btwld/remix.git"
+    source: git
+    version: "0.1.0-beta.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -210,4 +261,4 @@ packages:
     version: "15.0.2"
 sdks:
   dart: ">=3.11.3 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  flutter: ">=3.38.1"
