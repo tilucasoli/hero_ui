@@ -9,6 +9,10 @@ final class HeroSliderStyle {
   HeroSliderStyle._();
 
   static RemixSliderStyle resolve({HeroSliderSize size = .md}) {
+    return _baseStyle().merge(_sizeStyle(size));
+  }
+
+  static RemixSliderStyle _baseStyle() {
     return RemixSliderStyle()
         .trackColor($default())
         .rangeColor($accent())
@@ -19,8 +23,7 @@ final class HeroSliderStyle {
               .borderRounded(999),
         )
         .onPressed(.new().thumb(.border(.all(.width(3)))))
-        .onDisabled(RemixSliderStyle().wrap(.opacity(0.5)))
-        .merge(_sizeStyle(size));
+        .onDisabled(RemixSliderStyle().wrap(.opacity(0.5)));
   }
 
   static RemixSliderStyle _sizeStyle(HeroSliderSize size) {

@@ -95,7 +95,7 @@ final class HeroButtonGroupSeparator extends StatelessWidget {
           ? const Size(0, 20)
           : const Size(20, 0),
       painter: _SeparatorPainter(
-        color: $border.resolve(context),
+        color: $separator.resolve(context),
         thickness: 1,
         orientation: orientation,
       ),

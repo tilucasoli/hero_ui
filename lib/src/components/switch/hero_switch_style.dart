@@ -9,6 +9,10 @@ final class HeroSwitchStyle {
   HeroSwitchStyle._();
 
   static RemixSwitchStyle resolve({HeroSwitchSize size = .md}) {
+    return _baseStyle().merge(_sizeStyle(size));
+  }
+
+  static RemixSwitchStyle _baseStyle() {
     return RemixSwitchStyle()
         .container(
           BoxStyler().alignment(.centerLeft).paddingAll(2).borderRounded(999),
@@ -41,8 +45,7 @@ final class HeroSwitchStyle {
               .thumbColor($defaultForeground())
               .wrap(.opacity(0.5)),
         )
-        .animate(.spring(200.ms))
-        .merge(_sizeStyle(size));
+        .animate(.spring(200.ms));
   }
 
   static RemixSwitchStyle _sizeStyle(HeroSwitchSize size) {
