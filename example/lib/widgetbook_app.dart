@@ -328,6 +328,52 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroSelect',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final variant = context.knobs.object
+                        .dropdown<HeroSelectVariant>(
+                          label: 'Variant',
+                          options: HeroSelectVariant.values,
+                          initialOption: .primary,
+                          labelBuilder: (value) => value.name,
+                        );
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+                    final error = context.knobs.boolean(
+                      label: 'Error',
+                      initialValue: false,
+                    );
+                    final fullWidth = context.knobs.boolean(
+                      label: 'Full width',
+                      initialValue: false,
+                    );
+                    final placeholder = context.knobs.string(
+                      label: 'Placeholder',
+                      initialValue: 'Select a state',
+                    );
+
+                    final child = _InteractiveHeroSelect(
+                      variant: variant,
+                      enabled: enabled,
+                      error: error,
+                      placeholder: placeholder,
+                    );
+
+                    if (fullWidth) {
+                      return _preview(SizedBox(width: 320, child: child));
+                    }
+
+                    return _preview(SizedBox(width: 256, child: child));
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],
@@ -449,6 +495,51 @@ class _InteractiveHeroSliderState extends State<_InteractiveHeroSlider> {
       size: widget.size,
       label: widget.label,
       showOutput: widget.showOutput,
+    );
+  }
+}
+
+class _InteractiveHeroSelect extends StatefulWidget {
+  final HeroSelectVariant variant;
+  final bool enabled;
+  final bool error;
+  final String placeholder;
+
+  const _InteractiveHeroSelect({
+    required this.variant,
+    required this.enabled,
+    required this.error,
+    required this.placeholder,
+  });
+
+  @override
+  State<_InteractiveHeroSelect> createState() => _InteractiveHeroSelectState();
+}
+
+class _InteractiveHeroSelectState extends State<_InteractiveHeroSelect> {
+  String? selectedValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return HeroSelect<String>(
+      variant: widget.variant,
+      enabled: widget.enabled,
+      error: widget.error,
+      placeholder: widget.placeholder,
+      selectedValue: selectedValue,
+      onChanged: (value) {
+        setState(() {
+          selectedValue = value;
+        });
+      },
+      items: const [
+        HeroSelectItem(value: 'california', label: 'California'),
+        HeroSelectItem(value: 'texas', label: 'Texas'),
+        HeroSelectItem(value: 'florida', label: 'Florida'),
+        HeroSelectItem(value: 'new-york', label: 'New York'),
+        HeroSelectItem(value: 'washington', label: 'Washington'),
+        HeroSelectItem(value: 'illinois', label: 'Illinois'),
+      ],
     );
   }
 }

@@ -34,3 +34,7 @@ export 'src/components/radio_group/hero_radio_group.dart';
 // TextField
 export 'src/components/text_field/hero_text_field.dart';
 export 'src/components/text_field/hero_text_field_style.dart';
+
+// Select
+export 'src/components/select/hero_select.dart';
+export 'src/components/select/hero_select_style.dart';
