@@ -24,6 +24,13 @@ export 'src/components/slider/hero_slider_style.dart';
 export 'src/components/checkbox/hero_checkbox.dart';
 export 'src/components/checkbox/hero_checkbox_style.dart';
 
+// Radio
+export 'src/components/radio/hero_radio.dart';
+export 'src/components/radio/hero_radio_style.dart';
+
+// RadioGroup
+export 'src/components/radio_group/hero_radio_group.dart';
+
 // TextField
 export 'src/components/text_field/hero_text_field.dart';
 export 'src/components/text_field/hero_text_field_style.dart';

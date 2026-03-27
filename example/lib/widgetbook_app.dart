@@ -239,10 +239,31 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                       initialValue: true,
                     );
                     return _preview(
-                      _InteractiveHeroCheckbox(
-                        size: size,
-                        enabled: enabled,
-                      ),
+                      _InteractiveHeroCheckbox(size: size, enabled: enabled),
+                    );
+                  },
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HeroRadioGroup',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final size = context.knobs.object.dropdown<HeroRadioSize>(
+                      label: 'Size',
+                      options: HeroRadioSize.values,
+                      initialOption: .md,
+                      labelBuilder: (value) => value.name,
+                    );
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+
+                    return _preview(
+                      _InteractiveHeroRadioGroup(size: size, enabled: enabled),
                     );
                   },
                 ),
@@ -436,10 +457,7 @@ class _InteractiveHeroCheckbox extends StatefulWidget {
   final HeroCheckboxSize size;
   final bool enabled;
 
-  const _InteractiveHeroCheckbox({
-    required this.size,
-    required this.enabled,
-  });
+  const _InteractiveHeroCheckbox({required this.size, required this.enabled});
 
   @override
   State<_InteractiveHeroCheckbox> createState() =>
@@ -462,6 +480,58 @@ class _InteractiveHeroCheckboxState extends State<_InteractiveHeroCheckbox> {
           : null,
       enabled: widget.enabled,
       size: widget.size,
+    );
+  }
+}
+
+class _InteractiveHeroRadioGroup extends StatefulWidget {
+  final HeroRadioSize size;
+  final bool enabled;
+
+  const _InteractiveHeroRadioGroup({required this.size, required this.enabled});
+
+  @override
+  State<_InteractiveHeroRadioGroup> createState() =>
+      _InteractiveHeroRadioGroupState();
+}
+
+class _InteractiveHeroRadioGroupState
+    extends State<_InteractiveHeroRadioGroup> {
+  String? selected = 'option1';
+
+  @override
+  Widget build(BuildContext context) {
+    return HeroRadioGroup<String>(
+      groupValue: selected,
+      onChanged: widget.enabled
+          ? (value) {
+              setState(() {
+                selected = value;
+              });
+            }
+          : (_) {},
+
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 12,
+        children: [
+          HeroRadio<String>(
+            value: 'option1',
+            size: widget.size,
+            enabled: widget.enabled,
+          ),
+          HeroRadio<String>(
+            value: 'option2',
+            size: widget.size,
+            enabled: widget.enabled,
+          ),
+          HeroRadio<String>(
+            value: 'option3',
+            size: widget.size,
+            enabled: widget.enabled,
+          ),
+        ],
+      ),
     );
   }
 }
