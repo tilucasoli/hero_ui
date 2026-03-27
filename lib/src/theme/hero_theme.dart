@@ -113,7 +113,7 @@ final class HeroThemeData {
       fieldBackground: kHeroWhite,
       fieldForeground: kHeroEclipse,
       fieldPlaceholder: const Color(0xFF71717A),
-      fieldBorder: Colors.transparent,
+      fieldBorder: const Color(0xFFE4E4E7),
       success: const Color(0xFF17C964),
       successForeground: kHeroEclipse,
       warning: const Color(0xFFF5A524),
@@ -253,9 +253,7 @@ final class HeroTheme extends StatelessWidget {
         $dangerSoftHover: d.danger.withValues(alpha: 0.15),
         $dangerSoftForeground: d.danger,
       },
-      spaces: {
-        $spacing: 4.0,
-      },
+      spaces: {$spacing: 4.0},
       doubles: {
         $disabledOpacity: 0.5,
         $borderWidth: 1.0,
