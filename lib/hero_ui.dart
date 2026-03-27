@@ -23,3 +23,7 @@ export 'src/components/slider/hero_slider_style.dart';
 // TextField
 export 'src/components/text_field/hero_text_field.dart';
 export 'src/components/text_field/hero_text_field_style.dart';
+
+// Select
+export 'src/components/select/hero_select.dart';
+export 'src/components/select/hero_select_style.dart';
