@@ -222,6 +222,33 @@ class HeroUiWidgetbookApp extends StatelessWidget {
               ],
             ),
             WidgetbookComponent(
+              name: 'HeroCheckbox',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final size = context.knobs.object
+                        .dropdown<HeroCheckboxSize>(
+                          label: 'Size',
+                          options: HeroCheckboxSize.values,
+                          initialOption: .md,
+                          labelBuilder: (value) => value.name,
+                        );
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+                    return _preview(
+                      _InteractiveHeroCheckbox(
+                        size: size,
+                        enabled: enabled,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            WidgetbookComponent(
               name: 'HeroTextField',
               useCases: [
                 WidgetbookUseCase(
@@ -401,6 +428,40 @@ class _InteractiveHeroSliderState extends State<_InteractiveHeroSlider> {
       size: widget.size,
       label: widget.label,
       showOutput: widget.showOutput,
+    );
+  }
+}
+
+class _InteractiveHeroCheckbox extends StatefulWidget {
+  final HeroCheckboxSize size;
+  final bool enabled;
+
+  const _InteractiveHeroCheckbox({
+    required this.size,
+    required this.enabled,
+  });
+
+  @override
+  State<_InteractiveHeroCheckbox> createState() =>
+      _InteractiveHeroCheckboxState();
+}
+
+class _InteractiveHeroCheckboxState extends State<_InteractiveHeroCheckbox> {
+  bool selected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return HeroCheckbox(
+      selected: selected,
+      onChanged: widget.enabled
+          ? (value) {
+              setState(() {
+                selected = value ?? false;
+              });
+            }
+          : null,
+      enabled: widget.enabled,
+      size: widget.size,
     );
   }
 }
