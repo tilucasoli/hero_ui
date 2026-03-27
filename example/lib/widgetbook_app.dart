@@ -221,6 +221,65 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroTextField',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+                    final error = context.knobs.boolean(
+                      label: 'Error',
+                      initialValue: false,
+                    );
+                    final fullWidth = context.knobs.boolean(
+                      label: 'Full width',
+                      initialValue: false,
+                    );
+                    final label = context.knobs.string(
+                      label: 'Label',
+                      initialValue: 'Email',
+                    );
+                    final hintText = context.knobs.string(
+                      label: 'Hint text',
+                      initialValue: 'you@example.com',
+                    );
+                    final helperText = context.knobs.string(
+                      label: 'Helper text',
+                      initialValue: '',
+                    );
+                    final obscureText = context.knobs.boolean(
+                      label: 'Obscure text',
+                      initialValue: false,
+                    );
+                    final readOnly = context.knobs.boolean(
+                      label: 'Read only',
+                      initialValue: false,
+                    );
+
+                    final child = HeroTextField(
+                      enabled: enabled,
+                      error: error,
+                      fullWidth: fullWidth,
+                      label: label.isEmpty ? null : label,
+                      hintText: hintText.isEmpty ? null : hintText,
+                      helperText: helperText.isEmpty ? null : helperText,
+                      obscureText: obscureText,
+                      readOnly: readOnly,
+                    );
+
+                    if (fullWidth) {
+                      return _preview(SizedBox(width: 320, child: child));
+                    }
+
+                    return _preview(SizedBox(width: 280, child: child));
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],
