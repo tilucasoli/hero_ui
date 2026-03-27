@@ -20,6 +20,10 @@ export 'src/components/switch/hero_switch_style.dart';
 export 'src/components/slider/hero_slider.dart';
 export 'src/components/slider/hero_slider_style.dart';
 
+// Checkbox
+export 'src/components/checkbox/hero_checkbox.dart';
+export 'src/components/checkbox/hero_checkbox_style.dart';
+
 // Radio
 export 'src/components/radio/hero_radio.dart';
 export 'src/components/radio/hero_radio_style.dart';
