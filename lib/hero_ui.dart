@@ -20,6 +20,10 @@ export 'src/components/switch/hero_switch_style.dart';
 export 'src/components/slider/hero_slider.dart';
 export 'src/components/slider/hero_slider_style.dart';
 
+// Checkbox
+export 'src/components/checkbox/hero_checkbox.dart';
+export 'src/components/checkbox/hero_checkbox_style.dart';
+
 // TextField
 export 'src/components/text_field/hero_text_field.dart';
 export 'src/components/text_field/hero_text_field_style.dart';
