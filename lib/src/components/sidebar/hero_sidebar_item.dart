@@ -4,7 +4,7 @@ import 'package:mix/mix.dart';
 import '../../tokens/hero_tokens.dart';
 import 'hero_sidebar_style.dart';
 
-final class HeroSidebarItem extends StatelessWidget {
+final class HeroSidebarItem extends StatefulWidget {
   final String label;
   final IconData? icon;
   final Widget? trailing;
@@ -21,33 +21,70 @@ final class HeroSidebarItem extends StatelessWidget {
   });
 
   @override
+  State<HeroSidebarItem> createState() => _HeroSidebarItemState();
+}
+
+class _HeroSidebarItemState extends State<HeroSidebarItem> {
+  final _controller = WidgetStatesController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.update(WidgetState.selected, widget.isSelected);
+  }
+
+  @override
+  void didUpdateWidget(covariant HeroSidebarItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isSelected != widget.isSelected) {
+      _controller.update(WidgetState.selected, widget.isSelected);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final containerStyle = HeroSidebarItemStyle.resolve(isSelected: isSelected);
+    final labelStyle = heroSidebarItemLabelStyle
+        .color($surfaceForeground())
+        .variant(
+          ContextVariant.widgetState(.selected),
+          .color($accentSoftForeground()),
+        );
 
-    final labelColor =
-        isSelected ? $accentSoftForeground() : $surfaceForeground();
-    final iconColor =
-        isSelected ? $accentSoftForeground() : $surfaceForeground();
+    final iconStyle = heroSidebarItemIconStyle
+        .color($surfaceForeground())
+        .variant(
+          ContextVariant.widgetState(.selected),
+          .color($accentSoftForeground()),
+        );
 
-    return PressableBox(
-      onPress: onPressed,
-      style: containerStyle,
-      child: Row(
-        spacing: 10,
-        children: [
-          if (icon != null)
-            StyledIcon(
-              icon: icon!,
-              style: heroSidebarItemIconStyle.color(iconColor),
+    return Pressable(
+      onPress: widget.onPressed,
+      controller: _controller,
+      child: Box(
+        style: heroSidebarItemStyle,
+        child: Row(
+          spacing: 10,
+          children: [
+            if (widget.icon != null)
+              StyledIcon(
+                icon: widget.icon!,
+                style: iconStyle,
+              ),
+            Expanded(
+              child: StyledText(
+                widget.label,
+                style: labelStyle,
+              ),
             ),
-          Expanded(
-            child: StyledText(
-              label,
-              style: heroSidebarItemLabelStyle.color(labelColor),
-            ),
-          ),
-          ?trailing,
-        ],
+            ?widget.trailing,
+          ],
+        ),
       ),
     );
   }
