@@ -42,3 +42,14 @@ export 'src/components/select/hero_select_style.dart';
 // Card
 export 'src/components/card/hero_card.dart';
 export 'src/components/card/hero_card_style.dart';
+
+// LinkButton
+export 'src/components/link_button/hero_link_button.dart';
+export 'src/components/link_button/hero_link_button_style.dart';
+
+// Divider
+export 'src/components/divider/hero_divider.dart';
+export 'src/components/divider/hero_divider_style.dart';
+
+// Blocks
+export 'src/blocks/auth/auth_block.dart';

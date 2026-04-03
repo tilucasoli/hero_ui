@@ -440,6 +440,68 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroLinkButton',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final size = context.knobs.object
+                        .dropdown<HeroLinkButtonSize>(
+                          label: 'Size',
+                          options: HeroLinkButtonSize.values,
+                          initialOption: .md,
+                          labelBuilder: (value) => value.name,
+                        );
+                    final label = context.knobs.string(
+                      label: 'Label',
+                      initialValue: 'Learn more',
+                    );
+                    final enabled = context.knobs.boolean(
+                      label: 'Enabled',
+                      initialValue: true,
+                    );
+                    final iconLeft = context.knobs.boolean(
+                      label: 'Leading icon',
+                      initialValue: false,
+                    );
+                    final iconRight = context.knobs.boolean(
+                      label: 'Trailing icon',
+                      initialValue: false,
+                    );
+
+                    return _preview(
+                      HeroLinkButton(
+                        label: label,
+                        size: size,
+                        enabled: enabled,
+                        iconLeft: iconLeft ? Icons.arrow_back : null,
+                        iconRight: iconRight
+                            ? Icons.arrow_outward_rounded
+                            : null,
+                        onPressed: _noop,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookCategory(
+          name: 'Blocks',
+          children: [
+            WidgetbookComponent(
+              name: 'AuthBlock',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    return const AuthBlock();
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
 
 enum HeroButtonVariant {
   primary,
@@ -19,15 +20,13 @@ final class HeroButtonStyle {
   HeroButtonStyle._();
 
   static RemixButtonStyle resolve({
-    required HeroButtonVariant variant,
     required HeroButtonSize size,
     bool iconOnly = false,
     bool fullWidth = false,
   }) {
     final sizeStyle = _sizeStyle(size, iconOnly: iconOnly);
-    final variantStyle = _variantStyle(variant);
 
-    var style = _baseStyle().merge(sizeStyle).merge(variantStyle);
+    var style = _baseStyle().merge(sizeStyle).merge(_variantStyles());
 
     if (fullWidth) {
       style = style.mainAxisSize(.max);
@@ -84,66 +83,79 @@ final class HeroButtonStyle {
     };
   }
 
-  static RemixButtonStyle _variantStyle(HeroButtonVariant variant) {
-    return switch (variant) {
-      HeroButtonVariant.primary =>
-        RemixButtonStyle()
-            .color($accent())
-            .labelColor($accentForeground())
-            .iconColor($accentForeground())
-            .onHovered(RemixButtonStyle().color($accentHover()))
-            .onPressed(RemixButtonStyle().color($accentHover()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.secondary =>
-        RemixButtonStyle()
-            .color($default())
-            .labelColor($accentSoftForeground())
-            .iconColor($accentSoftForeground())
-            .onHovered(RemixButtonStyle().color($defaultHover()))
-            .onPressed(RemixButtonStyle().color($defaultHover()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.tertiary =>
-        RemixButtonStyle()
-            .color($default())
-            .labelColor($defaultForeground())
-            .iconColor($defaultForeground())
-            .onHovered(RemixButtonStyle().color($defaultHover()))
-            .onPressed(RemixButtonStyle().color($defaultHover()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.outline =>
-        RemixButtonStyle()
-            .color(Colors.transparent)
-            .borderAll(color: $border(), width: 1)
-            .labelColor($defaultForeground())
-            .iconColor($defaultForeground())
-            .onHovered(RemixButtonStyle().color($default()))
-            .onPressed(RemixButtonStyle().color($default()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.ghost =>
-        RemixButtonStyle()
-            .color(Colors.transparent)
-            .labelColor($defaultForeground())
-            .iconColor($defaultForeground())
-            .onHovered(RemixButtonStyle().color($default()))
-            .onPressed(RemixButtonStyle().color($default()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.danger =>
-        RemixButtonStyle()
-            .color($danger())
-            .labelColor($dangerForeground())
-            .iconColor($dangerForeground())
-            .onHovered(RemixButtonStyle().color($dangerHover()))
-            .onPressed(RemixButtonStyle().color($dangerHover()))
-            .onDisabled(_disabledStyle()),
-      HeroButtonVariant.dangerSoft =>
-        RemixButtonStyle()
-            .color($dangerSoft())
-            .labelColor($dangerSoftForeground())
-            .iconColor($dangerSoftForeground())
-            .onHovered(RemixButtonStyle().color($dangerSoftHover()))
-            .onPressed(RemixButtonStyle().color($dangerSoftHover()))
-            .onDisabled(_disabledStyle()),
-    };
+  static RemixButtonStyle _variantStyles() {
+    return RemixButtonStyle()
+        .onVariantEnum<HeroButtonVariant>(
+          .primary,
+          style: RemixButtonStyle()
+              .color($accent())
+              .labelColor($accentForeground())
+              .iconColor($accentForeground())
+              .onHovered(RemixButtonStyle().color($accentHover()))
+              .onPressed(RemixButtonStyle().color($accentHover()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .secondary,
+          style: RemixButtonStyle()
+              .color($default())
+              .labelColor($accentSoftForeground())
+              .iconColor($accentSoftForeground())
+              .onHovered(RemixButtonStyle().color($defaultHover()))
+              .onPressed(RemixButtonStyle().color($defaultHover()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .tertiary,
+          style: RemixButtonStyle()
+              .color($default())
+              .labelColor($defaultForeground())
+              .iconColor($defaultForeground())
+              .onHovered(RemixButtonStyle().color($defaultHover()))
+              .onPressed(RemixButtonStyle().color($defaultHover()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .outline,
+          style: RemixButtonStyle()
+              .color(Colors.transparent)
+              .borderAll(color: $border(), width: 1)
+              .labelColor($defaultForeground())
+              .iconColor($defaultForeground())
+              .onHovered(RemixButtonStyle().color($default()))
+              .onPressed(RemixButtonStyle().color($default()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .ghost,
+          style: RemixButtonStyle()
+              .color(Colors.transparent)
+              .labelColor($defaultForeground())
+              .iconColor($defaultForeground())
+              .onHovered(RemixButtonStyle().color($default()))
+              .onPressed(RemixButtonStyle().color($default()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .danger,
+          style: RemixButtonStyle()
+              .color($danger())
+              .labelColor($dangerForeground())
+              .iconColor($dangerForeground())
+              .onHovered(RemixButtonStyle().color($dangerHover()))
+              .onPressed(RemixButtonStyle().color($dangerHover()))
+              .onDisabled(_disabledStyle()),
+        )
+        .onVariantEnum<HeroButtonVariant>(
+          .dangerSoft,
+          style: RemixButtonStyle()
+              .color($dangerSoft())
+              .labelColor($dangerSoftForeground())
+              .iconColor($dangerSoftForeground())
+              .onHovered(RemixButtonStyle().color($dangerSoftHover()))
+              .onPressed(RemixButtonStyle().color($dangerSoftHover()))
+              .onDisabled(_disabledStyle()),
+        );
   }
 
   static RemixButtonStyle _disabledStyle() {

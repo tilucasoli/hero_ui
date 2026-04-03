@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
+import '../../utils/inherited_variant.dart';
 import '../button_group/hero_button_group.dart';
 import '../button_group/hero_button_group_style.dart';
 import 'hero_button_style.dart';
@@ -37,9 +38,10 @@ final class HeroButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final groupData = HeroButtonGroupData.maybeOf(context);
 
+    final resolvedVariant = groupData?.variant ?? variant;
+
     final resolvedStyle =
         HeroButtonStyle.resolve(
-              variant: groupData?.variant ?? variant,
               size: groupData?.size ?? size,
               iconOnly: iconOnly,
               fullWidth: groupData?.fullWidth ?? fullWidth,
@@ -51,27 +53,31 @@ final class HeroButton extends StatelessWidget {
             .merge(style);
 
     if (groupData != null) {
-      return RemixButton(
+      return InheritedVariant<HeroButtonVariant>(
+        variant: resolvedVariant,
+        child: RemixButton(
+          style: resolvedStyle,
+          label: label ?? '',
+          leadingIcon: iconLeft,
+          trailingIcon: iconRight,
+          loading: loading,
+          enabled: groupData.enabled,
+          onPressed: onPressed,
+        ),
+      );
+    }
+
+    return InheritedVariant<HeroButtonVariant>(
+      variant: resolvedVariant,
+      child: RemixButton(
         style: resolvedStyle,
         label: label ?? '',
         leadingIcon: iconLeft,
         trailingIcon: iconRight,
         loading: loading,
-        enabled: groupData.enabled,
+        enabled: enabled,
         onPressed: onPressed,
-      );
-    }
-
-    // Resolve props: direct > group > default
-
-    return RemixButton(
-      style: resolvedStyle,
-      label: label ?? '',
-      leadingIcon: iconLeft,
-      trailingIcon: iconRight,
-      loading: loading,
-      enabled: enabled,
-      onPressed: onPressed,
+      ),
     );
   }
 }
