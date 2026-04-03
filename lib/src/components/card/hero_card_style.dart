@@ -8,21 +8,16 @@ enum HeroCardVariant { defaultVariant, secondary, tertiary }
 final heroCardStyle = RemixCardStyle()
     .borderRounded(12)
     .paddingAll(0)
+    .borderAll(color: $border(), width: 1)
     .onVariantEnum<HeroCardVariant>(
       .defaultVariant,
-      style: RemixCardStyle()
-          .color($surface())
-          .borderAll(color: $border(), width: 1),
+      style: RemixCardStyle().color($surface()),
     )
     .onVariantEnum<HeroCardVariant>(
       .secondary,
-      style: RemixCardStyle()
-          .color($default())
-          .borderAll(color: $border(), width: 1),
+      style: RemixCardStyle().color($default()),
     )
     .onVariantEnum<HeroCardVariant>(
       .tertiary,
-      style: RemixCardStyle()
-          .color($background())
-          .borderAll(color: $border(), width: 1),
+      style: RemixCardStyle().color($background()),
     );
