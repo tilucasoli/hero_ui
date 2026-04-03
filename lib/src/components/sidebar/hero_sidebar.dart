@@ -18,30 +18,27 @@ final class HeroSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Box(
+    return ColumnBox(
       style: heroSidebarContainerStyle,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (header != null) ...[
-            header!,
-            const HeroDivider(),
-          ],
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: children,
-              ),
+      children: [
+        if (header != null) ...[
+          header!,
+          const HeroDivider(),
+        ],
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: children,
             ),
           ),
-          if (footer != null) ...[
-            const HeroDivider(),
-            footer!,
-          ],
+        ),
+        if (footer != null) ...[
+          const HeroDivider(),
+          footer!,
         ],
-      ),
+      ],
     );
   }
 }

@@ -37,7 +37,8 @@ final class HeroSidebarItemStyle {
   }
 }
 
-final heroSidebarContainerStyle = BoxStyler()
+final heroSidebarContainerStyle = FlexBoxStyler()
+    .crossAxisAlignment(.stretch)
     .color($surface())
     .width(260)
     .borderRight(color: $border(), width: 1);
