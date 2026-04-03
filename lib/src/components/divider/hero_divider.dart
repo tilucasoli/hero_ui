@@ -32,7 +32,7 @@ final class HeroDivider extends StatelessWidget {
         Expanded(child: Box(style: resolvedStyle)),
         StyledText(
           label!,
-          style: TextStyler().fontSize(12).color($muted()),
+          style: TextStyler().style($paragraphXSmall.mix()).color($muted()),
         ),
         Expanded(child: Box(style: resolvedStyle)),
       ],

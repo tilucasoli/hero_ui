@@ -85,13 +85,14 @@ class _AuthBlockState extends State<AuthBlock> {
                 StyledText(
                   'Sign In',
                   style: TextStyler()
-                      .fontSize(28)
-                      .fontWeight(.w700)
+                      .style($titleH4.mix())
                       .color($foreground()),
                 ),
                 StyledText(
                   'Enter your credentials to access your account',
-                  style: TextStyler().fontSize(14).color($muted()),
+                  style: TextStyler()
+                      .style($paragraphSmall.mix())
+                      .color($muted()),
                 ),
               ],
             ),
@@ -135,7 +136,9 @@ class _AuthBlockState extends State<AuthBlock> {
                     ),
                     StyledText(
                       'Remember me',
-                      style: TextStyler().fontSize(14).color($foreground()),
+                      style: TextStyler()
+                          .style($labelSmall.mix())
+                          .color($foreground()),
                     ),
                   ],
                 ),
@@ -189,7 +192,9 @@ class _AuthBlockState extends State<AuthBlock> {
                 children: [
                   StyledText(
                     "Don't have an account?",
-                    style: TextStyler().fontSize(14).color($muted()),
+                    style: TextStyler()
+                        .style($paragraphSmall.mix())
+                        .color($muted()),
                   ),
                   HeroLinkButton(
                     label: 'Sign up',
@@ -235,16 +240,14 @@ final class AuthBrandingPanel extends StatelessWidget {
           StyledText(
             'Welcome back',
             style: TextStyler()
-                .fontSize(40)
-                .fontWeight(.w700)
+                .style($titleH3.mix())
                 .color($accentForeground()),
           ),
           StyledText(
             'Sign in to continue to your account\nand explore what\'s new.',
             style: TextStyler()
-                .fontSize(16)
-                .color($accentForeground())
-                .height(1.5),
+                .style($paragraphMedium.mix())
+                .color($accentForeground()),
           ),
         ],
       ),

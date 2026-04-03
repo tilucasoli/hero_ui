@@ -30,13 +30,11 @@ final class HeroCard extends StatelessWidget {
 
 final HeroCardHeader = BoxStyler().padding(.fromLTRB(24, 24, 24, 0)).call;
 
-final HeroCardTitle = TextStyler()
-    .fontSize(18)
-    .fontWeight(.w600)
-    .color($surfaceForeground())
-    .call;
+final HeroCardTitle =
+    TextStyler().style($labelLarge.mix()).color($surfaceForeground()).call;
 
-final HeroCardDescription = TextStyler().fontSize(14).color($muted()).call;
+final HeroCardDescription =
+    TextStyler().style($paragraphSmall.mix()).color($muted()).call;
 
 final HeroCardContent = BoxStyler()
     .padding(.symmetric(horizontal: 24, vertical: 16))

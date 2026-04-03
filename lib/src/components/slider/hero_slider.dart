@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
+import '../../tokens/hero_tokens.dart';
 import 'hero_slider_style.dart';
 
 final class HeroSlider extends StatelessWidget {
@@ -44,7 +45,7 @@ final class HeroSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = HeroSliderStyle.resolve(size: size).merge(style);
-    final labelStyle = TextStyler().fontSize(14).fontWeight(.w500);
+    final labelStyle = TextStyler().style($labelSmall.mix());
     final outputValue = outputFormatter?.call(value) ?? _defaultOutput(value);
 
     return ColumnBox(
