@@ -78,3 +78,35 @@ const $spacing = SpaceToken('hero.spacing');
 // == Radius ==
 const $radius = RadiusToken('hero.radius');
 const $fieldRadius = RadiusToken('hero.fieldRadius');
+
+// == Text Styles: Title ==
+const $titleH1 = TextStyleToken('hero.title.h1');
+const $titleH2 = TextStyleToken('hero.title.h2');
+const $titleH3 = TextStyleToken('hero.title.h3');
+const $titleH4 = TextStyleToken('hero.title.h4');
+const $titleH5 = TextStyleToken('hero.title.h5');
+const $titleH6 = TextStyleToken('hero.title.h6');
+
+// == Text Styles: Label ==
+const $labelXLarge = TextStyleToken('hero.label.xlarge');
+const $labelLarge = TextStyleToken('hero.label.large');
+const $labelMedium = TextStyleToken('hero.label.medium');
+const $labelSmall = TextStyleToken('hero.label.small');
+const $labelXSmall = TextStyleToken('hero.label.xsmall');
+
+// == Text Styles: Paragraph ==
+const $paragraphXLarge = TextStyleToken('hero.paragraph.xlarge');
+const $paragraphLarge = TextStyleToken('hero.paragraph.large');
+const $paragraphMedium = TextStyleToken('hero.paragraph.medium');
+const $paragraphSmall = TextStyleToken('hero.paragraph.small');
+const $paragraphXSmall = TextStyleToken('hero.paragraph.xsmall');
+
+// == Text Styles: Subheading ==
+const $subheadingMedium = TextStyleToken('hero.subheading.medium');
+const $subheadingSmall = TextStyleToken('hero.subheading.small');
+const $subheadingXSmall = TextStyleToken('hero.subheading.xsmall');
+const $subheading2XSmall = TextStyleToken('hero.subheading.2xsmall');
+
+// == Text Styles: Doc ==
+const $docLabel = TextStyleToken('hero.doc.label');
+const $docParagraph = TextStyleToken('hero.doc.paragraph');
