@@ -263,6 +263,145 @@ final class HeroTheme extends StatelessWidget {
         $radius: const Radius.circular(8.0),
         $fieldRadius: const Radius.circular(12.0),
       },
+      textStyles: {
+        // Title
+        $titleH1: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 56,
+          height: 64 / 56,
+          letterSpacing: -0.56,
+        ),
+        $titleH2: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 48,
+          height: 56 / 48,
+          letterSpacing: -0.48,
+        ),
+        $titleH3: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 40,
+          height: 48 / 40,
+          letterSpacing: -0.40,
+        ),
+        $titleH4: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 32,
+          height: 40 / 32,
+          letterSpacing: -0.16,
+        ),
+        $titleH5: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 24,
+          height: 32 / 24,
+        ),
+        $titleH6: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          height: 28 / 20,
+        ),
+
+        // Label
+        $labelXLarge: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 24,
+          height: 32 / 24,
+          letterSpacing: -0.36,
+        ),
+        $labelLarge: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          height: 24 / 18,
+          letterSpacing: -0.27,
+        ),
+        $labelMedium: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          height: 24 / 16,
+          letterSpacing: -0.176,
+        ),
+        $labelSmall: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          height: 20 / 14,
+          letterSpacing: -0.084,
+        ),
+        $labelXSmall: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 12,
+          height: 16 / 12,
+        ),
+
+        // Paragraph
+        $paragraphXLarge: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 24,
+          height: 32 / 24,
+          letterSpacing: -0.36,
+        ),
+        $paragraphLarge: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          height: 24 / 18,
+          letterSpacing: -0.27,
+        ),
+        $paragraphMedium: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+          height: 24 / 16,
+          letterSpacing: -0.176,
+        ),
+        $paragraphSmall: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
+          height: 20 / 14,
+          letterSpacing: -0.084,
+        ),
+        $paragraphXSmall: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 12,
+          height: 16 / 12,
+        ),
+
+        // Subheading
+        $subheadingMedium: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          height: 24 / 16,
+          letterSpacing: 0.96,
+        ),
+        $subheadingSmall: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          height: 20 / 14,
+          letterSpacing: 0.84,
+        ),
+        $subheadingXSmall: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 12,
+          height: 16 / 12,
+          letterSpacing: 0.48,
+        ),
+        $subheading2XSmall: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 11,
+          height: 12 / 11,
+          letterSpacing: 0.22,
+        ),
+
+        // Doc
+        $docLabel: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          height: 32 / 18,
+          letterSpacing: -0.27,
+        ),
+        $docParagraph: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          height: 32 / 18,
+          letterSpacing: -0.27,
+        ),
+      },
       child: child,
     );
   }
