@@ -28,7 +28,7 @@ final class HeroSelectStyle {
         .borderRadiusAll(Radius.circular(8))
         .paddingX(10)
         .height(32)
-        .text(.color($foreground()).fontSize(14))
+        .text(TextStyler().style($paragraphSmall.mix()).color($foreground()))
         .icon(.color($muted()).size(16))
         .onHovered(RemixSelectMenuItemStyle().color($default()));
   }
@@ -46,7 +46,7 @@ final class HeroSelectStyle {
               .borderRadiusAll($fieldRadius())
               .paddingX(12)
               .paddingY(8)
-              .label(.color($fieldForeground()).fontSize(14).height(1.4))
+              .label(TextStyler().style($paragraphSmall.mix()).color($fieldForeground()).height(1.4))
               .icon(.color($fieldForeground()).size(12)),
         )
         .menuContainer(

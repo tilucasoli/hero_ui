@@ -29,14 +29,12 @@ final class HeroTextFieldStyle {
               .paddingX(12)
               .paddingY(8),
         )
-        .text(.color($fieldForeground()).fontSize(14).height(1.4))
-        .hintText(.color($fieldPlaceholder()).fontSize(14))
+        .text(TextStyler().style($paragraphSmall.mix()).color($fieldForeground()).height(1.4))
+        .hintText(TextStyler().style($paragraphSmall.mix()).color($fieldPlaceholder()))
         .label(
-          .color(
-            $foreground(),
-          ).fontWeight(.w500).fontSize(14).wrap(.padding(.bottom(6))),
+          TextStyler().style($labelSmall.mix()).color($foreground()).wrap(.padding(.bottom(6))),
         )
-        .helperText(.color($muted()).fontSize(12).wrap(.padding(.top(4))))
+        .helperText(TextStyler().style($paragraphXSmall.mix()).color($muted()).wrap(.padding(.top(4))))
         .cursorColor($accent())
         .spacing(4)
         .mainAxisSize(.min)

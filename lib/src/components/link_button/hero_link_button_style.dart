@@ -19,7 +19,6 @@ final class HeroLinkButtonStyle {
         .crossAxisAlignment(.center)
         .spacing(4)
         .color(Colors.transparent)
-        .labelFontWeight(.w500)
         .labelColor($accent())
         .iconColor($accent())
         .onHovered(
@@ -38,9 +37,9 @@ final class HeroLinkButtonStyle {
 
   static RemixButtonStyle _sizeStyle(HeroLinkButtonSize size) {
     return switch (size) {
-      .sm => RemixButtonStyle().labelFontSize(14).iconSize(14),
-      .md => RemixButtonStyle().labelFontSize(14).iconSize(16),
-      .lg => RemixButtonStyle().labelFontSize(16).iconSize(18),
+      .sm => RemixButtonStyle().labelTextStyle($labelSmall.mix()).iconSize(14),
+      .md => RemixButtonStyle().labelTextStyle($labelSmall.mix()).iconSize(16),
+      .lg => RemixButtonStyle().labelTextStyle($labelMedium.mix()).iconSize(18),
     };
   }
 }

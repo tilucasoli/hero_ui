@@ -41,7 +41,6 @@ final class HeroButtonStyle {
         .mainAxisAlignment(.center)
         .crossAxisAlignment(.center)
         .spacing(8)
-        .labelFontWeight(.w500)
         .animate(.easeOut(100.ms));
   }
 
@@ -57,7 +56,7 @@ final class HeroButtonStyle {
             .paddingX(iconOnly ? 0 : 12)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(32) : s)
-            .labelFontSize(14)
+            .labelTextStyle($labelSmall.mix())
             .iconSize(16)
             .onPressed(.new().container(.scale(0.97))),
       HeroButtonSize.md =>
@@ -67,7 +66,7 @@ final class HeroButtonStyle {
             .scale(1)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(36) : s)
-            .labelFontSize(14)
+            .labelTextStyle($labelSmall.mix())
             .iconSize(18)
             .onPressed(.new().container(.scale(0.97))),
       HeroButtonSize.lg =>
@@ -77,7 +76,7 @@ final class HeroButtonStyle {
             .scale(1)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(40) : s)
-            .labelFontSize(16)
+            .labelTextStyle($labelMedium.mix())
             .iconSize(20)
             .onPressed(.new().container(.scale(0.97))),
     };
