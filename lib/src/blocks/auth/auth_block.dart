@@ -4,17 +4,29 @@ import 'package:mix/mix.dart';
 import '../../components/button/hero_button.dart';
 import '../../components/button/hero_button_style.dart';
 import '../../components/checkbox/hero_checkbox.dart';
+import '../../components/divider/hero_divider.dart';
+import '../../components/link_button/hero_link_button.dart';
+import '../../components/link_button/hero_link_button_style.dart';
 import '../../components/text_field/hero_text_field.dart';
 import '../../tokens/hero_tokens.dart';
 
+typedef OnSignInCallback =
+    void Function(String email, String password, bool rememberMe);
+
 final class AuthBlock extends StatefulWidget {
-  final void Function(String email, String password, bool rememberMe)? onSignIn;
+  final Widget brandingPanel;
+  final OnSignInCallback? onSignIn;
+  final VoidCallback? onSignInWithGoogle;
+  final VoidCallback? onSignInWithApple;
   final VoidCallback? onForgotPassword;
   final VoidCallback? onSignUp;
 
   const AuthBlock({
     super.key,
+    this.brandingPanel = const AuthBrandingPanel(),
     this.onSignIn,
+    this.onSignInWithGoogle,
+    this.onSignInWithApple,
     this.onForgotPassword,
     this.onSignUp,
   });
@@ -37,50 +49,24 @@ class _AuthBlockState extends State<AuthBlock> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    final container = FlexBoxStyler()
+        .color($surface())
+        .alignment(.center)
+        .onMobile(.column());
+    final isMobile = ContextVariant.mobile().shouldApply(context);
+    return container(
       children: [
-        Expanded(child: _buildBrandingPanel()),
+        if (!isMobile) Expanded(child: widget.brandingPanel),
         Expanded(child: _buildFormPanel()),
       ],
-    );
-  }
-
-  Widget _buildBrandingPanel() {
-    final brandingStyle = BoxStyler()
-        .color($accent())
-        .alignment(.center)
-        .paddingX(48);
-
-    return Box(
-      style: brandingStyle,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 12,
-        children: [
-          StyledText(
-            'Welcome back',
-            style: TextStyler()
-                .fontSize(40)
-                .fontWeight(.w700)
-                .color($accentForeground()),
-          ),
-          StyledText(
-            'Sign in to continue to your account\nand explore what\'s new.',
-            style: TextStyler()
-                .fontSize(16)
-                .color($accentForeground())
-                .height(1.5),
-          ),
-        ],
-      ),
     );
   }
 
   Widget _buildFormPanel() {
     final panelStyle = BoxStyler()
         .color($surface())
-        .alignment(.center);
+        .alignment(.center)
+        .paddingAll(24);
 
     return Box(
       style: panelStyle,
@@ -105,9 +91,7 @@ class _AuthBlockState extends State<AuthBlock> {
                 ),
                 StyledText(
                   'Enter your credentials to access your account',
-                  style: TextStyler()
-                      .fontSize(14)
-                      .color($muted()),
+                  style: TextStyler().fontSize(14).color($muted()),
                 ),
               ],
             ),
@@ -151,20 +135,13 @@ class _AuthBlockState extends State<AuthBlock> {
                     ),
                     StyledText(
                       'Remember me',
-                      style: TextStyler()
-                          .fontSize(14)
-                          .color($foreground()),
+                      style: TextStyler().fontSize(14).color($foreground()),
                     ),
                   ],
                 ),
-                GestureDetector(
-                  onTap: widget.onForgotPassword,
-                  child: StyledText(
-                    'Forgot password?',
-                    style: TextStyler()
-                        .fontSize(14)
-                        .color($accent()),
-                  ),
+                HeroLinkButton(
+                  label: 'Forgot password?',
+                  onPressed: widget.onForgotPassword,
                 ),
               ],
             ),
@@ -177,6 +154,33 @@ class _AuthBlockState extends State<AuthBlock> {
               onPressed: _handleSignIn,
             ),
 
+            const HeroDivider(label: 'or continue with'),
+
+            // Social login buttons
+            Row(
+              spacing: 12,
+              children: [
+                Expanded(
+                  child: HeroButton(
+                    variant: HeroButtonVariant.outline,
+                    iconLeft: Icons.g_translate,
+                    label: 'Google',
+                    fullWidth: true,
+                    onPressed: widget.onSignInWithGoogle,
+                  ),
+                ),
+                Expanded(
+                  child: HeroButton(
+                    variant: HeroButtonVariant.outline,
+                    iconLeft: Icons.apple,
+                    label: 'Apple',
+                    fullWidth: true,
+                    onPressed: widget.onSignInWithApple,
+                  ),
+                ),
+              ],
+            ),
+
             // Sign up link
             Center(
               child: Row(
@@ -185,19 +189,12 @@ class _AuthBlockState extends State<AuthBlock> {
                 children: [
                   StyledText(
                     "Don't have an account?",
-                    style: TextStyler()
-                        .fontSize(14)
-                        .color($muted()),
+                    style: TextStyler().fontSize(14).color($muted()),
                   ),
-                  GestureDetector(
-                    onTap: widget.onSignUp,
-                    child: StyledText(
-                      'Sign up',
-                      style: TextStyler()
-                          .fontSize(14)
-                          .fontWeight(.w600)
-                          .color($accent()),
-                    ),
+                  HeroLinkButton(
+                    label: 'Sign up',
+                    size: HeroLinkButtonSize.sm,
+                    onPressed: widget.onSignUp,
                   ),
                 ],
               ),
@@ -213,6 +210,44 @@ class _AuthBlockState extends State<AuthBlock> {
       _emailController.text,
       _passwordController.text,
       _rememberMe,
+    );
+  }
+}
+
+final class AuthBrandingPanel extends StatelessWidget {
+  const AuthBrandingPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final brandingStyle = BoxStyler()
+        .color($accent())
+        .alignment(.bottomLeft)
+        .paddingAll(48)
+        .marginAll(16)
+        .borderRounded(16);
+
+    return brandingStyle(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 12,
+        children: [
+          StyledText(
+            'Welcome back',
+            style: TextStyler()
+                .fontSize(40)
+                .fontWeight(.w700)
+                .color($accentForeground()),
+          ),
+          StyledText(
+            'Sign in to continue to your account\nand explore what\'s new.',
+            style: TextStyler()
+                .fontSize(16)
+                .color($accentForeground())
+                .height(1.5),
+          ),
+        ],
+      ),
     );
   }
 }

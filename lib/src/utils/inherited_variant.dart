@@ -26,10 +26,9 @@ class OnInheritedVariant<T extends Enum> extends ContextVariant {
   final T variant;
 
   OnInheritedVariant({required this.variant})
-    : super(
-        '${T.toString()}_variant',
-        (context) => InheritedVariant.of<T>(context) == variant,
-      );
+    : super('on_inherited_${T.toString()}_$variant', (context) {
+        return InheritedVariant.of<T>(context) == variant;
+      });
 }
 
 extension WidgetStateVariantMixinExt<T extends Style<S>, S extends Spec<S>>
