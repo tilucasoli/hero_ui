@@ -442,6 +442,22 @@ class HeroUiWidgetbookApp extends StatelessWidget {
             ),
           ],
         ),
+        WidgetbookCategory(
+          name: 'Blocks',
+          children: [
+            WidgetbookComponent(
+              name: 'AuthBlock',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    return const AuthBlock();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
       addons: [
         MaterialThemeAddon(
