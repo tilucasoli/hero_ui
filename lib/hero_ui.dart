@@ -38,3 +38,7 @@ export 'src/components/text_field/hero_text_field_style.dart';
 // Select
 export 'src/components/select/hero_select.dart';
 export 'src/components/select/hero_select_style.dart';
+
+// Card
+export 'src/components/card/hero_card.dart';
+export 'src/components/card/hero_card_style.dart';

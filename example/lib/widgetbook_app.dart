@@ -374,6 +374,72 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroCard',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    final variant = context.knobs.object
+                        .dropdown<HeroCardVariant>(
+                          label: 'Variant',
+                          options: HeroCardVariant.values,
+                          initialOption: .defaultVariant,
+                          labelBuilder: (value) => value.name,
+                        );
+
+                    return _preview(
+                      SizedBox(
+                        width: 340,
+                        child: HeroCard(
+                          variant: variant,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              HeroCardHeader(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  spacing: 6,
+                                  children: [
+                                    HeroCardTitle('Card Title'),
+                                    HeroCardDescription(
+                                      'Card description goes here.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              HeroCardContent(
+                                child: Text('Card content goes here.'),
+                              ),
+                              HeroCardFooter(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  spacing: 8,
+                                  children: [
+                                    HeroButton(
+                                      variant: .ghost,
+                                      size: .sm,
+                                      label: 'Cancel',
+                                      onPressed: _noop,
+                                    ),
+                                    HeroButton(
+                                      size: .sm,
+                                      label: 'Submit',
+                                      onPressed: _noop,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],
