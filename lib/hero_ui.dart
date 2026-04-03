@@ -58,3 +58,4 @@ export 'src/components/sidebar/hero_sidebar_style.dart';
 
 // Blocks
 export 'src/blocks/auth/auth_block.dart';
+export 'src/blocks/dashboard/dashboard_block.dart';
