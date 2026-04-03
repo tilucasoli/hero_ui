@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hero_ui/hero_ui.dart';
+import 'package:mix/mix.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class HeroUiWidgetbookApp extends StatelessWidget {
@@ -486,6 +487,81 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ),
               ],
             ),
+            WidgetbookComponent(
+              name: 'HeroSidebar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                        height: 500,
+                        child: HeroSidebar(
+                          header: HeroSidebarHeader(
+                            child: StyledText(
+                              'My App',
+                              style: TextStyler()
+                                  .style($labelLarge.mix())
+                                  .color($surfaceForeground()),
+                            ),
+                          ),
+                          footer: HeroSidebarFooter(
+                            child: StyledText(
+                              'v1.0.0',
+                              style: TextStyler()
+                                  .style($paragraphSmall.mix())
+                                  .color($muted()),
+                            ),
+                          ),
+                          children: [
+                            HeroSidebarSection(
+                              title: 'Navigation',
+                              children: [
+                                HeroSidebarItem(
+                                  label: 'Home',
+                                  icon: Icons.home_outlined,
+                                  isSelected: true,
+                                  onPressed: _noop,
+                                ),
+                                HeroSidebarItem(
+                                  label: 'Search',
+                                  icon: Icons.search,
+                                  onPressed: _noop,
+                                ),
+                                HeroSidebarItem(
+                                  label: 'Notifications',
+                                  icon: Icons.notifications_outlined,
+                                  trailing: const Badge(
+                                    label: Text('3'),
+                                  ),
+                                  onPressed: _noop,
+                                ),
+                              ],
+                            ),
+                            HeroSidebarSection(
+                              title: 'Account',
+                              children: [
+                                HeroSidebarItem(
+                                  label: 'Profile',
+                                  icon: Icons.person_outline,
+                                  onPressed: _noop,
+                                ),
+                                HeroSidebarItem(
+                                  label: 'Settings',
+                                  icon: Icons.settings_outlined,
+                                  onPressed: _noop,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ],
         ),
         WidgetbookCategory(
@@ -498,6 +574,19 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                   name: 'Playground',
                   builder: (context) {
                     return const AuthBlock();
+                  },
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'DashboardBlock',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Playground',
+                  builder: (context) {
+                    return const SizedBox.expand(
+                      child: _InteractiveDashboardBlock(),
+                    );
                   },
                 ),
               ],
@@ -751,6 +840,31 @@ class _InteractiveHeroRadioGroupState
           ),
         ],
       ),
+    );
+  }
+}
+
+class _InteractiveDashboardBlock extends StatefulWidget {
+  const _InteractiveDashboardBlock();
+
+  @override
+  State<_InteractiveDashboardBlock> createState() =>
+      _InteractiveDashboardBlockState();
+}
+
+class _InteractiveDashboardBlockState
+    extends State<_InteractiveDashboardBlock> {
+  String selectedItem = 'overview';
+
+  @override
+  Widget build(BuildContext context) {
+    return DashboardBlock(
+      selectedItem: selectedItem,
+      onItemSelected: (item) {
+        setState(() {
+          selectedItem = item;
+        });
+      },
     );
   }
 }

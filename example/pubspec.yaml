@@ -36,6 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   hero_ui:
     path: ..
+  mix:
+    git:
+      url: https://github.com/btwld/mix.git
+      ref: main
+      path: packages/mix
   widgetbook: ^3.22.0
 
 dev_dependencies:
