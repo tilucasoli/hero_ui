@@ -1,103 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:mix/mix.dart';
-
-import '../../components/sidebar/hero_sidebar.dart';
-import '../../components/sidebar/hero_sidebar_item.dart';
-import '../../tokens/hero_tokens.dart';
+import 'package:hero_ui/hero_ui.dart';
 
 final class DashboardBlock extends StatelessWidget {
-  final String selectedItem;
-  final ValueChanged<String>? onItemSelected;
+  final Widget? header;
+  final Widget? footer;
+  final List<Widget> sidebarChildren;
+  final Widget? child;
 
   const DashboardBlock({
     super.key,
-    this.selectedItem = 'overview',
-    this.onItemSelected,
+    this.header,
+    this.footer,
+    this.sidebarChildren = const [],
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        HeroSidebar(
-          header: HeroSidebarHeader(
-            child: StyledText(
-              'Acme Inc',
-              style: TextStyler()
-                  .style($labelLarge.mix())
-                  .color($surfaceForeground()),
-            ),
+    return ColoredBox(
+      color: $background.resolve(context),
+      child: Row(
+        children: [
+          HeroSidebar(
+            header: header,
+            footer: footer,
+            children: sidebarChildren,
           ),
-          footer: HeroSidebarFooter(
-            child: Row(
-              spacing: 10,
-              children: [
-                Icon(Icons.account_circle, size: 28, color: $muted.resolve(context)),
-                Expanded(
-                  child: StyledText(
-                    'John Doe',
-                    style: TextStyler()
-                        .style($labelSmall.mix())
-                        .color($surfaceForeground()),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          children: [
-            HeroSidebarSection(
-              title: 'Main',
-              children: [
-                HeroSidebarItem(
-                  label: 'Overview',
-                  icon: Icons.dashboard_outlined,
-                  isSelected: selectedItem == 'overview',
-                  onPressed: () => onItemSelected?.call('overview'),
-                ),
-                HeroSidebarItem(
-                  label: 'Analytics',
-                  icon: Icons.bar_chart_outlined,
-                  isSelected: selectedItem == 'analytics',
-                  onPressed: () => onItemSelected?.call('analytics'),
-                ),
-                HeroSidebarItem(
-                  label: 'Reports',
-                  icon: Icons.description_outlined,
-                  isSelected: selectedItem == 'reports',
-                  onPressed: () => onItemSelected?.call('reports'),
-                ),
-              ],
-            ),
-            HeroSidebarSection(
-              title: 'Settings',
-              children: [
-                HeroSidebarItem(
-                  label: 'Account',
-                  icon: Icons.person_outline,
-                  isSelected: selectedItem == 'account',
-                  onPressed: () => onItemSelected?.call('account'),
-                ),
-                HeroSidebarItem(
-                  label: 'Preferences',
-                  icon: Icons.settings_outlined,
-                  isSelected: selectedItem == 'preferences',
-                  onPressed: () => onItemSelected?.call('preferences'),
-                ),
-              ],
-            ),
-          ],
-        ),
-        Expanded(
-          child: Center(
-            child: StyledText(
-              selectedItem[0].toUpperCase() + selectedItem.substring(1),
-              style: TextStyler()
-                  .style($titleH4.mix())
-                  .color($muted()),
-            ),
-          ),
-        ),
-      ],
+          HeroDivider(orientation: .vertical),
+          Expanded(child: child ?? const SizedBox.shrink()),
+        ],
+      ),
     );
   }
 }

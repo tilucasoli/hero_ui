@@ -498,21 +498,17 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                       child: SizedBox(
                         height: 500,
                         child: HeroSidebar(
-                          header: HeroSidebarHeader(
-                            child: StyledText(
-                              'My App',
-                              style: TextStyler()
-                                  .style($labelLarge.mix())
-                                  .color($surfaceForeground()),
-                            ),
+                          header: StyledText(
+                            'My App',
+                            style: TextStyler()
+                                .style($labelLarge.mix())
+                                .color($surfaceForeground()),
                           ),
-                          footer: HeroSidebarFooter(
-                            child: StyledText(
-                              'v1.0.0',
-                              style: TextStyler()
-                                  .style($paragraphSmall.mix())
-                                  .color($muted()),
-                            ),
+                          footer: StyledText(
+                            'v1.0.0',
+                            style: TextStyler()
+                                .style($paragraphSmall.mix())
+                                .color($muted()),
                           ),
                           children: [
                             HeroSidebarSection(
@@ -532,9 +528,7 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                                 HeroSidebarItem(
                                   label: 'Notifications',
                                   icon: Icons.notifications_outlined,
-                                  trailing: const Badge(
-                                    label: Text('3'),
-                                  ),
+                                  trailing: const Badge(label: Text('3')),
                                   onPressed: _noop,
                                 ),
                               ],
@@ -859,12 +853,78 @@ class _InteractiveDashboardBlockState
   @override
   Widget build(BuildContext context) {
     return DashboardBlock(
-      selectedItem: selectedItem,
-      onItemSelected: (item) {
-        setState(() {
-          selectedItem = item;
-        });
-      },
+      header: StyledText(
+        'Acme Inc',
+        style: TextStyler()
+            .style($labelLarge.mix())
+            .color($surfaceForeground()),
+      ),
+      footer: Row(
+        spacing: 10,
+        children: [
+          Icon(
+            Icons.account_circle,
+            size: 28,
+            color: $muted.resolve(context),
+          ),
+          Expanded(
+            child: StyledText(
+              'John Doe',
+              style: TextStyler()
+                  .style($labelSmall.mix())
+                  .color($surfaceForeground()),
+            ),
+          ),
+        ],
+      ),
+      sidebarChildren: [
+        HeroSidebarSection(
+          title: 'Main',
+          children: [
+            HeroSidebarItem(
+              label: 'Overview',
+              icon: Icons.dashboard_outlined,
+              isSelected: selectedItem == 'overview',
+              onPressed: () => setState(() => selectedItem = 'overview'),
+            ),
+            HeroSidebarItem(
+              label: 'Analytics',
+              icon: Icons.bar_chart_outlined,
+              isSelected: selectedItem == 'analytics',
+              onPressed: () => setState(() => selectedItem = 'analytics'),
+            ),
+            HeroSidebarItem(
+              label: 'Reports',
+              icon: Icons.description_outlined,
+              isSelected: selectedItem == 'reports',
+              onPressed: () => setState(() => selectedItem = 'reports'),
+            ),
+          ],
+        ),
+        HeroSidebarSection(
+          title: 'Settings',
+          children: [
+            HeroSidebarItem(
+              label: 'Account',
+              icon: Icons.person_outline,
+              isSelected: selectedItem == 'account',
+              onPressed: () => setState(() => selectedItem = 'account'),
+            ),
+            HeroSidebarItem(
+              label: 'Preferences',
+              icon: Icons.settings_outlined,
+              isSelected: selectedItem == 'preferences',
+              onPressed: () => setState(() => selectedItem = 'preferences'),
+            ),
+          ],
+        ),
+      ],
+      child: Center(
+        child: StyledText(
+          selectedItem[0].toUpperCase() + selectedItem.substring(1),
+          style: TextStyler().style($titleH4.mix()).color($muted()),
+        ),
+      ),
     );
   }
 }
