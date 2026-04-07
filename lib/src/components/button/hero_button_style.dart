@@ -56,7 +56,7 @@ final class HeroButtonStyle {
             .paddingX(iconOnly ? 0 : 12)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(32) : s)
-            .labelTextStyle($labelSmall.mix())
+            .labelStyle($labelSmall.mix())
             .iconSize(16)
             .onPressed(.new().container(.scale(0.97))),
       HeroButtonSize.md =>
@@ -66,7 +66,7 @@ final class HeroButtonStyle {
             .scale(1)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(36) : s)
-            .labelTextStyle($labelSmall.mix())
+            .labelStyle($labelSmall.mix())
             .iconSize(18)
             .onPressed(.new().container(.scale(0.97))),
       HeroButtonSize.lg =>
@@ -76,7 +76,7 @@ final class HeroButtonStyle {
             .scale(1)
             .borderRounded(24)
             .then((s) => iconOnly ? s.width(40) : s)
-            .labelTextStyle($labelMedium.mix())
+            .labelStyle($labelMedium.mix())
             .iconSize(20)
             .onPressed(.new().container(.scale(0.97))),
     };
