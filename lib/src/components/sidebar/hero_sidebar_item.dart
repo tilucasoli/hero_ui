@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
+import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import 'hero_sidebar_style.dart';
 
 final class HeroSidebarItem extends StatefulWidget {
   final String label;
@@ -49,42 +49,42 @@ class _HeroSidebarItemState extends State<HeroSidebarItem> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = heroSidebarItemLabelStyle
-        .color($surfaceForeground())
+    final labelStyle = TextStyler()
+        .style($labelSmall.mix())
+        .color($foreground());
+
+    final iconStyle = IconStyler()
+        .size(18)
+        .color($muted())
         .variant(
           ContextVariant.widgetState(.selected),
           .color($accentSoftForeground()),
         );
 
-    final iconStyle = heroSidebarItemIconStyle
-        .color($surfaceForeground())
-        .variant(
-          ContextVariant.widgetState(.selected),
-          .color($accentSoftForeground()),
-        );
+    final heroSidebarItemStyle = FlexBoxStyler()
+        .borderRounded(8)
+        .paddingX(12)
+        .paddingY(8)
+        .color($background())
+        .spacing(10)
+        .marginY(1)
+        .scale(1)
+        .onHovered(.color($default()))
+        .variant(ContextVariant.widgetState(.selected), .color($default()))
+        .onPressed(.scale(0.98))
+        .animate(.ease(150.ms));
 
     return Pressable(
       onPress: widget.onPressed,
       controller: _controller,
-      child: Box(
+      child: RowBox(
         style: heroSidebarItemStyle,
-        child: Row(
-          spacing: 10,
-          children: [
-            if (widget.icon != null)
-              StyledIcon(
-                icon: widget.icon!,
-                style: iconStyle,
-              ),
-            Expanded(
-              child: StyledText(
-                widget.label,
-                style: labelStyle,
-              ),
-            ),
-            ?widget.trailing,
-          ],
-        ),
+        children: [
+          if (widget.icon != null)
+            StyledIcon(icon: widget.icon!, style: iconStyle),
+          Expanded(child: StyledText(widget.label, style: labelStyle)),
+          ?widget.trailing,
+        ],
       ),
     );
   }

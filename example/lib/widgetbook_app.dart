@@ -8,606 +8,619 @@ class HeroUiWidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook.material(
-      directories: [
-        WidgetbookCategory(
-          name: 'Components',
-          children: [
-            WidgetbookComponent(
-              name: 'HeroButton',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final variant = context.knobs.object
-                        .dropdown<HeroButtonVariant>(
-                          label: 'Variant',
-                          options: HeroButtonVariant.values,
-                          initialOption: .primary,
-                          labelBuilder: (value) => value.name,
-                        );
-                    final size = context.knobs.object.dropdown<HeroButtonSize>(
-                      label: 'Size',
-                      options: HeroButtonSize.values,
-                      initialOption: .md,
-                      labelBuilder: (value) => value.name,
-                    );
-                    final label = context.knobs.string(
-                      label: 'Label',
-                      initialValue: 'Continue',
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final loading = context.knobs.boolean(
-                      label: 'Loading',
-                      initialValue: false,
-                    );
-                    final iconLeft = context.knobs.boolean(
-                      label: 'Leading icon',
-                      initialValue: false,
-                    );
-                    final iconRight = context.knobs.boolean(
-                      label: 'Trailing icon',
-                      initialValue: false,
-                    );
-                    final fullWidth = context.knobs.boolean(
-                      label: 'Full width',
-                      initialValue: false,
-                    );
-                    final iconOnly = context.knobs.boolean(
-                      label: 'Icon only',
-                      initialValue: false,
-                    );
+    return HeroTheme(
+      data: HeroThemeData.light(),
+      child: Widgetbook.material(
+        directories: [
+          WidgetbookCategory(
+            name: 'Components',
+            children: [
+              WidgetbookComponent(
+                name: 'HeroButton',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroButtonVariant>(
+                            label: 'Variant',
+                            options: HeroButtonVariant.values,
+                            initialOption: .primary,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final size = context.knobs.object
+                          .dropdown<HeroButtonSize>(
+                            label: 'Size',
+                            options: HeroButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final label = context.knobs.string(
+                        label: 'Label',
+                        initialValue: 'Continue',
+                      );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final loading = context.knobs.boolean(
+                        label: 'Loading',
+                        initialValue: false,
+                      );
+                      final iconLeft = context.knobs.boolean(
+                        label: 'Leading icon',
+                        initialValue: false,
+                      );
+                      final iconRight = context.knobs.boolean(
+                        label: 'Trailing icon',
+                        initialValue: false,
+                      );
+                      final fullWidth = context.knobs.boolean(
+                        label: 'Full width',
+                        initialValue: false,
+                      );
+                      final iconOnly = context.knobs.boolean(
+                        label: 'Icon only',
+                        initialValue: false,
+                      );
 
-                    return _preview(
-                      HeroButton(
+                      return _preview(
+                        HeroButton(
+                          variant: variant,
+                          size: size,
+                          label: iconOnly ? null : label,
+                          iconLeft: iconLeft ? Icons.arrow_back : null,
+                          iconRight: iconRight ? Icons.arrow_forward : null,
+                          iconOnly: iconOnly,
+                          loading: loading,
+                          enabled: enabled,
+                          fullWidth: fullWidth,
+                          onPressed: () {},
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroButtonGroup',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroButtonVariant>(
+                            label: 'Variant',
+                            options: HeroButtonVariant.values,
+                            initialOption: .primary,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final size = context.knobs.object
+                          .dropdown<HeroButtonSize>(
+                            label: 'Size',
+                            options: HeroButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final fullWidth = context.knobs.boolean(
+                        label: 'Full width',
+                        initialValue: false,
+                      );
+                      final withSeparator = context.knobs.boolean(
+                        label: 'Show separators',
+                        initialValue: true,
+                      );
+                      final orientation = context.knobs.object.dropdown<Axis>(
+                        label: 'Orientation',
+                        options: Axis.values,
+                        initialOption: Axis.horizontal,
+                        labelBuilder: (value) => value.name,
+                      );
+
+                      final children = <Widget>[
+                        const HeroButton(label: 'Overview', onPressed: _noop),
+                        if (withSeparator) const HeroButtonGroupSeparator(),
+                        const HeroButton(label: 'Specs', onPressed: _noop),
+                        if (withSeparator) const HeroButtonGroupSeparator(),
+                        const HeroButton(label: 'Reviews', onPressed: _noop),
+                      ];
+
+                      final group = HeroButtonGroup(
                         variant: variant,
                         size: size,
-                        label: iconOnly ? null : label,
-                        iconLeft: iconLeft ? Icons.arrow_back : null,
-                        iconRight: iconRight ? Icons.arrow_forward : null,
-                        iconOnly: iconOnly,
-                        loading: loading,
                         enabled: enabled,
                         fullWidth: fullWidth,
-                        onPressed: () {},
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroButtonGroup',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final variant = context.knobs.object
-                        .dropdown<HeroButtonVariant>(
-                          label: 'Variant',
-                          options: HeroButtonVariant.values,
-                          initialOption: .primary,
-                          labelBuilder: (value) => value.name,
-                        );
-                    final size = context.knobs.object.dropdown<HeroButtonSize>(
-                      label: 'Size',
-                      options: HeroButtonSize.values,
-                      initialOption: .md,
-                      labelBuilder: (value) => value.name,
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final fullWidth = context.knobs.boolean(
-                      label: 'Full width',
-                      initialValue: false,
-                    );
-                    final withSeparator = context.knobs.boolean(
-                      label: 'Show separators',
-                      initialValue: true,
-                    );
-                    final orientation = context.knobs.object.dropdown<Axis>(
-                      label: 'Orientation',
-                      options: Axis.values,
-                      initialOption: Axis.horizontal,
-                      labelBuilder: (value) => value.name,
-                    );
+                        orientation: orientation,
+                        children: children,
+                      );
 
-                    final children = <Widget>[
-                      const HeroButton(label: 'Overview', onPressed: _noop),
-                      if (withSeparator) const HeroButtonGroupSeparator(),
-                      const HeroButton(label: 'Specs', onPressed: _noop),
-                      if (withSeparator) const HeroButtonGroupSeparator(),
-                      const HeroButton(label: 'Reviews', onPressed: _noop),
-                    ];
+                      if (fullWidth) {
+                        return _preview(SizedBox(width: 420, child: group));
+                      }
 
-                    final group = HeroButtonGroup(
-                      variant: variant,
-                      size: size,
-                      enabled: enabled,
-                      fullWidth: fullWidth,
-                      orientation: orientation,
-                      children: children,
-                    );
+                      return _preview(group);
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroSwitch',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final size = context.knobs.object
+                          .dropdown<HeroSwitchSize>(
+                            label: 'Size',
+                            options: HeroSwitchSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final selected = context.knobs.boolean(
+                        label: 'Initially selected',
+                        initialValue: false,
+                      );
 
-                    if (fullWidth) {
-                      return _preview(SizedBox(width: 420, child: group));
-                    }
-
-                    return _preview(group);
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroSwitch',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final size = context.knobs.object.dropdown<HeroSwitchSize>(
-                      label: 'Size',
-                      options: HeroSwitchSize.values,
-                      initialOption: .md,
-                      labelBuilder: (value) => value.name,
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final selected = context.knobs.boolean(
-                      label: 'Initially selected',
-                      initialValue: false,
-                    );
-
-                    return _preview(
-                      _InteractiveHeroSwitch(
-                        initiallySelected: selected,
-                        size: size,
-                        enabled: enabled,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroSlider',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final size = context.knobs.object.dropdown<HeroSliderSize>(
-                      label: 'Size',
-                      options: HeroSliderSize.values,
-                      initialOption: .md,
-                      labelBuilder: (value) => value.name,
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final initialValue = context.knobs.double.slider(
-                      label: 'Initial value',
-                      initialValue: 30,
-                      min: 0,
-                      max: 100,
-                    );
-                    final showOutput = context.knobs.boolean(
-                      label: 'Show output',
-                      initialValue: true,
-                    );
-                    final label = context.knobs.string(
-                      label: 'Label',
-                      initialValue: 'Volume',
-                    );
-
-                    return _preview(
-                      SizedBox(
-                        width: 320,
-                        child: _InteractiveHeroSlider(
+                      return _preview(
+                        _InteractiveHeroSwitch(
+                          initiallySelected: selected,
                           size: size,
                           enabled: enabled,
-                          initiallyValue: initialValue,
-                          label: label.isEmpty ? null : label,
-                          showOutput: showOutput,
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroCheckbox',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final size = context.knobs.object
-                        .dropdown<HeroCheckboxSize>(
-                          label: 'Size',
-                          options: HeroCheckboxSize.values,
-                          initialOption: .md,
-                          labelBuilder: (value) => value.name,
-                        );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    return _preview(
-                      _InteractiveHeroCheckbox(size: size, enabled: enabled),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroRadioGroup',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final size = context.knobs.object.dropdown<HeroRadioSize>(
-                      label: 'Size',
-                      options: HeroRadioSize.values,
-                      initialOption: .md,
-                      labelBuilder: (value) => value.name,
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroSlider',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final size = context.knobs.object
+                          .dropdown<HeroSliderSize>(
+                            label: 'Size',
+                            options: HeroSliderSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final initialValue = context.knobs.double.slider(
+                        label: 'Initial value',
+                        initialValue: 30,
+                        min: 0,
+                        max: 100,
+                      );
+                      final showOutput = context.knobs.boolean(
+                        label: 'Show output',
+                        initialValue: true,
+                      );
+                      final label = context.knobs.string(
+                        label: 'Label',
+                        initialValue: 'Volume',
+                      );
 
-                    return _preview(
-                      _InteractiveHeroRadioGroup(size: size, enabled: enabled),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroTextField',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final error = context.knobs.boolean(
-                      label: 'Error',
-                      initialValue: false,
-                    );
-                    final fullWidth = context.knobs.boolean(
-                      label: 'Full width',
-                      initialValue: false,
-                    );
-                    final label = context.knobs.string(
-                      label: 'Label',
-                      initialValue: 'Email',
-                    );
-                    final hintText = context.knobs.string(
-                      label: 'Hint text',
-                      initialValue: 'you@example.com',
-                    );
-                    final helperText = context.knobs.string(
-                      label: 'Helper text',
-                      initialValue: '',
-                    );
-                    final obscureText = context.knobs.boolean(
-                      label: 'Obscure text',
-                      initialValue: false,
-                    );
-                    final readOnly = context.knobs.boolean(
-                      label: 'Read only',
-                      initialValue: false,
-                    );
+                      return _preview(
+                        SizedBox(
+                          width: 320,
+                          child: _InteractiveHeroSlider(
+                            size: size,
+                            enabled: enabled,
+                            initiallyValue: initialValue,
+                            label: label.isEmpty ? null : label,
+                            showOutput: showOutput,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroCheckbox',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final size = context.knobs.object
+                          .dropdown<HeroCheckboxSize>(
+                            label: 'Size',
+                            options: HeroCheckboxSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      return _preview(
+                        _InteractiveHeroCheckbox(size: size, enabled: enabled),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroRadioGroup',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final size = context.knobs.object.dropdown<HeroRadioSize>(
+                        label: 'Size',
+                        options: HeroRadioSize.values,
+                        initialOption: .md,
+                        labelBuilder: (value) => value.name,
+                      );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
 
-                    final child = HeroTextField(
-                      enabled: enabled,
-                      error: error,
-                      fullWidth: fullWidth,
-                      label: label.isEmpty ? null : label,
-                      hintText: hintText.isEmpty ? null : hintText,
-                      helperText: helperText.isEmpty ? null : helperText,
-                      obscureText: obscureText,
-                      readOnly: readOnly,
-                    );
+                      return _preview(
+                        _InteractiveHeroRadioGroup(
+                          size: size,
+                          enabled: enabled,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroTextField',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final error = context.knobs.boolean(
+                        label: 'Error',
+                        initialValue: false,
+                      );
+                      final fullWidth = context.knobs.boolean(
+                        label: 'Full width',
+                        initialValue: false,
+                      );
+                      final label = context.knobs.string(
+                        label: 'Label',
+                        initialValue: 'Email',
+                      );
+                      final hintText = context.knobs.string(
+                        label: 'Hint text',
+                        initialValue: 'you@example.com',
+                      );
+                      final helperText = context.knobs.string(
+                        label: 'Helper text',
+                        initialValue: '',
+                      );
+                      final obscureText = context.knobs.boolean(
+                        label: 'Obscure text',
+                        initialValue: false,
+                      );
+                      final readOnly = context.knobs.boolean(
+                        label: 'Read only',
+                        initialValue: false,
+                      );
 
-                    if (fullWidth) {
-                      return _preview(SizedBox(width: 320, child: child));
-                    }
+                      final child = HeroTextField(
+                        enabled: enabled,
+                        error: error,
+                        fullWidth: fullWidth,
+                        label: label.isEmpty ? null : label,
+                        hintText: hintText.isEmpty ? null : hintText,
+                        helperText: helperText.isEmpty ? null : helperText,
+                        obscureText: obscureText,
+                        readOnly: readOnly,
+                      );
 
-                    return _preview(SizedBox(width: 280, child: child));
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroSelect',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final variant = context.knobs.object
-                        .dropdown<HeroSelectVariant>(
-                          label: 'Variant',
-                          options: HeroSelectVariant.values,
-                          initialOption: .primary,
-                          labelBuilder: (value) => value.name,
-                        );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final error = context.knobs.boolean(
-                      label: 'Error',
-                      initialValue: false,
-                    );
-                    final fullWidth = context.knobs.boolean(
-                      label: 'Full width',
-                      initialValue: false,
-                    );
-                    final placeholder = context.knobs.string(
-                      label: 'Placeholder',
-                      initialValue: 'Select a state',
-                    );
+                      if (fullWidth) {
+                        return _preview(SizedBox(width: 320, child: child));
+                      }
 
-                    final child = _InteractiveHeroSelect(
-                      variant: variant,
-                      enabled: enabled,
-                      error: error,
-                      placeholder: placeholder,
-                    );
+                      return _preview(SizedBox(width: 280, child: child));
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroSelect',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroSelectVariant>(
+                            label: 'Variant',
+                            options: HeroSelectVariant.values,
+                            initialOption: .primary,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final error = context.knobs.boolean(
+                        label: 'Error',
+                        initialValue: false,
+                      );
+                      final fullWidth = context.knobs.boolean(
+                        label: 'Full width',
+                        initialValue: false,
+                      );
+                      final placeholder = context.knobs.string(
+                        label: 'Placeholder',
+                        initialValue: 'Select a state',
+                      );
 
-                    if (fullWidth) {
-                      return _preview(SizedBox(width: 320, child: child));
-                    }
+                      final child = _InteractiveHeroSelect(
+                        variant: variant,
+                        enabled: enabled,
+                        error: error,
+                        placeholder: placeholder,
+                      );
 
-                    return _preview(SizedBox(width: 256, child: child));
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroCard',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final variant = context.knobs.object
-                        .dropdown<HeroCardVariant>(
-                          label: 'Variant',
-                          options: HeroCardVariant.values,
-                          initialOption: .defaultVariant,
-                          labelBuilder: (value) => value.name,
-                        );
+                      if (fullWidth) {
+                        return _preview(SizedBox(width: 320, child: child));
+                      }
 
-                    return _preview(
-                      SizedBox(
-                        width: 340,
-                        child: HeroCard(
-                          variant: variant,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
+                      return _preview(SizedBox(width: 256, child: child));
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroCard',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroCardVariant>(
+                            label: 'Variant',
+                            options: HeroCardVariant.values,
+                            initialOption: .defaultVariant,
+                            labelBuilder: (value) => value.name,
+                          );
+
+                      return _preview(
+                        SizedBox(
+                          width: 340,
+                          child: HeroCard(
+                            variant: variant,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                HeroCardHeader(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 6,
+                                    children: [
+                                      HeroCardTitle('Card Title'),
+                                      HeroCardDescription(
+                                        'Card description goes here.',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                HeroCardContent(
+                                  child: Text('Card content goes here.'),
+                                ),
+                                HeroCardFooter(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    spacing: 8,
+                                    children: [
+                                      HeroButton(
+                                        variant: .ghost,
+                                        size: .sm,
+                                        label: 'Cancel',
+                                        onPressed: _noop,
+                                      ),
+                                      HeroButton(
+                                        size: .sm,
+                                        label: 'Submit',
+                                        onPressed: _noop,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroLinkButton',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final size = context.knobs.object
+                          .dropdown<HeroLinkButtonSize>(
+                            label: 'Size',
+                            options: HeroLinkButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final label = context.knobs.string(
+                        label: 'Label',
+                        initialValue: 'Learn more',
+                      );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final iconLeft = context.knobs.boolean(
+                        label: 'Leading icon',
+                        initialValue: false,
+                      );
+                      final iconRight = context.knobs.boolean(
+                        label: 'Trailing icon',
+                        initialValue: false,
+                      );
+
+                      return _preview(
+                        HeroLinkButton(
+                          label: label,
+                          size: size,
+                          enabled: enabled,
+                          iconLeft: iconLeft ? Icons.arrow_back : null,
+                          iconRight: iconRight
+                              ? Icons.arrow_outward_rounded
+                              : null,
+                          onPressed: _noop,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroSidebar',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      return Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          height: 500,
+                          child: HeroSidebar(
+                            header: StyledText(
+                              'My App',
+                              style: TextStyler()
+                                  .style($labelLarge.mix())
+                                  .color($surfaceForeground()),
+                            ),
+                            footer: StyledText(
+                              'v1.0.0',
+                              style: TextStyler()
+                                  .style($paragraphSmall.mix())
+                                  .color($muted()),
+                            ),
                             children: [
-                              HeroCardHeader(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: 6,
-                                  children: [
-                                    HeroCardTitle('Card Title'),
-                                    HeroCardDescription(
-                                      'Card description goes here.',
-                                    ),
-                                  ],
-                                ),
+                              HeroSidebarSection(
+                                title: 'Navigation',
+                                children: [
+                                  HeroSidebarItem(
+                                    label: 'Home',
+                                    icon: Icons.home_outlined,
+                                    isSelected: true,
+                                    onPressed: _noop,
+                                  ),
+                                  HeroSidebarItem(
+                                    label: 'Search',
+                                    icon: Icons.search,
+                                    onPressed: _noop,
+                                  ),
+                                  HeroSidebarItem(
+                                    label: 'Notifications',
+                                    icon: Icons.notifications_outlined,
+                                    trailing: const Badge(label: Text('3')),
+                                    onPressed: _noop,
+                                  ),
+                                ],
                               ),
-                              HeroCardContent(
-                                child: Text('Card content goes here.'),
-                              ),
-                              HeroCardFooter(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  spacing: 8,
-                                  children: [
-                                    HeroButton(
-                                      variant: .ghost,
-                                      size: .sm,
-                                      label: 'Cancel',
-                                      onPressed: _noop,
-                                    ),
-                                    HeroButton(
-                                      size: .sm,
-                                      label: 'Submit',
-                                      onPressed: _noop,
-                                    ),
-                                  ],
-                                ),
+                              HeroSidebarSection(
+                                title: 'Account',
+                                children: [
+                                  HeroSidebarItem(
+                                    label: 'Profile',
+                                    icon: Icons.person_outline,
+                                    onPressed: _noop,
+                                  ),
+                                  HeroSidebarItem(
+                                    label: 'Settings',
+                                    icon: Icons.settings_outlined,
+                                    onPressed: _noop,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroLinkButton',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    final size = context.knobs.object
-                        .dropdown<HeroLinkButtonSize>(
-                          label: 'Size',
-                          options: HeroLinkButtonSize.values,
-                          initialOption: .md,
-                          labelBuilder: (value) => value.name,
-                        );
-                    final label = context.knobs.string(
-                      label: 'Label',
-                      initialValue: 'Learn more',
-                    );
-                    final enabled = context.knobs.boolean(
-                      label: 'Enabled',
-                      initialValue: true,
-                    );
-                    final iconLeft = context.knobs.boolean(
-                      label: 'Leading icon',
-                      initialValue: false,
-                    );
-                    final iconRight = context.knobs.boolean(
-                      label: 'Trailing icon',
-                      initialValue: false,
-                    );
-
-                    return _preview(
-                      HeroLinkButton(
-                        label: label,
-                        size: size,
-                        enabled: enabled,
-                        iconLeft: iconLeft ? Icons.arrow_back : null,
-                        iconRight: iconRight
-                            ? Icons.arrow_outward_rounded
-                            : null,
-                        onPressed: _noop,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'HeroSidebar',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    return Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        height: 500,
-                        child: HeroSidebar(
-                          header: StyledText(
-                            'My App',
-                            style: TextStyler()
-                                .style($labelLarge.mix())
-                                .color($surfaceForeground()),
-                          ),
-                          footer: StyledText(
-                            'v1.0.0',
-                            style: TextStyler()
-                                .style($paragraphSmall.mix())
-                                .color($muted()),
-                          ),
-                          children: [
-                            HeroSidebarSection(
-                              title: 'Navigation',
-                              children: [
-                                HeroSidebarItem(
-                                  label: 'Home',
-                                  icon: Icons.home_outlined,
-                                  isSelected: true,
-                                  onPressed: _noop,
-                                ),
-                                HeroSidebarItem(
-                                  label: 'Search',
-                                  icon: Icons.search,
-                                  onPressed: _noop,
-                                ),
-                                HeroSidebarItem(
-                                  label: 'Notifications',
-                                  icon: Icons.notifications_outlined,
-                                  trailing: const Badge(label: Text('3')),
-                                  onPressed: _noop,
-                                ),
-                              ],
-                            ),
-                            HeroSidebarSection(
-                              title: 'Account',
-                              children: [
-                                HeroSidebarItem(
-                                  label: 'Profile',
-                                  icon: Icons.person_outline,
-                                  onPressed: _noop,
-                                ),
-                                HeroSidebarItem(
-                                  label: 'Settings',
-                                  icon: Icons.settings_outlined,
-                                  onPressed: _noop,
-                                ),
-                              ],
-                            ),
-                          ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          WidgetbookCategory(
+            name: 'Blocks',
+            children: [
+              WidgetbookComponent(
+                name: 'AuthBlock',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      return const AuthBlock();
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'DashboardBlock',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      return Scaffold(
+                        body: SizedBox.expand(
+                          child: _InteractiveDashboardBlock(),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-        WidgetbookCategory(
-          name: 'Blocks',
-          children: [
-            WidgetbookComponent(
-              name: 'AuthBlock',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    return const AuthBlock();
-                  },
-                ),
-              ],
-            ),
-            WidgetbookComponent(
-              name: 'DashboardBlock',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Playground',
-                  builder: (context) {
-                    return const SizedBox.expand(
-                      child: _InteractiveDashboardBlock(),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-      addons: [
-        MaterialThemeAddon(
-          themes: [
-            WidgetbookTheme(name: 'Light', data: ThemeData.light()),
-            WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
-          ],
-        ),
-        ViewportAddon(Viewports.all),
-        TextScaleAddon(),
-        BuilderAddon(
-          name: 'Hero Theme',
-          builder: (context, child) {
-            final brightness = Theme.of(context).brightness;
-            final data = brightness == Brightness.dark
-                ? HeroThemeData.dark()
-                : HeroThemeData.light();
-            return HeroTheme(data: data, child: child);
-          },
-        ),
-      ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+        addons: [
+          MaterialThemeAddon(
+            themes: [
+              WidgetbookTheme(name: 'Light', data: ThemeData.light()),
+              WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
+            ],
+          ),
+          ViewportAddon(Viewports.all),
+          TextScaleAddon(),
+          BuilderAddon(
+            name: 'Hero Theme',
+            builder: (context, child) {
+              final brightness = Theme.of(context).brightness;
+              final data = brightness == Brightness.dark
+                  ? HeroThemeData.dark()
+                  : HeroThemeData.light();
+              return HeroTheme(data: data, child: child);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -853,29 +866,121 @@ class _InteractiveDashboardBlockState
   @override
   Widget build(BuildContext context) {
     return DashboardBlock(
-      header: StyledText(
-        'Acme Inc',
-        style: TextStyler()
-            .style($labelLarge.mix())
-            .color($surfaceForeground()),
-      ),
-      footer: Row(
-        spacing: 10,
+      header: ColumnBox(
+        style: FlexBoxStyler().spacing(16).padding(.horizontal(4)),
         children: [
-          Icon(
-            Icons.account_circle,
-            size: 28,
-            color: $muted.resolve(context),
+          Box(
+            style: BoxStyler()
+                .size(32, 32)
+                .margin(.horizontal(4))
+                .color($success())
+                .shapeSuperellipse(borderRadius: .all(.circular(10)))
+                .wrap(.align(alignment: .centerLeft)),
           ),
-          Expanded(
-            child: StyledText(
-              'John Doe',
-              style: TextStyler()
-                  .style($labelSmall.mix())
-                  .color($surfaceForeground()),
+          HeroTextField(
+            hintText: 'Search',
+            leading: StyledIcon(
+              icon: Icons.search,
+              style: IconStyler()
+                  .size(20)
+                  .color($fieldPlaceholder.resolve(context)),
             ),
+            style: .new()
+                .hintColor($fieldPlaceholder())
+                .color($fieldForeground())
+                .hintColor($fieldPlaceholder())
+                .backgroundColor($fieldBackground())
+                .borderAll(color: $fieldBorder(), width: 1)
+                .onFocused(
+                  .new()
+                      .backgroundColor($background())
+                      .borderAll(color: $accent()),
+                ),
           ),
         ],
+      ),
+      footer: Builder(
+        builder: (context) {
+          return Column(
+            spacing: 12,
+            children: [
+              HeroSidebarItem(
+                label: 'Settings',
+                icon: Icons.settings_outlined,
+                // isSelected: selectedItem == 'overview',
+                onPressed: () => showDialog(
+                  context: context,
+                  useRootNavigator: false,
+                  builder: (context) => Center(
+                    child: HeroCard(
+                      child: FractionallySizedBox(
+                        widthFactor: 0.6,
+                        heightFactor: 0.7,
+                        child: DashboardBlock(
+                          sidebarChildren: [
+                            HeroSidebarSection(
+                              title: 'Workspace',
+                              children: [
+                                HeroSidebarItem(
+                                  label: 'Account',
+                                  icon: Icons.person_outline,
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                                HeroSidebarItem(
+                                  label: 'Preferences',
+                                  icon: Icons.settings_outlined,
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const HeroDivider(),
+              Row(
+                spacing: 8,
+                children: [
+                  Box(
+                    style: BoxStyler()
+                        .color($default.resolve(context))
+                        .borderAll(color: $border.resolve(context), width: 1)
+                        .borderRounded(40)
+                        .size(40, 40)
+                        .alignment(.center),
+                    child: StyledText(
+                      'JB',
+                      style: TextStyler()
+                          .style($labelLarge.mix())
+                          .color($defaultForeground.resolve(context))
+                          .height(1.0),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      StyledText(
+                        'James Brown',
+                        style: TextStyler()
+                            .style($labelSmall.mix())
+                            .color($surfaceForeground()),
+                      ),
+                      StyledText(
+                        'james.brown@example.com',
+                        style: TextStyler()
+                            .style($paragraphXSmall.mix())
+                            .color($muted()),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       ),
       sidebarChildren: [
         HeroSidebarSection(
@@ -909,12 +1014,6 @@ class _InteractiveDashboardBlockState
               icon: Icons.person_outline,
               isSelected: selectedItem == 'account',
               onPressed: () => setState(() => selectedItem = 'account'),
-            ),
-            HeroSidebarItem(
-              label: 'Preferences',
-              icon: Icons.settings_outlined,
-              isSelected: selectedItem == 'preferences',
-              onPressed: () => setState(() => selectedItem = 'preferences'),
             ),
           ],
         ),

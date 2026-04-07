@@ -26,8 +26,12 @@ final class DashboardBlock extends StatelessWidget {
             footer: footer,
             children: sidebarChildren,
           ),
-          HeroDivider(orientation: .vertical),
-          Expanded(child: child ?? const SizedBox.shrink()),
+          Expanded(
+            child: Padding(
+              padding: const .all(8.0),
+              child: HeroCard(variant: .tertiary, child: child),
+            ),
+          ),
         ],
       ),
     );

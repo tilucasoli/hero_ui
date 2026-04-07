@@ -54,7 +54,6 @@ export 'src/components/divider/hero_divider_style.dart';
 // Sidebar
 export 'src/components/sidebar/hero_sidebar.dart';
 export 'src/components/sidebar/hero_sidebar_item.dart';
-export 'src/components/sidebar/hero_sidebar_style.dart';
 
 // Blocks
 export 'src/blocks/auth/auth_block.dart';
