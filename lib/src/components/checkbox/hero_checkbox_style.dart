@@ -8,9 +8,7 @@ enum HeroCheckboxSize { sm, md, lg }
 final class HeroCheckboxStyle {
   HeroCheckboxStyle._();
 
-  static RemixCheckboxStyle resolve({
-    HeroCheckboxSize size = .md,
-  }) {
+  static RemixCheckboxStyle resolve({HeroCheckboxSize size = .md}) {
     return _baseStyle().merge(_sizeStyle(size));
   }
 
@@ -25,25 +23,17 @@ final class HeroCheckboxStyle {
         )
         .borderRounded(6)
         .wrap(.opacity(1))
-        .onHovered(
-          RemixCheckboxStyle()
-              .wrap(.opacity(0.8)),
-        )
+        .onHovered(RemixCheckboxStyle().wrap(.opacity(0.8)))
         .onSelected(
           RemixCheckboxStyle()
               .color($accent())
               .indicatorColor($accentForeground())
               .borderAll(color: Colors.transparent, width: 0)
               .onHovered(
-                RemixCheckboxStyle()
-                    .color($accentHover())
-                    .wrap(.opacity(1)),
+                RemixCheckboxStyle().color($accentHover()).wrap(.opacity(1)),
               ),
         )
-        .onDisabled(
-          RemixCheckboxStyle()
-              .wrap(.opacity(0.5)),
-        )
+        .onDisabled(RemixCheckboxStyle().wrap(.opacity(0.5)))
         .animate(.spring(200.ms));
   }
 

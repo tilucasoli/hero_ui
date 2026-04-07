@@ -22,6 +22,7 @@ final class HeroSwitchStyle {
         .thumb(
           BoxStyler()
               .borderRounded(999)
+              .scale(1)
               .shadow(
                 BoxShadowMix()
                     .color(const Color(0x26000000))
@@ -31,7 +32,7 @@ final class HeroSwitchStyle {
         )
         .wrap(.opacity(1))
         .onHovered(RemixSwitchStyle().wrap(.opacity(0.8)))
-        .onPressed(RemixSwitchStyle().color($defaultHover()))
+        .onPressed(RemixSwitchStyle().thumb(.scale(0.9)))
         .onSelected(
           RemixSwitchStyle()
               .color($accent())
