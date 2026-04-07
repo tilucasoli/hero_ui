@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
+import 'package:oklch/oklch.dart';
 
 import '../tokens/hero_tokens.dart';
 
-// == Primitive Colors ==
-const kHeroWhite = Color(0xFFFFFFFF);
-const kHeroBlack = Color(0xFF000000);
-const kHeroSnow = Color(0xFFFAFAFA);
-const kHeroEclipse = Color(0xFF18181B);
+// == Primitive Colors (aligned with HeroUI theme.css neutrals) ==
+Color _oklch(double lPercent, double chroma, double hueDeg) =>
+    OKLCHColor(lPercent / 100, chroma, hueDeg).toColor();
+
+final kHeroWhite = _oklch(100, 0, 0);
+final kHeroBlack = _oklch(0, 0, 0);
+final kHeroSnow = _oklch(99.11, 0, 0);
+final kHeroEclipse = _oklch(21.03, 0.0059, 253.83);
 
 final class HeroThemeData {
   // Base
@@ -33,12 +37,18 @@ final class HeroThemeData {
   // Accent
   final Color accent;
   final Color accentForeground;
+  final Color accentSoft;
+  final Color accentSoftForeground;
 
   // Field
   final Color fieldBackground;
   final Color fieldForeground;
   final Color fieldPlaceholder;
   final Color fieldBorder;
+
+  // Segment (tabs, toggles)
+  final Color segment;
+  final Color segmentForeground;
 
   // Success
   final Color success;
@@ -52,15 +62,9 @@ final class HeroThemeData {
   final Color danger;
   final Color dangerForeground;
 
-  // Segment
-  final Color segment;
-  final Color segmentForeground;
-
   // Misc
   final Color border;
   final Color separator;
-  final Color focus;
-  final Color link;
 
   const HeroThemeData({
     required this.background,
@@ -75,93 +79,89 @@ final class HeroThemeData {
     required this.defaultForeground,
     required this.accent,
     required this.accentForeground,
+    required this.accentSoft,
+    required this.accentSoftForeground,
     required this.fieldBackground,
     required this.fieldForeground,
     required this.fieldPlaceholder,
     required this.fieldBorder,
+    required this.segment,
+    required this.segmentForeground,
     required this.success,
     required this.successForeground,
     required this.warning,
     required this.warningForeground,
     required this.danger,
     required this.dangerForeground,
-    required this.segment,
-    required this.segmentForeground,
     required this.border,
     required this.separator,
-    required this.focus,
-    required this.link,
   });
 
-  /// Light theme matching the HeroUI default CSS theme.
+  /// Light theme from HeroUI `theme.css` (light / default).
   factory HeroThemeData.light() {
-    const accent = Color(0xFF006FEE);
-
     return HeroThemeData(
-      background: const Color(0xFFF4F4F5),
-      foreground: kHeroEclipse,
-      surface: kHeroWhite,
-      surfaceForeground: kHeroEclipse,
-      overlay: kHeroWhite,
-      overlayForeground: kHeroEclipse,
-      muted: const Color(0xFF71717A),
-      scrollbar: const Color(0xFFD4D4D8),
-      defaultColor: const Color(0xFFE8E8EC),
-      defaultForeground: kHeroEclipse,
-      accent: accent,
-      accentForeground: kHeroSnow,
-      fieldBackground: kHeroWhite,
-      fieldForeground: kHeroEclipse,
-      fieldPlaceholder: const Color(0xFF71717A),
-      fieldBorder: const Color(0xFFE4E4E7),
-      success: const Color(0xFF17C964),
-      successForeground: kHeroEclipse,
-      warning: const Color(0xFFF5A524),
-      warningForeground: kHeroEclipse,
-      danger: const Color(0xFFF5312E),
-      dangerForeground: kHeroSnow,
-      segment: kHeroWhite,
-      segmentForeground: kHeroEclipse,
-      border: const Color(0xFFE4E4E7),
-      separator: const Color(0xFFE4E4E7),
-      focus: accent,
-      link: kHeroEclipse,
+      background: _oklch(97.02, 0.0014, 253.83),
+      foreground: _oklch(21.03, 0.0014, 253.83),
+      surface: _oklch(100, 0.0007, 253.83),
+      surfaceForeground: _oklch(21.03, 0.0014, 253.83),
+      overlay: _oklch(100, 0.0004, 253.83),
+      overlayForeground: _oklch(21.03, 0.0014, 253.83),
+      muted: _oklch(55.17, 0.0028, 253.83),
+      scrollbar: _oklch(87.10, 0.0014, 253.83),
+      defaultColor: _oklch(94, 0.0014, 253.83),
+      defaultForeground: _oklch(21.03, 0.0059, 253.83),
+      accent: _oklch(62.04, 0.1950, 253.83),
+      accentForeground: _oklch(99.11, 0, 0),
+      accentSoft: _oklch(95.24, 0.0011, 253.83),
+      accentSoftForeground: _oklch(21.03, 0.0014, 253.83),
+      fieldBackground: _oklch(100, 0.0007, 253.83),
+      fieldForeground: _oklch(21.03, 0.0014, 253.83),
+      fieldPlaceholder: _oklch(55.17, 0.0028, 253.83),
+      fieldBorder: _oklch(90, 0.0014, 253.83),
+      segment: _oklch(100, 0.0014, 253.83),
+      segmentForeground: _oklch(21.03, 0.0014, 253.83),
+      success: _oklch(73.29, 0.1940, 150.81),
+      successForeground: _oklch(21.03, 0.0059, 150.81),
+      warning: _oklch(78.19, 0.1589, 72.33),
+      warningForeground: _oklch(21.03, 0.0059, 72.33),
+      danger: _oklch(65.32, 0.2335, 25.74),
+      dangerForeground: _oklch(99.11, 0, 0),
+      border: _oklch(90, 0.0014, 253.83),
+      separator: _oklch(92, 0.0014, 253.83),
     );
   }
 
-  /// Dark theme matching the HeroUI default CSS dark theme.
+  /// Dark theme from HeroUI `theme.css`.
   factory HeroThemeData.dark() {
-    const accent = Color(0xFF006FEE);
-
     return HeroThemeData(
-      background: const Color(0xFF0D0D11),
-      foreground: kHeroSnow,
-      surface: kHeroEclipse,
-      surfaceForeground: kHeroSnow,
-      overlay: const Color(0xFF1C1C21),
-      overlayForeground: kHeroSnow,
-      muted: const Color(0xFFA1A1AA),
-      scrollbar: const Color(0xFFA1A1AA),
-      defaultColor: const Color(0xFF27272A),
-      defaultForeground: kHeroSnow,
-      accent: accent,
-      accentForeground: kHeroSnow,
-      fieldBackground: const Color(0xFF27272A),
-      fieldForeground: kHeroSnow,
-      fieldPlaceholder: const Color(0xFFA1A1AA),
-      fieldBorder: Colors.transparent,
-      success: const Color(0xFF17C964),
-      successForeground: kHeroEclipse,
-      warning: const Color(0xFFFAB53B),
-      warningForeground: kHeroEclipse,
-      danger: const Color(0xFFE8433E),
-      dangerForeground: kHeroSnow,
-      segment: const Color(0xFF3F3F46),
-      segmentForeground: kHeroSnow,
-      border: const Color(0xFF1F1F24),
-      separator: const Color(0xFF1F1F24),
-      focus: accent,
-      link: kHeroSnow,
+      background: _oklch(12, 0.0014, 253.83),
+      foreground: _oklch(99.11, 0.0014, 253.83),
+      surface: _oklch(21.03, 0.0028, 253.83),
+      surfaceForeground: _oklch(99.11, 0.0014, 253.83),
+      overlay: _oklch(21.03, 0.0028, 253.83),
+      overlayForeground: _oklch(99.11, 0.0014, 253.83),
+      muted: _oklch(70.50, 0.0028, 253.83),
+      scrollbar: _oklch(70.50, 0.0028, 253.83),
+      defaultColor: _oklch(27.40, 0.0014, 253.83),
+      defaultForeground: _oklch(99.11, 0, 0),
+      accent: _oklch(62.04, 0.1950, 253.83),
+      accentForeground: _oklch(99.11, 0, 0),
+      accentSoft: _oklch(25.70, 0.0021, 253.83),
+      accentSoftForeground: _oklch(99.11, 0.0014, 253.83),
+      fieldBackground: _oklch(21.03, 0.0028, 253.83),
+      fieldForeground: _oklch(99.11, 0.0014, 253.83),
+      fieldPlaceholder: _oklch(70.50, 0.0028, 253.83),
+      fieldBorder: _oklch(28, 0.0014, 253.83),
+      segment: _oklch(39.64, 0.0014, 253.83),
+      segmentForeground: _oklch(99.11, 0.0014, 253.83),
+      success: _oklch(73.29, 0.1940, 150.81),
+      successForeground: _oklch(21.03, 0.0059, 150.81),
+      warning: _oklch(82.03, 0.1392, 76.34),
+      warningForeground: _oklch(21.03, 0.0059, 76.34),
+      danger: _oklch(59.40, 0.1973, 24.63),
+      dangerForeground: _oklch(99.11, 0, 0),
+      border: _oklch(28, 0.0014, 253.83),
+      separator: _oklch(25, 0.0014, 253.83),
     );
   }
 
@@ -222,6 +222,10 @@ final class HeroTheme extends StatelessWidget {
         $fieldPlaceholder: d.fieldPlaceholder,
         $fieldBorder: d.fieldBorder,
 
+        // Segment
+        $segment: d.segment,
+        $segmentForeground: d.segmentForeground,
+
         // Success
         $success: d.success,
         $successForeground: d.successForeground,
@@ -234,15 +238,11 @@ final class HeroTheme extends StatelessWidget {
         $danger: d.danger,
         $dangerForeground: d.dangerForeground,
 
-        // Segment
-        $segment: d.segment,
-        $segmentForeground: d.segmentForeground,
-
         // Misc
         $border: d.border,
         $separator: d.separator,
-        $focus: d.focus,
-        $link: d.link,
+        $focus: d.accent,
+        $link: d.accent,
 
         // Derived interaction colors
         $accentHover: HeroThemeData._darken(d.accent),
@@ -260,6 +260,7 @@ final class HeroTheme extends StatelessWidget {
         $ringOffsetWidth: 2.0,
       },
       radii: {
+        // theme.css: --radius: 0.5rem; --field-radius: 0.75rem (16px root)
         $radius: const Radius.circular(8.0),
         $fieldRadius: const Radius.circular(12.0),
       },
