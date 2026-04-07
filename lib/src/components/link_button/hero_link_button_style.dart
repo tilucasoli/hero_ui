@@ -37,9 +37,9 @@ final class HeroLinkButtonStyle {
 
   static RemixButtonStyle _sizeStyle(HeroLinkButtonSize size) {
     return switch (size) {
-      .sm => RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(14),
-      .md => RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(16),
-      .lg => RemixButtonStyle().labelStyle($labelMedium.mix()).iconSize(18),
+      .sm => RemixButtonStyle().labelTextStyle($labelSmall.mix()).iconSize(14),
+      .md => RemixButtonStyle().labelTextStyle($labelSmall.mix()).iconSize(16),
+      .lg => RemixButtonStyle().labelTextStyle($labelMedium.mix()).iconSize(18),
     };
   }
 }
