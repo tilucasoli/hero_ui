@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../../utils/inherited_variant.dart';
 import 'hero_card_style.dart';
 
 final class HeroCard extends StatelessWidget {
@@ -21,9 +20,9 @@ final class HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InheritedVariant<HeroCardVariant>(
-      variant: variant,
-      child: RemixCard(style: heroCardStyle.merge(style), child: child),
+    return RemixCard(
+      style: heroCardStyle.merge(style).applyVariants([variant]),
+      child: child,
     );
   }
 }

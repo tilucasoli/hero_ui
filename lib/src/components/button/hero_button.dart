@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import '../../utils/inherited_variant.dart';
 import '../button_group/hero_button_group.dart';
 import '../button_group/hero_button_group_style.dart';
-import 'hero_button_style.dart';
+
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_button_style.dart';
 
 final class HeroButton extends StatelessWidget {
   final HeroButtonVariant variant;
@@ -39,45 +42,40 @@ final class HeroButton extends StatelessWidget {
     final groupData = HeroButtonGroupData.maybeOf(context);
 
     final resolvedVariant = groupData?.variant ?? variant;
+    final resolvedSize = groupData?.size ?? size;
 
-    final resolvedStyle =
-        HeroButtonStyle.resolve(
-              size: groupData?.size ?? size,
-              iconOnly: iconOnly,
-              fullWidth: groupData?.fullWidth ?? fullWidth,
-            )
-            .merge(
-              groupData != null ? HeroButtonGroupStyle.buttonOverride() : null,
-            )
-            .animate(.ease(100.ms))
-            .merge(style);
+    final resolvedStyle = HeroButtonStyle._baseStyle()
+        .merge(HeroButtonStyle._sizeStyle())
+        .merge(HeroButtonStyle._variantStyles())
+        .merge(groupData != null ? HeroButtonGroupStyle.buttonOverride() : null)
+        .merge(style)
+        .applyVariants([
+          resolvedVariant,
+          resolvedSize,
+          if (iconOnly) _InternalVariants.iconOnly,
+          if (fullWidth) _InternalVariants.fullWidth,
+        ]);
 
     if (groupData != null) {
-      return InheritedVariant<HeroButtonVariant>(
-        variant: resolvedVariant,
-        child: RemixButton(
-          style: resolvedStyle,
-          label: label ?? '',
-          leadingIcon: iconLeft,
-          trailingIcon: iconRight,
-          loading: loading,
-          enabled: groupData.enabled,
-          onPressed: onPressed,
-        ),
-      );
-    }
-
-    return InheritedVariant<HeroButtonVariant>(
-      variant: resolvedVariant,
-      child: RemixButton(
+      return RemixButton(
         style: resolvedStyle,
         label: label ?? '',
         leadingIcon: iconLeft,
         trailingIcon: iconRight,
         loading: loading,
-        enabled: enabled,
+        enabled: groupData.enabled,
         onPressed: onPressed,
-      ),
+      );
+    }
+
+    return RemixButton(
+      style: resolvedStyle,
+      label: label ?? '',
+      leadingIcon: iconLeft,
+      trailingIcon: iconRight,
+      loading: loading,
+      enabled: enabled,
+      onPressed: onPressed,
     );
   }
 }

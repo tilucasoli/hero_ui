@@ -4,7 +4,7 @@ import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-enum HeroCardVariant { defaultVariant, secondary, tertiary }
+enum HeroCardVariant with EnumVariant { defaultVariant, secondary, tertiary }
 
 final heroCardStyle = RemixCardStyle()
     .borderRounded(12)
@@ -15,15 +15,15 @@ final heroCardStyle = RemixCardStyle()
       strokeAlign: BorderSide.strokeAlignOutside,
     )
     .container(.clipBehavior(.antiAlias))
-    .onVariantEnum<HeroCardVariant>(
-      .defaultVariant,
+    .enumVariant(
+      HeroCardVariant.defaultVariant,
       style: RemixCardStyle().color($surface()),
     )
-    .onVariantEnum<HeroCardVariant>(
-      .secondary,
+    .enumVariant(
+      HeroCardVariant.secondary,
       style: RemixCardStyle().color($default()),
     )
-    .onVariantEnum<HeroCardVariant>(
-      .tertiary,
+    .enumVariant(
+      HeroCardVariant.tertiary,
       style: RemixCardStyle().color($background()),
     );

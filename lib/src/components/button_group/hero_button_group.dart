@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../button/hero_button_style.dart';
+import '../button/hero_button.dart';
 import 'hero_button_group_style.dart';
 
 final class HeroButtonGroupData extends InheritedWidget {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
 
 import '../../components/button/hero_button.dart';
-import '../../components/button/hero_button_style.dart';
 import '../../components/checkbox/hero_checkbox.dart';
 import '../../components/divider/hero_divider.dart';
 import '../../components/link_button/hero_link_button.dart';
