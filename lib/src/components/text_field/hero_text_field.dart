@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_text_field_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_text_field_style.dart';
 
 final class HeroTextField extends StatelessWidget {
   final bool fullWidth;
@@ -62,9 +65,11 @@ final class HeroTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var resolvedStyle = HeroTextFieldStyle.resolve(
-      fullWidth: fullWidth,
-    ).merge(style);
+    final resolvedStyle = HeroTextFieldStyle._baseStyle()
+        .merge(style)
+        .applyVariants([
+          if (fullWidth) _InternalVariants.fullWidth,
+        ]);
 
     return RemixTextField(
       style: resolvedStyle,

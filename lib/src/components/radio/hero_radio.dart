@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_radio_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_radio_style.dart';
 
 final class HeroRadio<T> extends StatelessWidget {
   final T value;
@@ -19,7 +22,11 @@ final class HeroRadio<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroRadioStyle.resolve(size: size).merge(style);
+    final resolvedStyle = HeroRadioStyle._baseStyle()
+        .merge(HeroRadioStyle._sizeStyle())
+        .merge(style)
+        .applyVariants([size]);
+
     return RemixRadio<T>(
       value: value,
       enabled: enabled,

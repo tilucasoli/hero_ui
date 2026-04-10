@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_link_button_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_link_button_style.dart';
 
 final class HeroLinkButton extends StatelessWidget {
   final String label;
@@ -25,7 +28,10 @@ final class HeroLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroLinkButtonStyle.resolve(size: size).merge(style);
+    final resolvedStyle = HeroLinkButtonStyle._baseStyle()
+        .merge(HeroLinkButtonStyle._sizeStyle())
+        .merge(style)
+        .applyVariants([size]);
 
     return RemixButton(
       style: resolvedStyle,

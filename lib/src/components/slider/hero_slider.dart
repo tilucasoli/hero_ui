@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import 'hero_slider_style.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_slider_style.dart';
 
 final class HeroSlider extends StatelessWidget {
   final double value;
@@ -44,7 +46,11 @@ final class HeroSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroSliderStyle.resolve(size: size).merge(style);
+    final resolvedStyle = HeroSliderStyle._baseStyle()
+        .merge(HeroSliderStyle._sizeStyle())
+        .merge(style)
+        .applyVariants([size]);
+
     final labelStyle = TextStyler().style($labelSmall.mix());
     final outputValue = outputFormatter?.call(value) ?? _defaultOutput(value);
 

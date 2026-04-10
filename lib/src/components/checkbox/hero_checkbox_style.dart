@@ -1,16 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:remix/remix.dart';
+part of 'hero_checkbox.dart';
 
-import '../../tokens/hero_tokens.dart';
-
-enum HeroCheckboxSize { sm, md, lg }
+enum HeroCheckboxSize with EnumVariant { sm, md, lg }
 
 final class HeroCheckboxStyle {
   HeroCheckboxStyle._();
-
-  static RemixCheckboxStyle resolve({HeroCheckboxSize size = .md}) {
-    return _baseStyle().merge(_sizeStyle(size));
-  }
 
   static RemixCheckboxStyle _baseStyle() {
     return RemixCheckboxStyle()
@@ -37,11 +30,19 @@ final class HeroCheckboxStyle {
         .animate(.spring(200.ms));
   }
 
-  static RemixCheckboxStyle _sizeStyle(HeroCheckboxSize size) {
-    return switch (size) {
-      .sm => RemixCheckboxStyle().size(14, 14).iconSize(10),
-      .md => RemixCheckboxStyle().size(16, 16).iconSize(12),
-      .lg => RemixCheckboxStyle().size(20, 20).iconSize(16),
-    };
+  static RemixCheckboxStyle _sizeStyle() {
+    return RemixCheckboxStyle()
+        .enumVariant(
+          HeroCheckboxSize.sm,
+          style: RemixCheckboxStyle().size(14, 14).iconSize(10),
+        )
+        .enumVariant(
+          HeroCheckboxSize.md,
+          style: RemixCheckboxStyle().size(16, 16).iconSize(12),
+        )
+        .enumVariant(
+          HeroCheckboxSize.lg,
+          style: RemixCheckboxStyle().size(20, 20).iconSize(16),
+        );
   }
 }

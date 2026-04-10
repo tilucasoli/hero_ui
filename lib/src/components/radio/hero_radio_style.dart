@@ -1,16 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:remix/remix.dart';
+part of 'hero_radio.dart';
 
-import '../../tokens/hero_tokens.dart';
-
-enum HeroRadioSize { sm, md, lg }
+enum HeroRadioSize with EnumVariant { sm, md, lg }
 
 final class HeroRadioStyle {
   HeroRadioStyle._();
-
-  static RemixRadioStyle resolve({HeroRadioSize size = .md}) {
-    return _baseStyle().merge(_sizeStyle(size));
-  }
 
   static RemixRadioStyle _baseStyle() {
     return RemixRadioStyle()
@@ -52,11 +45,19 @@ final class HeroRadioStyle {
         .animate(AnimationConfig.spring(200.ms));
   }
 
-  static RemixRadioStyle _sizeStyle(HeroRadioSize size) {
-    return switch (size) {
-      .sm => .new().container(.size(16, 16)).indicator(.size(6, 6)),
-      .md => .new().container(.size(20, 20)).indicator(.size(8, 8)),
-      .lg => .new().container(.size(24, 24)).indicator(.size(10, 10)),
-    };
+  static RemixRadioStyle _sizeStyle() {
+    return RemixRadioStyle()
+        .enumVariant(
+          HeroRadioSize.sm,
+          style: .new().container(.size(16, 16)).indicator(.size(6, 6)),
+        )
+        .enumVariant(
+          HeroRadioSize.md,
+          style: .new().container(.size(20, 20)).indicator(.size(8, 8)),
+        )
+        .enumVariant(
+          HeroRadioSize.lg,
+          style: .new().container(.size(24, 24)).indicator(.size(10, 10)),
+        );
   }
 }

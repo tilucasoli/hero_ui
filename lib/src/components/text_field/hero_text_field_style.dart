@@ -1,20 +1,9 @@
-import 'package:flutter/painting.dart';
-import 'package:remix/remix.dart';
+part of 'hero_text_field.dart';
 
-import '../../tokens/hero_tokens.dart';
+enum _InternalVariants with EnumVariant { fullWidth }
 
 final class HeroTextFieldStyle {
   HeroTextFieldStyle._();
-
-  static RemixTextFieldStyle resolve({bool fullWidth = false}) {
-    var style = _baseStyle();
-
-    if (fullWidth) {
-      style = style.mainAxisSize(.max);
-    }
-
-    return style;
-  }
 
   static RemixTextFieldStyle _baseStyle() {
     return RemixTextFieldStyle()
@@ -47,13 +36,13 @@ final class HeroTextFieldStyle {
             ),
           ),
         )
-        .onDisabled(_disabledStyle())
+        .onDisabled(RemixTextFieldStyle().wrap(.opacity(0.5)))
         .variant(ContextVariant.widgetState(.error), _errorStyle())
+        .enumVariant(
+          _InternalVariants.fullWidth,
+          style: RemixTextFieldStyle().mainAxisSize(.max),
+        )
         .animate(.ease(100.ms));
-  }
-
-  static RemixTextFieldStyle _disabledStyle() {
-    return RemixTextFieldStyle().wrap(.opacity(0.5));
   }
 
   static RemixTextFieldStyle _errorStyle() {

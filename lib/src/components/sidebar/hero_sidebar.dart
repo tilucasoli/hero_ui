@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hero_ui/hero_ui.dart';
 import 'package:mix/mix.dart';
+
+import '../../tokens/hero_tokens.dart';
+
+part 'hero_sidebar_style.dart';
 
 final class HeroSidebar extends StatelessWidget {
   final Widget? header;
@@ -16,14 +19,8 @@ final class HeroSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heroSidebarStyle = FlexBoxStyler()
-        .crossAxisAlignment(.stretch)
-        .color($background())
-        .width(260)
-        .padding(.horizontal(12).vertical(16));
-
     return ColumnBox(
-      style: heroSidebarStyle,
+      style: HeroSidebarStyle._baseStyle(),
       children: [
         ?header,
         Expanded(
@@ -45,16 +42,11 @@ final class HeroSidebarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heroSidebarSectionTitleStyle = TextStyler()
-        .style($subheadingXSmall.mix())
-        .color($muted())
-        .wrap(.padding(.fromLTRB(12, 16, 12, 8)));
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (title != null)
-          StyledText(title!, style: heroSidebarSectionTitleStyle),
+          StyledText(title!, style: HeroSidebarStyle._sectionTitleStyle()),
         ...children,
       ],
     );

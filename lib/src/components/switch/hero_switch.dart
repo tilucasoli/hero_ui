@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_switch_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_switch_style.dart';
 
 final class HeroSwitch extends StatelessWidget {
   final bool selected;
@@ -23,7 +26,11 @@ final class HeroSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroSwitchStyle.resolve(size: size).merge(style);
+    final resolvedStyle = HeroSwitchStyle._baseStyle()
+        .merge(HeroSwitchStyle._sizeStyle())
+        .merge(style)
+        .applyVariants([size]);
+
     return RemixSwitch(
       selected: selected,
       onChanged: onChanged,

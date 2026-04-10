@@ -4,6 +4,8 @@ import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
+part 'hero_sidebar_item_style.dart';
+
 final class HeroSidebarItem extends StatefulWidget {
   final String label;
   final IconData? icon;
@@ -49,40 +51,15 @@ class _HeroSidebarItemState extends State<HeroSidebarItem> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = TextStyler()
-        .style($labelSmall.mix())
-        .color($foreground());
-
-    final iconStyle = IconStyler()
-        .size(18)
-        .color($muted())
-        .variant(
-          ContextVariant.widgetState(.selected),
-          .color($accentSoftForeground()),
-        );
-
-    final heroSidebarItemStyle = FlexBoxStyler()
-        .borderRounded(8)
-        .paddingX(12)
-        .paddingY(8)
-        .color($background())
-        .spacing(10)
-        .marginY(1)
-        .scale(1)
-        .onHovered(.color($default()))
-        .variant(ContextVariant.widgetState(.selected), .color($default()))
-        .onPressed(.scale(0.98))
-        .animate(.ease(150.ms));
-
     return Pressable(
       onPress: widget.onPressed,
       controller: _controller,
       child: RowBox(
-        style: heroSidebarItemStyle,
+        style: HeroSidebarItemStyle._baseStyle(),
         children: [
           if (widget.icon != null)
-            StyledIcon(icon: widget.icon!, style: iconStyle),
-          Expanded(child: StyledText(widget.label, style: labelStyle)),
+            StyledIcon(icon: widget.icon!, style: HeroSidebarItemStyle._iconStyle()),
+          Expanded(child: StyledText(widget.label, style: HeroSidebarItemStyle._labelStyle())),
           ?widget.trailing,
         ],
       ),
