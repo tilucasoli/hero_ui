@@ -34,11 +34,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   mix: ^2.0.1
   mix_annotations: ^2.0.0
-  remix:
-    git:
-      url: https://github.com/btwld/remix.git
-      ref: main
-      path: packages/remix
+  remix: ^0.2.0
 
 dev_dependencies:
   flutter_test:

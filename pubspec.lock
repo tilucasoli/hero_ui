@@ -190,12 +190,11 @@ packages:
   remix:
     dependency: "direct main"
     description:
-      path: "packages/remix"
-      ref: main
-      resolved-ref: e673bdab8a2f8c0fc2058ac0fafed68b021f08c5
-      url: "https://github.com/btwld/remix.git"
-    source: git
-    version: "0.1.0-beta.3"
+      name: remix
+      sha256: ada40eeb64342eeeb6b294598b147c38f00baf581f1936931e90dfae6e4b8311
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -37,11 +37,7 @@ dependencies:
   oklch: ^1.0.0
   hero_ui:
     path: ..
-  mix:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix
+  mix: ^2.0.1
   widgetbook: ^3.22.0
 
 dev_dependencies:
@@ -54,18 +50,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-
-dependency_overrides:
-  mix:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix
-  mix_annotations:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix_annotations
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
