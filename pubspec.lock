@@ -134,21 +134,19 @@ packages:
   mix:
     dependency: "direct main"
     description:
-      path: "packages/mix"
-      ref: main
-      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
-      url: "https://github.com/btwld/mix.git"
-    source: git
-    version: "2.0.0"
+      name: mix
+      sha256: "0d23b5004465a91350dd0d1eca1095a4f2a6fb7c77b21b4157da5961a17db9a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   mix_annotations:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "packages/mix_annotations"
-      ref: main
-      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
-      url: "https://github.com/btwld/mix.git"
-    source: git
-    version: "2.0.0-rc.1"
+      name: mix_annotations
+      sha256: dc5227da34a81585ce815ebc76ddb8bc6cc904c2109cda8a40ed1d518b9c9cf1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   naked_ui:
     dependency: transitive
     description:
@@ -269,4 +267,4 @@ packages:
     version: "15.0.2"
 sdks:
   dart: ">=3.11.3 <4.0.0"
-  flutter: ">=3.38.1"
+  flutter: ">=3.41.0"
