@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_checkbox_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_checkbox_style.dart';
 
 final class HeroCheckbox extends StatelessWidget {
   final bool? selected;
@@ -25,9 +28,10 @@ final class HeroCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroCheckboxStyle.resolve(
-      size: size,
-    ).merge(style);
+    final resolvedStyle = HeroCheckboxStyle._baseStyle()
+        .merge(HeroCheckboxStyle._sizeStyle())
+        .merge(style)
+        .applyVariants([size]);
 
     return RemixCheckbox(
       selected: selected,

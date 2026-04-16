@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
-import 'hero_select_style.dart';
+import '../../tokens/hero_tokens.dart';
+import '../../utils/inherited_variant.dart';
+
+part 'hero_select_style.dart';
 
 final class HeroSelectItem<T> {
   final T value;
@@ -43,7 +46,7 @@ final class HeroSelect<T> extends StatelessWidget {
 
   const HeroSelect({
     super.key,
-    this.variant = HeroSelectVariant.primary,
+    this.variant = .primary,
     this.fullWidth = false,
     this.enabled = true,
     this.error = false,
@@ -62,13 +65,15 @@ final class HeroSelect<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroSelectStyle.resolve(
-      variant: variant,
-      fullWidth: fullWidth,
-      error: error,
-    ).merge(style);
+    final resolvedStyle = HeroSelectStyle._baseStyle()
+        .merge(HeroSelectStyle._variantStyles())
+        .merge(style)
+        .applyVariants([
+          variant,
+          if (error) _InternalVariants.error,
+        ]);
 
-    final itemStyle = HeroSelectStyle.itemStyle();
+    final itemStyle = HeroSelectStyle._itemStyle();
 
     return RemixSelect<T>(
       style: resolvedStyle,

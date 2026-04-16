@@ -1,28 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:remix/remix.dart';
+part of 'hero_select.dart';
 
-import '../../tokens/hero_tokens.dart';
+enum HeroSelectVariant with EnumVariant { primary, secondary }
 
-enum HeroSelectVariant { primary, secondary }
+enum _InternalVariants with EnumVariant { error }
 
 final class HeroSelectStyle {
   HeroSelectStyle._();
 
-  static RemixSelectStyle resolve({
-    HeroSelectVariant variant = HeroSelectVariant.primary,
-    bool fullWidth = false,
-    bool error = false,
-  }) {
-    var style = _baseStyle().merge(_variantStyle(variant));
-
-    if (error) {
-      style = style.merge(_errorStyle());
-    }
-
-    return style;
-  }
-
-  static RemixSelectMenuItemStyle itemStyle() {
+  static RemixSelectMenuItemStyle _itemStyle() {
     return RemixSelectMenuItemStyle()
         .color(Colors.transparent)
         .borderRadiusAll(Radius.circular(8))
@@ -69,33 +54,30 @@ final class HeroSelectStyle {
             ),
           ),
         )
-        .onDisabled(_disabledStyle())
+        .onDisabled(RemixSelectStyle().wrap(.opacity(0.5)))
+        .enumVariant(
+          _InternalVariants.error,
+          style: RemixSelectStyle()
+              .trigger(
+                RemixSelectTriggerStyle().borderAll(color: $danger(), width: 1),
+              )
+              .onFocused(
+                RemixSelectStyle().trigger(
+                  RemixSelectTriggerStyle().borderAll(color: $danger(), width: 2),
+                ),
+              ),
+        )
         .animate(.ease(100.ms));
   }
 
-  static RemixSelectStyle _variantStyle(HeroSelectVariant variant) {
-    return switch (variant) {
-      HeroSelectVariant.primary => RemixSelectStyle(),
-      HeroSelectVariant.secondary => RemixSelectStyle().trigger(
-        RemixSelectTriggerStyle()
-            .color($default())
-            .onHovered(RemixSelectTriggerStyle().color($defaultHover())),
-      ),
-    };
-  }
-
-  static RemixSelectStyle _disabledStyle() {
-    return RemixSelectStyle().wrap(.opacity(0.5));
-  }
-
-  static RemixSelectStyle _errorStyle() {
+  static RemixSelectStyle _variantStyles() {
     return RemixSelectStyle()
-        .trigger(
-          RemixSelectTriggerStyle().borderAll(color: $danger(), width: 1),
-        )
-        .onFocused(
-          RemixSelectStyle().trigger(
-            RemixSelectTriggerStyle().borderAll(color: $danger(), width: 2),
+        .enumVariant(
+          HeroSelectVariant.secondary,
+          style: RemixSelectStyle().trigger(
+            RemixSelectTriggerStyle()
+                .color($default())
+                .onHovered(RemixSelectTriggerStyle().color($defaultHover())),
           ),
         );
   }

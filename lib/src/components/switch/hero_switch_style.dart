@@ -1,16 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:remix/remix.dart';
+part of 'hero_switch.dart';
 
-import '../../tokens/hero_tokens.dart';
-
-enum HeroSwitchSize { sm, md, lg }
+enum HeroSwitchSize with EnumVariant { sm, md, lg }
 
 final class HeroSwitchStyle {
   HeroSwitchStyle._();
-
-  static RemixSwitchStyle resolve({HeroSwitchSize size = .md}) {
-    return _baseStyle().merge(_sizeStyle(size));
-  }
 
   static RemixSwitchStyle _baseStyle() {
     return RemixSwitchStyle()
@@ -49,11 +42,19 @@ final class HeroSwitchStyle {
         .animate(.spring(200.ms));
   }
 
-  static RemixSwitchStyle _sizeStyle(HeroSwitchSize size) {
-    return switch (size) {
-      .sm => RemixSwitchStyle().size(32, 16).thumb(.size(16.5, 12)),
-      .md => RemixSwitchStyle().size(40, 20).thumb(.size(22, 16)),
-      .lg => RemixSwitchStyle().size(48, 24).thumb(.size(27.5, 20)),
-    };
+  static RemixSwitchStyle _sizeStyle() {
+    return RemixSwitchStyle()
+        .enumVariant(
+          HeroSwitchSize.sm,
+          style: RemixSwitchStyle().size(32, 16).thumb(.size(16.5, 12)),
+        )
+        .enumVariant(
+          HeroSwitchSize.md,
+          style: RemixSwitchStyle().size(40, 20).thumb(.size(22, 16)),
+        )
+        .enumVariant(
+          HeroSwitchSize.lg,
+          style: RemixSwitchStyle().size(48, 24).thumb(.size(27.5, 20)),
+        );
   }
 }

@@ -1,16 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:remix/remix.dart';
+part of 'hero_link_button.dart';
 
-import '../../tokens/hero_tokens.dart';
-
-enum HeroLinkButtonSize { sm, md, lg }
+enum HeroLinkButtonSize with EnumVariant { sm, md, lg }
 
 final class HeroLinkButtonStyle {
   HeroLinkButtonStyle._();
-
-  static RemixButtonStyle resolve({required HeroLinkButtonSize size}) {
-    return _baseStyle().merge(_sizeStyle(size));
-  }
 
   static RemixButtonStyle _baseStyle() {
     return RemixButtonStyle()
@@ -35,11 +28,25 @@ final class HeroLinkButtonStyle {
         .animate(.easeOut(100.ms));
   }
 
-  static RemixButtonStyle _sizeStyle(HeroLinkButtonSize size) {
-    return switch (size) {
-      .sm => RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(14),
-      .md => RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(16),
-      .lg => RemixButtonStyle().labelStyle($labelMedium.mix()).iconSize(18),
-    };
+  static RemixButtonStyle _sizeStyle() {
+    return RemixButtonStyle()
+        .enumVariant(
+          HeroLinkButtonSize.sm,
+          style: RemixButtonStyle()
+              .labelStyle($labelSmall.mix())
+              .iconSize(14),
+        )
+        .enumVariant(
+          HeroLinkButtonSize.md,
+          style: RemixButtonStyle()
+              .labelStyle($labelSmall.mix())
+              .iconSize(16),
+        )
+        .enumVariant(
+          HeroLinkButtonSize.lg,
+          style: RemixButtonStyle()
+              .labelStyle($labelMedium.mix())
+              .iconSize(18),
+        );
   }
 }
