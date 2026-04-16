@@ -33,19 +33,19 @@ final class HeroLinkButtonStyle {
         .enumVariant(
           HeroLinkButtonSize.sm,
           style: RemixButtonStyle()
-              .labelTextStyle($labelSmall.mix())
+              .labelStyle($labelSmall.mix())
               .iconSize(14),
         )
         .enumVariant(
           HeroLinkButtonSize.md,
           style: RemixButtonStyle()
-              .labelTextStyle($labelSmall.mix())
+              .labelStyle($labelSmall.mix())
               .iconSize(16),
         )
         .enumVariant(
           HeroLinkButtonSize.lg,
           style: RemixButtonStyle()
-              .labelTextStyle($labelMedium.mix())
+              .labelStyle($labelMedium.mix())
               .iconSize(18),
         );
   }

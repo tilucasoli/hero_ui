@@ -134,21 +134,19 @@ packages:
   mix:
     dependency: "direct main"
     description:
-      path: "packages/mix"
-      ref: main
-      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
-      url: "https://github.com/btwld/mix.git"
-    source: git
-    version: "2.0.0"
+      name: mix
+      sha256: "0d23b5004465a91350dd0d1eca1095a4f2a6fb7c77b21b4157da5961a17db9a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   mix_annotations:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "packages/mix_annotations"
-      ref: main
-      resolved-ref: "52d142eaa67f54939280497f7b13ec2f6e7e6a9e"
-      url: "https://github.com/btwld/mix.git"
-    source: git
-    version: "2.0.0-rc.1"
+      name: mix_annotations
+      sha256: dc5227da34a81585ce815ebc76ddb8bc6cc904c2109cda8a40ed1d518b9c9cf1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   naked_ui:
     dependency: transitive
     description:
@@ -192,12 +190,11 @@ packages:
   remix:
     dependency: "direct main"
     description:
-      path: "packages/remix"
-      ref: main
-      resolved-ref: e673bdab8a2f8c0fc2058ac0fafed68b021f08c5
-      url: "https://github.com/btwld/remix.git"
-    source: git
-    version: "0.1.0-beta.3"
+      name: remix
+      sha256: ada40eeb64342eeeb6b294598b147c38f00baf581f1936931e90dfae6e4b8311
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -269,4 +266,4 @@ packages:
     version: "15.0.2"
 sdks:
   dart: ">=3.11.3 <4.0.0"
-  flutter: ">=3.38.1"
+  flutter: ">=3.41.0"

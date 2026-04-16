@@ -32,28 +32,9 @@ dependencies:
     sdk: flutter
   oklch: ^1.0.0
   cupertino_icons: ^1.0.8
-  mix:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix
-  remix:
-    git:
-      url: https://github.com/btwld/remix.git
-      ref: main
-      path: packages/remix
-
-dependency_overrides:
-  mix:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix
-  mix_annotations:
-    git:
-      url: https://github.com/btwld/mix.git
-      ref: main
-      path: packages/mix_annotations
+  mix: ^2.0.1
+  mix_annotations: ^2.0.0
+  remix: ^0.2.0
 
 dev_dependencies:
   flutter_test:

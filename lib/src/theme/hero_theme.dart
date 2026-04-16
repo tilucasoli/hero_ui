@@ -66,6 +66,41 @@ final class HeroThemeData {
   final Color border;
   final Color separator;
 
+  // Typography
+  final String? fontFamily;
+
+  // Title
+  final TextStyle titleH1;
+  final TextStyle titleH2;
+  final TextStyle titleH3;
+  final TextStyle titleH4;
+  final TextStyle titleH5;
+  final TextStyle titleH6;
+
+  // Label
+  final TextStyle labelXLarge;
+  final TextStyle labelLarge;
+  final TextStyle labelMedium;
+  final TextStyle labelSmall;
+  final TextStyle labelXSmall;
+
+  // Paragraph
+  final TextStyle paragraphXLarge;
+  final TextStyle paragraphLarge;
+  final TextStyle paragraphMedium;
+  final TextStyle paragraphSmall;
+  final TextStyle paragraphXSmall;
+
+  // Subheading
+  final TextStyle subheadingMedium;
+  final TextStyle subheadingSmall;
+  final TextStyle subheadingXSmall;
+  final TextStyle subheading2XSmall;
+
+  // Doc
+  final TextStyle docLabel;
+  final TextStyle docParagraph;
+
   const HeroThemeData({
     required this.background,
     required this.foreground,
@@ -95,6 +130,135 @@ final class HeroThemeData {
     required this.dangerForeground,
     required this.border,
     required this.separator,
+    this.fontFamily,
+    this.titleH1 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 56,
+      height: 64 / 56,
+      letterSpacing: -0.56,
+    ),
+    this.titleH2 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 48,
+      height: 56 / 48,
+      letterSpacing: -0.48,
+    ),
+    this.titleH3 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 40,
+      height: 48 / 40,
+      letterSpacing: -0.40,
+    ),
+    this.titleH4 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 32,
+      height: 40 / 32,
+      letterSpacing: -0.16,
+    ),
+    this.titleH5 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 24,
+      height: 32 / 24,
+    ),
+    this.titleH6 = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 20,
+      height: 28 / 20,
+    ),
+    this.labelXLarge = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 24,
+      height: 32 / 24,
+      letterSpacing: -0.36,
+    ),
+    this.labelLarge = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      height: 24 / 18,
+      letterSpacing: -0.27,
+    ),
+    this.labelMedium = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      height: 24 / 16,
+      letterSpacing: -0.176,
+    ),
+    this.labelSmall = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      height: 20 / 14,
+      letterSpacing: -0.084,
+    ),
+    this.labelXSmall = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      height: 16 / 12,
+    ),
+    this.paragraphXLarge = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 24,
+      height: 32 / 24,
+      letterSpacing: -0.36,
+    ),
+    this.paragraphLarge = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      height: 24 / 18,
+      letterSpacing: -0.27,
+    ),
+    this.paragraphMedium = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      height: 24 / 16,
+      letterSpacing: -0.176,
+    ),
+    this.paragraphSmall = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      height: 20 / 14,
+      letterSpacing: -0.084,
+    ),
+    this.paragraphXSmall = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      height: 16 / 12,
+    ),
+    this.subheadingMedium = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      height: 24 / 16,
+      letterSpacing: 0.96,
+    ),
+    this.subheadingSmall = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      height: 20 / 14,
+      letterSpacing: 0.84,
+    ),
+    this.subheadingXSmall = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      height: 16 / 12,
+      letterSpacing: 0.48,
+    ),
+    this.subheading2XSmall = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 11,
+      height: 12 / 11,
+      letterSpacing: 0.22,
+    ),
+    this.docLabel = const TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      height: 32 / 18,
+      letterSpacing: -0.27,
+    ),
+    this.docParagraph = const TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      height: 32 / 18,
+      letterSpacing: -0.27,
+    ),
   });
 
   /// Light theme from HeroUI `theme.css` (light / default).
@@ -165,6 +329,114 @@ final class HeroThemeData {
     );
   }
 
+  HeroThemeData copyWith({
+    Color? background,
+    Color? foreground,
+    Color? surface,
+    Color? surfaceForeground,
+    Color? overlay,
+    Color? overlayForeground,
+    Color? muted,
+    Color? scrollbar,
+    Color? defaultColor,
+    Color? defaultForeground,
+    Color? accent,
+    Color? accentForeground,
+    Color? accentSoft,
+    Color? accentSoftForeground,
+    Color? fieldBackground,
+    Color? fieldForeground,
+    Color? fieldPlaceholder,
+    Color? fieldBorder,
+    Color? segment,
+    Color? segmentForeground,
+    Color? success,
+    Color? successForeground,
+    Color? warning,
+    Color? warningForeground,
+    Color? danger,
+    Color? dangerForeground,
+    Color? border,
+    Color? separator,
+    String? fontFamily,
+    TextStyle? titleH1,
+    TextStyle? titleH2,
+    TextStyle? titleH3,
+    TextStyle? titleH4,
+    TextStyle? titleH5,
+    TextStyle? titleH6,
+    TextStyle? labelXLarge,
+    TextStyle? labelLarge,
+    TextStyle? labelMedium,
+    TextStyle? labelSmall,
+    TextStyle? labelXSmall,
+    TextStyle? paragraphXLarge,
+    TextStyle? paragraphLarge,
+    TextStyle? paragraphMedium,
+    TextStyle? paragraphSmall,
+    TextStyle? paragraphXSmall,
+    TextStyle? subheadingMedium,
+    TextStyle? subheadingSmall,
+    TextStyle? subheadingXSmall,
+    TextStyle? subheading2XSmall,
+    TextStyle? docLabel,
+    TextStyle? docParagraph,
+  }) {
+    return HeroThemeData(
+      background: background ?? this.background,
+      foreground: foreground ?? this.foreground,
+      surface: surface ?? this.surface,
+      surfaceForeground: surfaceForeground ?? this.surfaceForeground,
+      overlay: overlay ?? this.overlay,
+      overlayForeground: overlayForeground ?? this.overlayForeground,
+      muted: muted ?? this.muted,
+      scrollbar: scrollbar ?? this.scrollbar,
+      defaultColor: defaultColor ?? this.defaultColor,
+      defaultForeground: defaultForeground ?? this.defaultForeground,
+      accent: accent ?? this.accent,
+      accentForeground: accentForeground ?? this.accentForeground,
+      accentSoft: accentSoft ?? this.accentSoft,
+      accentSoftForeground: accentSoftForeground ?? this.accentSoftForeground,
+      fieldBackground: fieldBackground ?? this.fieldBackground,
+      fieldForeground: fieldForeground ?? this.fieldForeground,
+      fieldPlaceholder: fieldPlaceholder ?? this.fieldPlaceholder,
+      fieldBorder: fieldBorder ?? this.fieldBorder,
+      segment: segment ?? this.segment,
+      segmentForeground: segmentForeground ?? this.segmentForeground,
+      success: success ?? this.success,
+      successForeground: successForeground ?? this.successForeground,
+      warning: warning ?? this.warning,
+      warningForeground: warningForeground ?? this.warningForeground,
+      danger: danger ?? this.danger,
+      dangerForeground: dangerForeground ?? this.dangerForeground,
+      border: border ?? this.border,
+      separator: separator ?? this.separator,
+      fontFamily: fontFamily ?? this.fontFamily,
+      titleH1: titleH1 ?? this.titleH1,
+      titleH2: titleH2 ?? this.titleH2,
+      titleH3: titleH3 ?? this.titleH3,
+      titleH4: titleH4 ?? this.titleH4,
+      titleH5: titleH5 ?? this.titleH5,
+      titleH6: titleH6 ?? this.titleH6,
+      labelXLarge: labelXLarge ?? this.labelXLarge,
+      labelLarge: labelLarge ?? this.labelLarge,
+      labelMedium: labelMedium ?? this.labelMedium,
+      labelSmall: labelSmall ?? this.labelSmall,
+      labelXSmall: labelXSmall ?? this.labelXSmall,
+      paragraphXLarge: paragraphXLarge ?? this.paragraphXLarge,
+      paragraphLarge: paragraphLarge ?? this.paragraphLarge,
+      paragraphMedium: paragraphMedium ?? this.paragraphMedium,
+      paragraphSmall: paragraphSmall ?? this.paragraphSmall,
+      paragraphXSmall: paragraphXSmall ?? this.paragraphXSmall,
+      subheadingMedium: subheadingMedium ?? this.subheadingMedium,
+      subheadingSmall: subheadingSmall ?? this.subheadingSmall,
+      subheadingXSmall: subheadingXSmall ?? this.subheadingXSmall,
+      subheading2XSmall: subheading2XSmall ?? this.subheading2XSmall,
+      docLabel: docLabel ?? this.docLabel,
+      docParagraph: docParagraph ?? this.docParagraph,
+    );
+  }
+
   /// Derives a hover color by darkening [color] via HSL lightness.
   static Color _darken(Color color, [double amount = 0.05]) {
     final hsl = HSLColor.fromColor(color);
@@ -183,6 +455,12 @@ final class HeroTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final d = data;
+    final fontFamily = d.fontFamily;
+
+    TextStyle applyFont(TextStyle style) {
+      if (fontFamily == null) return style;
+      return style.copyWith(fontFamily: fontFamily);
+    }
 
     return MixScope(
       colors: {
@@ -266,142 +544,36 @@ final class HeroTheme extends StatelessWidget {
       },
       textStyles: {
         // Title
-        $titleH1: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 56,
-          height: 64 / 56,
-          letterSpacing: -0.56,
-        ),
-        $titleH2: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 48,
-          height: 56 / 48,
-          letterSpacing: -0.48,
-        ),
-        $titleH3: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 40,
-          height: 48 / 40,
-          letterSpacing: -0.40,
-        ),
-        $titleH4: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 32,
-          height: 40 / 32,
-          letterSpacing: -0.16,
-        ),
-        $titleH5: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 24,
-          height: 32 / 24,
-        ),
-        $titleH6: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 20,
-          height: 28 / 20,
-        ),
+        $titleH1: applyFont(d.titleH1),
+        $titleH2: applyFont(d.titleH2),
+        $titleH3: applyFont(d.titleH3),
+        $titleH4: applyFont(d.titleH4),
+        $titleH5: applyFont(d.titleH5),
+        $titleH6: applyFont(d.titleH6),
 
         // Label
-        $labelXLarge: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 24,
-          height: 32 / 24,
-          letterSpacing: -0.36,
-        ),
-        $labelLarge: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          height: 24 / 18,
-          letterSpacing: -0.27,
-        ),
-        $labelMedium: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-          height: 24 / 16,
-          letterSpacing: -0.176,
-        ),
-        $labelSmall: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          height: 20 / 14,
-          letterSpacing: -0.084,
-        ),
-        $labelXSmall: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          height: 16 / 12,
-        ),
+        $labelXLarge: applyFont(d.labelXLarge),
+        $labelLarge: applyFont(d.labelLarge),
+        $labelMedium: applyFont(d.labelMedium),
+        $labelSmall: applyFont(d.labelSmall),
+        $labelXSmall: applyFont(d.labelXSmall),
 
         // Paragraph
-        $paragraphXLarge: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 24,
-          height: 32 / 24,
-          letterSpacing: -0.36,
-        ),
-        $paragraphLarge: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          height: 24 / 18,
-          letterSpacing: -0.27,
-        ),
-        $paragraphMedium: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-          height: 24 / 16,
-          letterSpacing: -0.176,
-        ),
-        $paragraphSmall: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
-          height: 20 / 14,
-          letterSpacing: -0.084,
-        ),
-        $paragraphXSmall: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 12,
-          height: 16 / 12,
-        ),
+        $paragraphXLarge: applyFont(d.paragraphXLarge),
+        $paragraphLarge: applyFont(d.paragraphLarge),
+        $paragraphMedium: applyFont(d.paragraphMedium),
+        $paragraphSmall: applyFont(d.paragraphSmall),
+        $paragraphXSmall: applyFont(d.paragraphXSmall),
 
         // Subheading
-        $subheadingMedium: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-          height: 24 / 16,
-          letterSpacing: 0.96,
-        ),
-        $subheadingSmall: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          height: 20 / 14,
-          letterSpacing: 0.84,
-        ),
-        $subheadingXSmall: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          height: 16 / 12,
-          letterSpacing: 0.48,
-        ),
-        $subheading2XSmall: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 11,
-          height: 12 / 11,
-          letterSpacing: 0.22,
-        ),
+        $subheadingMedium: applyFont(d.subheadingMedium),
+        $subheadingSmall: applyFont(d.subheadingSmall),
+        $subheadingXSmall: applyFont(d.subheadingXSmall),
+        $subheading2XSmall: applyFont(d.subheading2XSmall),
 
         // Doc
-        $docLabel: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          height: 32 / 18,
-          letterSpacing: -0.27,
-        ),
-        $docParagraph: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          height: 32 / 18,
-          letterSpacing: -0.27,
-        ),
+        $docLabel: applyFont(d.docLabel),
+        $docParagraph: applyFont(d.docParagraph),
       },
       child: child,
     );

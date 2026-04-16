@@ -44,7 +44,7 @@ final class HeroButtonStyle {
                 _InternalVariants.iconOnly,
                 style: RemixButtonStyle().width(32).paddingX(0),
               )
-              .labelTextStyle($labelSmall.mix())
+              .labelStyle($labelSmall.mix())
               .iconSize(16)
               .onPressed(RemixButtonStyle().container(.scale(0.97))),
         )
@@ -59,7 +59,7 @@ final class HeroButtonStyle {
                 _InternalVariants.iconOnly,
                 style: RemixButtonStyle().width(36).paddingX(0),
               )
-              .labelTextStyle($labelSmall.mix())
+              .labelStyle($labelSmall.mix())
               .iconSize(18)
               .onPressed(.new().container(.scale(0.97))),
         )
@@ -74,7 +74,7 @@ final class HeroButtonStyle {
                 _InternalVariants.iconOnly,
                 style: RemixButtonStyle().width(40).paddingX(0),
               )
-              .labelTextStyle($labelMedium.mix())
+              .labelStyle($labelMedium.mix())
               .iconSize(20)
               .onPressed(.new().container(.scale(0.97))),
         );
