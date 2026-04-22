@@ -527,7 +527,7 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                                   HeroSidebarItem(
                                     label: 'Home',
                                     icon: Icons.home_outlined,
-                                    isSelected: true,
+                                    selected: true,
                                     onPressed: _noop,
                                   ),
                                   HeroSidebarItem(
@@ -538,7 +538,6 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                                   HeroSidebarItem(
                                     label: 'Notifications',
                                     icon: Icons.notifications_outlined,
-                                    trailing: const Badge(label: Text('3')),
                                     onPressed: _noop,
                                   ),
                                 ],
@@ -989,19 +988,19 @@ class _InteractiveDashboardBlockState
             HeroSidebarItem(
               label: 'Overview',
               icon: Icons.dashboard_outlined,
-              isSelected: selectedItem == 'overview',
+              selected: selectedItem == 'overview',
               onPressed: () => setState(() => selectedItem = 'overview'),
             ),
             HeroSidebarItem(
               label: 'Analytics',
               icon: Icons.bar_chart_outlined,
-              isSelected: selectedItem == 'analytics',
+              selected: selectedItem == 'analytics',
               onPressed: () => setState(() => selectedItem = 'analytics'),
             ),
             HeroSidebarItem(
               label: 'Reports',
               icon: Icons.description_outlined,
-              isSelected: selectedItem == 'reports',
+              selected: selectedItem == 'reports',
               onPressed: () => setState(() => selectedItem = 'reports'),
             ),
           ],
@@ -1012,7 +1011,7 @@ class _InteractiveDashboardBlockState
             HeroSidebarItem(
               label: 'Account',
               icon: Icons.person_outline,
-              isSelected: selectedItem == 'account',
+              selected: selectedItem == 'account',
               onPressed: () => setState(() => selectedItem = 'account'),
             ),
           ],
