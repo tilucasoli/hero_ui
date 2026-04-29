@@ -109,6 +109,85 @@ void main() {
     });
   });
 
+  group('HeroIconButton', () {
+    testWidgets('renders with icon', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroIconButton(icon: Icons.favorite, onPressed: () {}),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.favorite), findsOneWidget);
+    });
+
+    testWidgets('calls onPressed when tapped', (tester) async {
+      var pressed = false;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroIconButton(
+            icon: Icons.favorite,
+            onPressed: () => pressed = true,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.pumpAndSettle();
+      expect(pressed, isTrue);
+    });
+
+    testWidgets('does not call onPressed when disabled', (tester) async {
+      var pressed = false;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroIconButton(
+            icon: Icons.favorite,
+            enabled: false,
+            onPressed: () => pressed = true,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.pumpAndSettle();
+      expect(pressed, isFalse);
+    });
+
+    testWidgets('renders all sizes without error', (tester) async {
+      for (final size in HeroButtonSize.values) {
+        await tester.pumpWidget(
+          wrapWithTheme(
+            HeroIconButton(
+              size: size,
+              icon: Icons.favorite,
+              onPressed: () {},
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(find.byIcon(Icons.favorite), findsOneWidget);
+      }
+    });
+
+    testWidgets('inherits variant and size from HeroButtonGroup', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroButtonGroup(
+            variant: HeroButtonVariant.danger,
+            size: HeroButtonSize.lg,
+            children: [
+              HeroIconButton(icon: Icons.favorite, onPressed: () {}),
+            ],
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.favorite), findsOneWidget);
+    });
+  });
+
   group('HeroButtonGroup', () {
     testWidgets('renders children', (tester) async {
       await tester.pumpWidget(

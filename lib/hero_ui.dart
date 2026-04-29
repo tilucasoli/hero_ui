@@ -6,6 +6,7 @@ export 'src/theme/hero_theme.dart';
 
 // Button
 export 'src/components/button/hero_button.dart';
+export 'src/components/button/hero_icon_button.dart';
 
 // ButtonGroup
 export 'src/components/button_group/hero_button_group.dart';
