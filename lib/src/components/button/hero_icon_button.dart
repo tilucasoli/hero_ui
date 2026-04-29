@@ -4,6 +4,7 @@ import 'package:remix/remix.dart';
 import '../button_group/hero_button_group.dart';
 import '../button_group/hero_button_group_style.dart';
 
+import '../../tokens/hero_tokens.dart';
 import '../../utils/inherited_variant.dart';
 import 'hero_button.dart';
 
@@ -16,7 +17,7 @@ final class HeroIconButton extends StatelessWidget {
   final bool loading;
   final bool enabled;
   final VoidCallback? onPressed;
-  final RemixButtonStyle? style;
+  final RemixIconButtonStyle? style;
 
   const HeroIconButton({
     super.key,
@@ -36,20 +37,20 @@ final class HeroIconButton extends StatelessWidget {
     final resolvedVariant = groupData?.variant ?? variant;
     final resolvedSize = groupData?.size ?? size;
 
-    final resolvedStyle = HeroButtonStyle.baseStyle()
+    final resolvedStyle = HeroIconButtonStyle.baseStyle()
         .merge(HeroIconButtonStyle.sizeStyle())
-        .merge(HeroButtonStyle.variantStyles())
-        .merge(groupData != null ? HeroButtonGroupStyle.buttonOverride() : null)
+        .merge(HeroIconButtonStyle.variantStyles())
+        .merge(
+          groupData != null ? HeroButtonGroupStyle.iconButtonOverride() : null,
+        )
         .merge(style)
         .applyVariants([resolvedVariant, resolvedSize]);
 
-    return RemixButton(
+    return RemixIconButton(
       style: resolvedStyle,
-      label: '',
-      leadingIcon: icon,
+      icon: icon,
       loading: loading,
-      enabled: groupData?.enabled ?? enabled,
-      onPressed: onPressed,
+      onPressed: (groupData?.enabled ?? enabled) ? onPressed : null,
     );
   }
 }

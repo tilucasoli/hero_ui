@@ -12,6 +12,13 @@ final class HeroButtonGroupStyle {
         .onPressed(.new().scale(1.0));
   }
 
+  static RemixIconButtonStyle iconButtonOverride() {
+    return RemixIconButtonStyle()
+        .borderRounded(0)
+        .border(.none)
+        .onPressed(RemixIconButtonStyle().container(.scale(1.0)));
+  }
+
   static FlexBoxStyler groupStyle({
     required Axis orientation,
     required bool fullWidth,
