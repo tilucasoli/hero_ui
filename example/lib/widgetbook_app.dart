@@ -59,22 +59,59 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                         label: 'Full width',
                         initialValue: false,
                       );
-                      final iconOnly = context.knobs.boolean(
-                        label: 'Icon only',
-                        initialValue: false,
-                      );
-
                       return _preview(
                         HeroButton(
                           variant: variant,
                           size: size,
-                          label: iconOnly ? null : label,
+                          label: label,
                           iconLeft: iconLeft ? Icons.arrow_back : null,
                           iconRight: iconRight ? Icons.arrow_forward : null,
-                          iconOnly: iconOnly,
                           loading: loading,
                           enabled: enabled,
                           fullWidth: fullWidth,
+                          onPressed: () {},
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroIconButton',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroButtonVariant>(
+                            label: 'Variant',
+                            options: HeroButtonVariant.values,
+                            initialOption: .primary,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final size = context.knobs.object
+                          .dropdown<HeroButtonSize>(
+                            label: 'Size',
+                            options: HeroButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final loading = context.knobs.boolean(
+                        label: 'Loading',
+                        initialValue: false,
+                      );
+
+                      return _preview(
+                        HeroIconButton(
+                          variant: variant,
+                          size: size,
+                          icon: Icons.favorite,
+                          loading: loading,
+                          enabled: enabled,
                           onPressed: () {},
                         ),
                       );

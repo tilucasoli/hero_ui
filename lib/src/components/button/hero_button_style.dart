@@ -12,12 +12,12 @@ enum HeroButtonVariant with EnumVariant {
 
 enum HeroButtonSize with EnumVariant { sm, md, lg }
 
-enum _InternalVariants with EnumVariant { iconOnly, fullWidth }
+enum _InternalVariants with EnumVariant { fullWidth }
 
 final class HeroButtonStyle {
   HeroButtonStyle._();
 
-  static RemixButtonStyle _baseStyle() {
+  static RemixButtonStyle baseStyle() {
     return RemixButtonStyle()
         .mainAxisSize(.min)
         .mainAxisAlignment(.center)
@@ -31,7 +31,7 @@ final class HeroButtonStyle {
         .onDisabled(RemixButtonStyle().wrap(.opacity(0.5)));
   }
 
-  static RemixButtonStyle _sizeStyle() {
+  static RemixButtonStyle sizeStyle() {
     return RemixButtonStyle()
         .enumVariant(
           HeroButtonSize.sm,
@@ -40,10 +40,6 @@ final class HeroButtonStyle {
               .height(32)
               .paddingX(12)
               .borderRounded(24)
-              .enumVariant(
-                _InternalVariants.iconOnly,
-                style: RemixButtonStyle().width(32).paddingX(0),
-              )
               .labelStyle($labelSmall.mix())
               .iconSize(16)
               .onPressed(RemixButtonStyle().container(.scale(0.97))),
@@ -55,10 +51,6 @@ final class HeroButtonStyle {
               .paddingX(16)
               .scale(1)
               .borderRounded(24)
-              .enumVariant(
-                _InternalVariants.iconOnly,
-                style: RemixButtonStyle().width(36).paddingX(0),
-              )
               .labelStyle($labelSmall.mix())
               .iconSize(18)
               .onPressed(.new().container(.scale(0.97))),
@@ -70,17 +62,13 @@ final class HeroButtonStyle {
               .paddingX(16)
               .scale(1)
               .borderRounded(24)
-              .enumVariant(
-                _InternalVariants.iconOnly,
-                style: RemixButtonStyle().width(40).paddingX(0),
-              )
               .labelStyle($labelMedium.mix())
               .iconSize(20)
               .onPressed(.new().container(.scale(0.97))),
         );
   }
 
-  static RemixButtonStyle _variantStyles() {
+  static RemixButtonStyle variantStyles() {
     return RemixButtonStyle()
         .enumVariant(
           HeroButtonVariant.primary,
