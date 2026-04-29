@@ -65,6 +65,10 @@ final class HeroButtonStyle {
               .labelStyle($labelMedium.mix())
               .iconSize(20)
               .onPressed(.new().container(.scale(0.97))),
+        )
+        .enumVariant(
+          HeroButtonGroupVariant.group,
+          style: RemixButtonStyle().borderRounded(0),
         );
   }
 
@@ -130,6 +134,10 @@ final class HeroButtonStyle {
               .iconColor($dangerSoftForeground())
               .onHovered(RemixButtonStyle().color($dangerSoftHover()))
               .onPressed(RemixButtonStyle().color($dangerSoftHover())),
+        )
+        .enumVariant(
+          HeroButtonGroupVariant.group,
+          style: RemixButtonStyle().borderRounded(0).border(.none),
         );
   }
 }

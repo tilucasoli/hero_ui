@@ -7,7 +7,7 @@ import 'hero_button_group_style.dart';
 final class HeroButtonGroupData extends InheritedWidget {
   final HeroButtonVariant variant;
   final HeroButtonSize size;
-  final bool enabled;
+
   final bool fullWidth;
   final Axis orientation;
 
@@ -16,7 +16,7 @@ final class HeroButtonGroupData extends InheritedWidget {
     required super.child,
     this.variant = .primary,
     this.size = .md,
-    this.enabled = true,
+
     this.fullWidth = false,
     required this.orientation,
   });
@@ -29,7 +29,6 @@ final class HeroButtonGroupData extends InheritedWidget {
   bool updateShouldNotify(HeroButtonGroupData oldWidget) {
     return variant != oldWidget.variant ||
         size != oldWidget.size ||
-        enabled != oldWidget.enabled ||
         fullWidth != oldWidget.fullWidth ||
         orientation != oldWidget.orientation;
   }
@@ -62,7 +61,7 @@ final class HeroButtonGroup extends StatelessWidget {
         HeroButtonGroupData(
           variant: variant,
           size: size,
-          enabled: enabled,
+
           fullWidth: fullWidth,
           orientation: orientation,
           child: fullWidth && child is! HeroButtonGroupSeparator

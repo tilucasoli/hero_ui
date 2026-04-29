@@ -40,6 +40,10 @@ final class HeroIconButtonStyle {
               .borderRounded(24)
               .iconSize(20)
               .onPressed(RemixIconButtonStyle().container(.scale(0.97))),
+        )
+        .enumVariant(
+          HeroButtonGroupVariant.group,
+          style: RemixIconButtonStyle().borderRounded(0).border(.none),
         );
   }
 

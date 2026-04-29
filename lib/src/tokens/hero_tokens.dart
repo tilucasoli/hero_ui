@@ -61,6 +61,7 @@ const $link = ColorToken('hero.link');
 // == Derived Colors (component interaction states) ==
 const $accentHover = ColorToken('hero.accentHover');
 const $defaultHover = ColorToken('hero.defaultHover');
+const $accentSoft = ColorToken('hero.accentSoft');
 const $accentSoftForeground = ColorToken('hero.accentSoftForeground');
 const $dangerHover = ColorToken('hero.dangerHover');
 const $dangerSoft = ColorToken('hero.dangerSoft');

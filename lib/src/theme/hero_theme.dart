@@ -525,7 +525,8 @@ final class HeroTheme extends StatelessWidget {
         // Derived interaction colors
         $accentHover: HeroThemeData._darken(d.accent),
         $defaultHover: HeroThemeData._darken(d.defaultColor),
-        $accentSoftForeground: d.accent,
+        $accentSoft: d.accentSoft,
+        $accentSoftForeground: d.accentSoftForeground,
         $dangerHover: HeroThemeData._darken(d.danger),
         $dangerSoft: d.danger.withValues(alpha: 0.1),
         $dangerSoftHover: d.danger.withValues(alpha: 0.15),

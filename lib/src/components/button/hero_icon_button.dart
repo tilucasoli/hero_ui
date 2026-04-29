@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hero_ui/src/components/button_group/hero_button_group_style.dart';
 import 'package:remix/remix.dart';
 
 import '../button_group/hero_button_group.dart';
-import '../button_group/hero_button_group_style.dart';
 
 import '../../tokens/hero_tokens.dart';
 import '../../utils/inherited_variant.dart';
@@ -40,17 +40,18 @@ final class HeroIconButton extends StatelessWidget {
     final resolvedStyle = HeroIconButtonStyle.baseStyle()
         .merge(HeroIconButtonStyle.sizeStyle())
         .merge(HeroIconButtonStyle.variantStyles())
-        .merge(
-          groupData != null ? HeroButtonGroupStyle.iconButtonOverride() : null,
-        )
         .merge(style)
-        .applyVariants([resolvedVariant, resolvedSize]);
+        .applyVariants([
+          resolvedVariant,
+          resolvedSize,
+          if (groupData != null) HeroButtonGroupVariant.group,
+        ]);
 
     return RemixIconButton(
       style: resolvedStyle,
       icon: icon,
       loading: loading,
-      onPressed: (groupData?.enabled ?? enabled) ? onPressed : null,
+      onPressed: enabled ? onPressed : null,
     );
   }
 }

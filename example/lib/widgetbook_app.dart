@@ -158,7 +158,7 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                         labelBuilder: (value) => value.name,
                       );
 
-                      final children = <Widget>[
+                      final childrenButton = <Widget>[
                         const HeroButton(label: 'Overview', onPressed: _noop),
                         if (withSeparator) const HeroButtonGroupSeparator(),
                         const HeroButton(label: 'Specs', onPressed: _noop),
@@ -166,20 +166,39 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                         const HeroButton(label: 'Reviews', onPressed: _noop),
                       ];
 
-                      final group = HeroButtonGroup(
+                      final groupButton = HeroButtonGroup(
                         variant: variant,
                         size: size,
                         enabled: enabled,
                         fullWidth: fullWidth,
                         orientation: orientation,
-                        children: children,
+                        children: childrenButton,
                       );
 
-                      if (fullWidth) {
-                        return _preview(SizedBox(width: 420, child: group));
-                      }
+                      final childrenIconButton = <Widget>[
+                        const HeroButton(label: 'Reviews', onPressed: _noop),
+                        if (withSeparator) const HeroButtonGroupSeparator(),
+                        const HeroIconButton(
+                          icon: Icons.favorite,
+                          onPressed: _noop,
+                        ),
+                      ];
+                      final groupIconButton = HeroButtonGroup(
+                        variant: variant,
+                        size: size,
+                        enabled: enabled,
+                        fullWidth: fullWidth,
+                        orientation: orientation,
+                        children: childrenIconButton,
+                      );
 
-                      return _preview(group);
+                      return _preview(
+                        Column(
+                          spacing: 16,
+                          mainAxisSize: .min,
+                          children: [groupButton, groupIconButton],
+                        ),
+                      );
                     },
                   ),
                 ],

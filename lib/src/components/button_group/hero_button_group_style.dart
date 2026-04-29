@@ -1,23 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:hero_ui/hero_ui.dart';
+import 'package:hero_ui/src/utils/inherited_variant.dart';
 import 'package:remix/remix.dart';
+
+enum HeroButtonGroupVariant with EnumVariant { group }
 
 final class HeroButtonGroupStyle {
   HeroButtonGroupStyle._();
-
-  static RemixButtonStyle buttonOverride() {
-    return RemixButtonStyle()
-        .borderRounded(0)
-        .border(.none)
-        .onPressed(.new().scale(1.0));
-  }
-
-  static RemixIconButtonStyle iconButtonOverride() {
-    return RemixIconButtonStyle()
-        .borderRounded(0)
-        .border(.none)
-        .onPressed(RemixIconButtonStyle().container(.scale(1.0)));
-  }
 
   static FlexBoxStyler groupStyle({
     required Axis orientation,
@@ -29,7 +18,7 @@ final class HeroButtonGroupStyle {
             .border(
               .all(
                 .color(
-                  $border(),
+                  $separator(),
                 ).strokeAlign(BorderSide.strokeAlignOutside).width(1),
               ),
             );

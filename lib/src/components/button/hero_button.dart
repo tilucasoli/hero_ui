@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hero_ui/hero_ui.dart';
 import 'package:remix/remix.dart';
 
 import '../button_group/hero_button_group.dart';
-import '../button_group/hero_button_group_style.dart';
 
 import '../../tokens/hero_tokens.dart';
 import '../../utils/inherited_variant.dart';
@@ -45,11 +45,11 @@ final class HeroButton extends StatelessWidget {
     final resolvedStyle = HeroButtonStyle.baseStyle()
         .merge(HeroButtonStyle.sizeStyle())
         .merge(HeroButtonStyle.variantStyles())
-        .merge(groupData != null ? HeroButtonGroupStyle.buttonOverride() : null)
         .merge(style)
         .applyVariants([
           resolvedVariant,
           resolvedSize,
+          if (groupData != null) HeroButtonGroupVariant.group,
           if (fullWidth) _InternalVariants.fullWidth,
         ]);
 
@@ -59,7 +59,7 @@ final class HeroButton extends StatelessWidget {
       leadingIcon: iconLeft,
       trailingIcon: iconRight,
       loading: loading,
-      enabled: groupData?.enabled ?? enabled,
+      enabled: enabled,
       onPressed: onPressed,
     );
   }
