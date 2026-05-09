@@ -6,15 +6,3 @@ extension WidgetStateVariantMixinExt<T extends Style<S>, S extends Spec<S>>
     return variant(value, style);
   }
 }
-
-mixin EnumVariant on Enum implements NamedVariant {
-  @override
-  String get key => _EnumName(this).name;
-
-  @override
-  String get name => _EnumName(this).name;
-}
-
-extension type _EnumName(Enum value) {
-  String get name => value.name;
-}
