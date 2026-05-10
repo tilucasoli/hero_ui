@@ -84,11 +84,11 @@ enum HeroCardVariant with EnumVariant { defaultVariant, secondary, tertiary }
 final heroCardStyle = RemixCardStyle()
     .borderRounded(12)
     // ... base styles ...
-    .enumVariant(
+    .variant(
       HeroCardVariant.defaultVariant,
       style: RemixCardStyle().color($surface()),
     )
-    .enumVariant(
+    .variant(
       HeroCardVariant.secondary,
       style: RemixCardStyle().color($default()),
     );
@@ -156,8 +156,8 @@ final class HeroButtonStyle {
   HeroButtonStyle._();
 
   static RemixButtonStyle _baseStyle() { /* ... */ }
-  static RemixButtonStyle _sizeStyle() { /* size.enumVariant(...) chains */ }
-  static RemixButtonStyle _variantStyles() { /* variant.enumVariant(...) chains */ }
+  static RemixButtonStyle _sizeStyle() { /* size.variant(...) chains */ }
+  static RemixButtonStyle _variantStyles() { /* variant.variant(...) chains */ }
 }
 ```
 
@@ -173,16 +173,16 @@ When in doubt, `hero_card.dart` and `hero_button.dart` are your canonical refere
 
 ## Conventions that apply to every component
 
-### Variant enums use `EnumVariant`
+### Variant enums use `variant`
 
-Never use raw `enum` for anything Remix needs to variant on. Always mix in `EnumVariant` from `lib/src/utils/inherited_variant.dart`:
+Never use raw `enum` for anything Remix needs to variant on. Always mix in `variant` from `lib/src/utils/inherited_variant.dart`:
 
 ```dart
 enum HeroSwitchVariant with EnumVariant { defaultVariant, success, danger }
 enum HeroSwitchSize with EnumVariant { sm, md, lg }
 ```
 
-`EnumVariant` makes the enum implement Remix's `NamedVariant` so it can be passed to `.enumVariant(...)` and `.applyVariants([...])`. If you use `default` as a case name, rename it to `defaultVariant` — `default` is a reserved keyword in Dart. Use `sm` / `md` / `lg` for sizes (not `small`/`medium`/`large`) to match the React reference.
+`variant` makes the enum implement Remix's `NamedVariant` so it can be passed to `.variant(...)` and `.applyVariants([...])`. If you use `default` as a case name, rename it to `defaultVariant` — `default` is a reserved keyword in Dart. Use `sm` / `md` / `lg` for sizes (not `small`/`medium`/`large`) to match the React reference.
 
 ### Use Dart 3 dot-shorthand everywhere it works
 
@@ -257,7 +257,7 @@ After creating the component, add exports to `lib/hero_ui.dart` so consumers can
    - `onPress` → `onPressed`
    - `children` → `child` (single) or `children` (list) or specific props like `label`/`leadingIcon`/`trailingIcon`
    - React `startContent`/`endContent` icons → explicit `iconLeft: IconData?` / `iconRight: IconData?`
-6. **Port variants to `EnumVariant` enums.** Every React `variant`/`size`/`color` string union becomes a Dart enum; every boolean that changes appearance (not just behaviour) becomes either a widget prop fed into `applyVariants` or a private `_InternalVariants` case.
+6. **Port variants to `variant` enums.** Every React `variant`/`size`/`color` string union becomes a Dart enum; every boolean that changes appearance (not just behaviour) becomes either a widget prop fed into `applyVariants` or a private `_InternalVariants` case.
 7. **Translate Tailwind / `tv()` classes into Remix style calls** using tokens — not hex codes. `bg-accent text-accent-foreground` → `.color($accent()).labelColor($accentForeground())`. If you find yourself reaching for a hex literal, the answer is almost always "there's a token for that" — check `hero_tokens.dart`.
 8. **Wire group context** if the reference has one (`ButtonGroupContext`, etc.), following the InheritedWidget pattern.
 9. **Export from `lib/hero_ui.dart`**.

@@ -2,6 +2,10 @@ part of 'hero_radio.dart';
 
 enum HeroRadioSize with EnumVariant { sm, md, lg }
 
+enum HeroRadioVariant with EnumVariant { primary, secondary }
+
+enum _InternalVariants with EnumVariant { error }
+
 final class HeroRadioStyle {
   HeroRadioStyle._();
 
@@ -17,12 +21,34 @@ final class HeroRadioStyle {
               )
               .color($fieldBackground())
               .alignment(.center)
-              .scale(1),
+              .scale(1)
+              .shadows([
+                .color(
+                  const Color(0x0F000000),
+                ).blurRadius(1).offset(x: 0, y: 0),
+                .color(
+                  const Color(0x0F000000),
+                ).blurRadius(2).offset(x: 0, y: 1),
+                .color(
+                  const Color(0x0A000000),
+                ).blurRadius(4).offset(x: 0, y: 2),
+              ]),
         )
-        .indicator(BoxStyler().borderRounded(999).color($fieldBackground()))
+        .indicator(
+          BoxStyler()
+              .borderRounded(999)
+              .color($fieldBackground())
+              .shadow(
+                .color(
+                  const Color(0x0D000000),
+                ).blurRadius(1).offset(x: 0, y: 1),
+              ),
+        )
         .onHovered(
           RemixRadioStyle().container(
-            BoxStyler().borderAll(color: $defaultHover(), width: 1),
+            BoxStyler()
+                .color($fieldHover())
+                .borderAll(color: $fieldBorderHover(), width: 1),
           ),
         )
         .onPressed(RemixRadioStyle().container(BoxStyler().scale(0.95)))
@@ -45,19 +71,43 @@ final class HeroRadioStyle {
         .animate(AnimationConfig.spring(200.ms));
   }
 
+  static RemixRadioStyle _variantStyles() {
+    return RemixRadioStyle()
+        .variant(
+          HeroRadioVariant.secondary,
+          RemixRadioStyle()
+              .container(BoxStyler().color($default()))
+              .onHovered(
+                RemixRadioStyle().container(BoxStyler().color($defaultHover())),
+              ),
+        )
+        .variant(
+          _InternalVariants.error,
+          RemixRadioStyle()
+              .container(BoxStyler().borderAll(color: $danger(), width: 1))
+              .onSelected(
+                RemixRadioStyle()
+                    .container(
+                      .color($danger()).borderAll(color: $danger(), width: 1),
+                    )
+                    .indicator(.color($dangerForeground())),
+              ),
+        );
+  }
+
   static RemixRadioStyle _sizeStyle() {
     return RemixRadioStyle()
-        .enumVariant(
+        .variant(
           HeroRadioSize.sm,
-          style: .new().container(.size(16, 16)).indicator(.size(6, 6)),
+          RemixRadioStyle().container(.size(16, 16)).indicator(.size(6, 6)),
         )
-        .enumVariant(
+        .variant(
           HeroRadioSize.md,
-          style: .new().container(.size(20, 20)).indicator(.size(8, 8)),
+          RemixRadioStyle().container(.size(20, 20)).indicator(.size(8, 8)),
         )
-        .enumVariant(
+        .variant(
           HeroRadioSize.lg,
-          style: .new().container(.size(24, 24)).indicator(.size(10, 10)),
+          RemixRadioStyle().container(.size(24, 24)).indicator(.size(10, 10)),
         );
   }
 }

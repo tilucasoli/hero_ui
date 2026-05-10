@@ -5,100 +5,101 @@ final class HeroIconButtonStyle {
 
   static RemixIconButtonStyle baseStyle() {
     return RemixIconButtonStyle()
-        .animate(.easeOut(100.ms))
+        .animate(.easeOut(250.ms))
         .onDisabled(RemixIconButtonStyle().wrap(.opacity(0.5)));
   }
 
   static RemixIconButtonStyle sizeStyle() {
     return RemixIconButtonStyle()
-        .enumVariant(
+        .variant(
           HeroButtonSize.sm,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .scale(1)
               .height(32)
               .width(32)
               .borderRounded(24)
               .iconSize(16)
-              .onPressed(RemixIconButtonStyle().container(.scale(0.97))),
+              .onPressed(RemixIconButtonStyle().container(.scale(0.98))),
         )
-        .enumVariant(
+        .variant(
           HeroButtonSize.md,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .scale(1)
               .height(36)
               .width(36)
               .borderRounded(24)
-              .iconSize(18)
+              .iconSize(16)
               .onPressed(RemixIconButtonStyle().container(.scale(0.97))),
         )
-        .enumVariant(
+        .variant(
           HeroButtonSize.lg,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .scale(1)
               .height(40)
               .width(40)
               .borderRounded(24)
-              .iconSize(20)
-              .onPressed(RemixIconButtonStyle().container(.scale(0.97))),
+              .iconSize(16)
+              .onPressed(RemixIconButtonStyle().container(.scale(0.96))),
         )
-        .enumVariant(
+        .variant(
           HeroButtonGroupVariant.group,
-          style: RemixIconButtonStyle().borderRounded(0).border(.none),
+          RemixIconButtonStyle().borderRounded(0).border(.none),
         );
   }
 
   static RemixIconButtonStyle variantStyles() {
     return RemixIconButtonStyle()
-        .enumVariant(
+        .variant(
           HeroButtonVariant.primary,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color($accent())
               .iconColor($accentForeground())
               .onHovered(RemixIconButtonStyle().color($accentHover()))
               .onPressed(RemixIconButtonStyle().color($accentHover())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.secondary,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color($default())
               .iconColor($accentSoftForeground())
               .onHovered(RemixIconButtonStyle().color($defaultHover()))
               .onPressed(RemixIconButtonStyle().color($defaultHover())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.tertiary,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color($default())
-              .iconColor($defaultForeground())
               .onHovered(RemixIconButtonStyle().color($defaultHover()))
               .onPressed(RemixIconButtonStyle().color($defaultHover())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.outline,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color(Colors.transparent)
               .borderAll(color: $border(), width: 1)
-              .iconColor($defaultForeground()),
+              .iconColor($defaultForeground())
+              .onHovered(RemixIconButtonStyle().color($default()))
+              .onPressed(RemixIconButtonStyle().color($default())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.ghost,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color(Colors.transparent)
               .iconColor($defaultForeground())
               .onHovered(RemixIconButtonStyle().color($default()))
               .onPressed(RemixIconButtonStyle().color($default())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.danger,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color($danger())
               .iconColor($dangerForeground())
               .onHovered(RemixIconButtonStyle().color($dangerHover()))
               .onPressed(RemixIconButtonStyle().color($dangerHover())),
         )
-        .enumVariant(
+        .variant(
           HeroButtonVariant.dangerSoft,
-          style: RemixIconButtonStyle()
+          RemixIconButtonStyle()
               .color($dangerSoft())
               .iconColor($dangerSoftForeground())
               .onHovered(RemixIconButtonStyle().color($dangerSoftHover()))

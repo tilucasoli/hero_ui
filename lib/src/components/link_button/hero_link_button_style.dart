@@ -30,23 +30,17 @@ final class HeroLinkButtonStyle {
 
   static RemixButtonStyle _sizeStyle() {
     return RemixButtonStyle()
-        .enumVariant(
+        .variant(
           HeroLinkButtonSize.sm,
-          style: RemixButtonStyle()
-              .labelStyle($labelSmall.mix())
-              .iconSize(14),
+          RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(14),
         )
-        .enumVariant(
+        .variant(
           HeroLinkButtonSize.md,
-          style: RemixButtonStyle()
-              .labelStyle($labelSmall.mix())
-              .iconSize(16),
+          RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(16),
         )
-        .enumVariant(
+        .variant(
           HeroLinkButtonSize.lg,
-          style: RemixButtonStyle()
-              .labelStyle($labelMedium.mix())
-              .iconSize(18),
+          RemixButtonStyle().labelStyle($labelMedium.mix()).iconSize(18),
         );
   }
 }

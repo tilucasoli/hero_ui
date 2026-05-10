@@ -7,7 +7,6 @@ import 'hero_button_group_style.dart';
 final class HeroButtonGroupData extends InheritedWidget {
   final HeroButtonVariant variant;
   final HeroButtonSize size;
-
   final bool fullWidth;
   final Axis orientation;
 
@@ -55,13 +54,13 @@ final class HeroButtonGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wrappedChildren = <Widget>[];
+
     for (var i = 0; i < children.length; i++) {
       final child = children[i];
       wrappedChildren.add(
         HeroButtonGroupData(
           variant: variant,
           size: size,
-
           fullWidth: fullWidth,
           orientation: orientation,
           child: fullWidth && child is! HeroButtonGroupSeparator
@@ -74,8 +73,7 @@ final class HeroButtonGroup extends StatelessWidget {
     final container = HeroButtonGroupStyle.groupStyle(
       orientation: orientation,
       fullWidth: fullWidth,
-      variant: variant,
-    );
+    ).applyVariants([variant]);
 
     return container(children: wrappedChildren);
   }
@@ -84,17 +82,33 @@ final class HeroButtonGroup extends StatelessWidget {
 final class HeroButtonGroupSeparator extends StatelessWidget {
   const HeroButtonGroupSeparator({super.key});
 
+  /// Returns the variant's foreground color at 15% opacity,
+  /// matching CSS `bg-current opacity-15`.
+  Color _resolveColor(BuildContext context) {
+    final variant = HeroButtonGroupData.maybeOf(context)?.variant ?? .primary;
+
+    final token = switch (variant) {
+      HeroButtonVariant.primary => $accentForeground,
+      HeroButtonVariant.secondary => $accentSoftForeground,
+      HeroButtonVariant.tertiary => $foreground,
+      HeroButtonVariant.outline => $defaultForeground,
+      HeroButtonVariant.ghost => $defaultForeground,
+      HeroButtonVariant.danger => $dangerForeground,
+      HeroButtonVariant.dangerSoft => $dangerSoftForeground,
+    };
+
+    return token.resolve(context).withValues(alpha: 0.40);
+  }
+
   @override
   Widget build(BuildContext context) {
     final groupData = HeroButtonGroupData.maybeOf(context);
-    final orientation = groupData?.orientation ?? Axis.horizontal;
+    final orientation = groupData?.orientation ?? .horizontal;
 
     return CustomPaint(
-      size: orientation == Axis.horizontal
-          ? const Size(0, 20)
-          : const Size(20, 0),
+      size: orientation == .horizontal ? const .new(0, 20) : const .new(20, 0),
       painter: _SeparatorPainter(
-        color: $separator.resolve(context),
+        color: _resolveColor(context),
         thickness: 1,
         orientation: orientation,
       ),
@@ -119,7 +133,7 @@ class _SeparatorPainter extends CustomPainter {
       ..color = color
       ..strokeWidth = thickness;
 
-    if (orientation == Axis.horizontal) {
+    if (orientation == .horizontal) {
       final x = size.width / 2;
       canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
     } else {

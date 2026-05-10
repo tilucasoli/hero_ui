@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../../utils/inherited_variant.dart';
 
 part 'hero_checkbox_style.dart';
 
@@ -12,6 +11,8 @@ final class HeroCheckbox extends StatelessWidget {
   final bool enabled;
   final bool tristate;
   final HeroCheckboxSize size;
+  final HeroCheckboxVariant variant;
+  final bool error;
   final RemixCheckboxStyle? style;
   final String? semanticLabel;
 
@@ -22,6 +23,8 @@ final class HeroCheckbox extends StatelessWidget {
     this.enabled = true,
     this.tristate = false,
     this.size = .md,
+    this.variant = .primary,
+    this.error = false,
     this.style,
     this.semanticLabel,
   });
@@ -29,9 +32,10 @@ final class HeroCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = HeroCheckboxStyle._baseStyle()
+        .merge(HeroCheckboxStyle._variantStyles())
         .merge(HeroCheckboxStyle._sizeStyle())
         .merge(style)
-        .applyVariants([size]);
+        .applyVariants([size, variant, if (error) _InternalVariants.error]);
 
     return RemixCheckbox(
       selected: selected,

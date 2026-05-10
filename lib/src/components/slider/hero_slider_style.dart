@@ -21,25 +21,25 @@ final class HeroSliderStyle {
 
   static RemixSliderStyle _sizeStyle() {
     return RemixSliderStyle()
-        .enumVariant(
+        .variant(
           HeroSliderSize.sm,
-          style: RemixSliderStyle(
+          RemixSliderStyle(
             thumb: BoxStyler().size(24, 16),
             trackWidth: 16,
             rangeWidth: 16,
           ),
         )
-        .enumVariant(
+        .variant(
           HeroSliderSize.md,
-          style: RemixSliderStyle(
+          RemixSliderStyle(
             thumb: BoxStyler().size(28, 20),
             trackWidth: 20,
             rangeWidth: 20,
           ),
         )
-        .enumVariant(
+        .variant(
           HeroSliderSize.lg,
-          style: RemixSliderStyle(
+          RemixSliderStyle(
             thumb: BoxStyler().size(32, 24),
             trackWidth: 24,
             rangeWidth: 24,

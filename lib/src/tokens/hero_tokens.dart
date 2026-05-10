@@ -10,9 +10,20 @@ const $eclipse = ColorToken('hero.eclipse');
 const $background = ColorToken('hero.background');
 const $foreground = ColorToken('hero.foreground');
 
+// == Background Extended ==
+const $backgroundSecondary = ColorToken('hero.backgroundSecondary');
+const $backgroundTertiary = ColorToken('hero.backgroundTertiary');
+const $backgroundInverse = ColorToken('hero.backgroundInverse');
+
 // == Surface (cards, accordions, disclosure groups) ==
 const $surface = ColorToken('hero.surface');
 const $surfaceForeground = ColorToken('hero.surfaceForeground');
+const $surfaceSecondary = ColorToken('hero.surfaceSecondary');
+const $surfaceSecondaryForeground =
+    ColorToken('hero.surfaceSecondaryForeground');
+const $surfaceTertiary = ColorToken('hero.surfaceTertiary');
+const $surfaceTertiaryForeground =
+    ColorToken('hero.surfaceTertiaryForeground');
 
 // == Overlay (tooltips, popovers, modals, menus) ==
 const $overlay = ColorToken('hero.overlay');
@@ -57,16 +68,45 @@ const $border = ColorToken('hero.border');
 const $separator = ColorToken('hero.separator');
 const $focus = ColorToken('hero.focus');
 const $link = ColorToken('hero.link');
+const $backdrop = ColorToken('hero.backdrop');
 
-// == Derived Colors (component interaction states) ==
+// == Derived Colors (interaction states) ==
 const $accentHover = ColorToken('hero.accentHover');
 const $defaultHover = ColorToken('hero.defaultHover');
+const $surfaceHover = ColorToken('hero.surfaceHover');
+
 const $accentSoft = ColorToken('hero.accentSoft');
 const $accentSoftForeground = ColorToken('hero.accentSoftForeground');
+const $accentSoftHover = ColorToken('hero.accentSoftHover');
+
 const $dangerHover = ColorToken('hero.dangerHover');
 const $dangerSoft = ColorToken('hero.dangerSoft');
 const $dangerSoftHover = ColorToken('hero.dangerSoftHover');
 const $dangerSoftForeground = ColorToken('hero.dangerSoftForeground');
+
+const $successHover = ColorToken('hero.successHover');
+const $successSoft = ColorToken('hero.successSoft');
+const $successSoftForeground = ColorToken('hero.successSoftForeground');
+const $successSoftHover = ColorToken('hero.successSoftHover');
+
+const $warningHover = ColorToken('hero.warningHover');
+const $warningSoft = ColorToken('hero.warningSoft');
+const $warningSoftForeground = ColorToken('hero.warningSoftForeground');
+const $warningSoftHover = ColorToken('hero.warningSoftHover');
+
+// == Border Extended ==
+const $borderSecondary = ColorToken('hero.borderSecondary');
+const $borderTertiary = ColorToken('hero.borderTertiary');
+
+// == Separator Extended ==
+const $separatorSecondary = ColorToken('hero.separatorSecondary');
+const $separatorTertiary = ColorToken('hero.separatorTertiary');
+
+// == Field Extended (interaction states) ==
+const $fieldHover = ColorToken('hero.fieldHover');
+const $fieldFocus = ColorToken('hero.fieldFocus');
+const $fieldBorderHover = ColorToken('hero.fieldBorderHover');
+const $fieldBorderFocus = ColorToken('hero.fieldBorderFocus');
 
 // == Common Values ==
 const $disabledOpacity = DoubleToken('hero.disabledOpacity');

@@ -5,7 +5,6 @@ import 'package:remix/remix.dart';
 import '../button_group/hero_button_group.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../../utils/inherited_variant.dart';
 import 'hero_button.dart';
 
 part 'hero_icon_button_style.dart';
