@@ -10,10 +10,11 @@ final class HeroSelectStyle {
   static RemixSelectMenuItemStyle _itemStyle() {
     return RemixSelectMenuItemStyle()
         .color(Colors.transparent)
-        .borderRadiusAll(Radius.circular(8))
-        .paddingX(10)
-        .height(32)
-        .text(TextStyler().style($paragraphSmall.mix()).color($foreground()))
+        .borderRadiusAll(Radius.circular(20))
+        .paddingX(12)
+        .paddingY(6)
+        .minHeight(36)
+        .text(TextStyler().style($labelSmall.mix()).color($defaultForeground()))
         .icon(.color($muted()).size(16))
         .onHovered(RemixSelectMenuItemStyle().color($default()));
   }
@@ -31,19 +32,30 @@ final class HeroSelectStyle {
               .borderRadiusAll($fieldRadius())
               .paddingX(12)
               .paddingY(8)
-              .label(TextStyler().style($paragraphSmall.mix()).color($fieldForeground()).height(1.4))
-              .icon(.color($fieldForeground()).size(12)),
+              .label(
+                TextStyler()
+                    .style($paragraphSmall.mix())
+                    .color($fieldPlaceholder())
+                    .height(1.4),
+              )
+              .icon(.color($fieldForeground()).size(16))
+              .shadows([
+                .color(Color(0x0F000000)).blurRadius(1).offset(x: 0, y: 0),
+                .color(Color(0x0F000000)).blurRadius(2).offset(x: 0, y: 1),
+                .color(Color(0x0A000000)).blurRadius(4).offset(x: 0, y: 2),
+              ]),
         )
         .menuContainer(
           FlexBoxStyler()
               .color($overlay())
-              .borderRadiusAll(Radius.circular(12))
-              .borderAll(color: $border(), width: 1)
-              .paddingAll(6)
+              .borderRadiusAll(Radius.circular(24))
+              .paddingAll(4)
               .marginTop(4)
-              .shadow(
-                .color(Color(0x1A000000)).blurRadius(16).offset(x: 0, y: 8),
-              ),
+              .shadows([
+                .color(Color(0x0F000000)).blurRadius(8).offset(x: 0, y: 2),
+                .color(Color(0x08000000)).blurRadius(12).offset(x: 0, y: -6),
+                .color(Color(0x14000000)).blurRadius(28).offset(x: 0, y: 14),
+              ]),
         )
         .onFocused(
           RemixSelectStyle().trigger(
@@ -55,30 +67,23 @@ final class HeroSelectStyle {
           ),
         )
         .onDisabled(RemixSelectStyle().wrap(.opacity(0.5)))
-        .enumVariant(
+        .variant(
           _InternalVariants.error,
-          style: RemixSelectStyle()
-              .trigger(
-                RemixSelectTriggerStyle().borderAll(color: $danger(), width: 1),
-              )
-              .onFocused(
-                RemixSelectStyle().trigger(
-                  RemixSelectTriggerStyle().borderAll(color: $danger(), width: 2),
-                ),
-              ),
+          RemixSelectStyle().trigger(
+            RemixSelectTriggerStyle().borderAll(color: $danger(), width: 1),
+          ),
         )
         .animate(.ease(100.ms));
   }
 
   static RemixSelectStyle _variantStyles() {
-    return RemixSelectStyle()
-        .enumVariant(
-          HeroSelectVariant.secondary,
-          style: RemixSelectStyle().trigger(
-            RemixSelectTriggerStyle()
-                .color($default())
-                .onHovered(RemixSelectTriggerStyle().color($defaultHover())),
-          ),
-        );
+    return RemixSelectStyle().variant(
+      HeroSelectVariant.secondary,
+      RemixSelectStyle().trigger(
+        RemixSelectTriggerStyle()
+            .color($default())
+            .onHovered(RemixSelectTriggerStyle().color($defaultHover())),
+      ),
+    );
   }
 }

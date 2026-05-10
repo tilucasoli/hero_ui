@@ -5,6 +5,18 @@ enum HeroSwitchSize with EnumVariant { sm, md, lg }
 final class HeroSwitchStyle {
   HeroSwitchStyle._();
 
+  /// Unselected thumb shadow (CSS: shadow-field).
+  static final _thumbShadow = BoxShadowMix()
+      .color(const Color(0x0A000000))
+      .offset(x: 0, y: 2)
+      .blurRadius(4);
+
+  /// Selected thumb shadow (CSS: stronger shadow on checked state).
+  static final _thumbShadowSelected = BoxShadowMix()
+      .color(const Color(0x0F000000))
+      .offset(x: 0, y: 2)
+      .blurRadius(10);
+
   static RemixSwitchStyle _baseStyle() {
     return RemixSwitchStyle()
         .container(
@@ -12,49 +24,40 @@ final class HeroSwitchStyle {
         )
         .color($default())
         .thumbColor(Colors.white)
-        .thumb(
-          BoxStyler()
-              .borderRounded(999)
-              .scale(1)
-              .shadow(
-                BoxShadowMix()
-                    .color(const Color(0x26000000))
-                    .offset(x: 0, y: 2)
-                    .blurRadius(8),
-              ),
-        )
-        .wrap(.opacity(1))
-        .onHovered(RemixSwitchStyle().wrap(.opacity(0.8)))
-        .onPressed(RemixSwitchStyle().thumb(.scale(0.9)))
+        .thumb(BoxStyler().borderRounded(999).shadow(_thumbShadow))
         .onSelected(
           RemixSwitchStyle()
               .color($accent())
               .thumbColor($accentForeground())
+              .thumb(BoxStyler().shadow(_thumbShadowSelected))
               .onHovered(RemixSwitchStyle().color($accentHover()))
               .onPressed(RemixSwitchStyle().color($accentHover())),
         )
         .onDisabled(
           RemixSwitchStyle()
               .color($default())
-              .thumbColor($defaultForeground())
-              .wrap(.opacity(0.5)),
+              .thumbColor(const Color(0x33000000))
+              .wrap(.opacity(0.5))
+              .onSelected(
+                RemixSwitchStyle().thumbColor(const Color(0x66FFFFFF)),
+              ),
         )
-        .animate(.spring(200.ms));
+        .animate(.easeOut(200.ms));
   }
 
   static RemixSwitchStyle _sizeStyle() {
     return RemixSwitchStyle()
-        .enumVariant(
+        .variant(
           HeroSwitchSize.sm,
-          style: RemixSwitchStyle().size(32, 16).thumb(.size(16.5, 12)),
+          RemixSwitchStyle().size(32, 16).thumb(.size(16.5, 12)),
         )
-        .enumVariant(
+        .variant(
           HeroSwitchSize.md,
-          style: RemixSwitchStyle().size(40, 20).thumb(.size(22, 16)),
+          RemixSwitchStyle().size(40, 20).thumb(.size(22, 16)),
         )
-        .enumVariant(
+        .variant(
           HeroSwitchSize.lg,
-          style: RemixSwitchStyle().size(48, 24).thumb(.size(27.5, 20)),
+          RemixSwitchStyle().size(48, 24).thumb(.size(27.5, 20)),
         );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:hero_ui/src/utils/inherited_variant.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
@@ -15,15 +14,6 @@ final heroCardStyle = RemixCardStyle()
       strokeAlign: BorderSide.strokeAlignOutside,
     )
     .container(.clipBehavior(.antiAlias))
-    .enumVariant(
-      HeroCardVariant.defaultVariant,
-      style: RemixCardStyle().color($surface()),
-    )
-    .enumVariant(
-      HeroCardVariant.secondary,
-      style: RemixCardStyle().color($default()),
-    )
-    .enumVariant(
-      HeroCardVariant.tertiary,
-      style: RemixCardStyle().color($background()),
-    );
+    .variant(HeroCardVariant.defaultVariant, RemixCardStyle().color($surface()))
+    .variant(HeroCardVariant.secondary, RemixCardStyle().color($default()))
+    .variant(HeroCardVariant.tertiary, RemixCardStyle().color($background()));

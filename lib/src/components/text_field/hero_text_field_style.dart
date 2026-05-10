@@ -18,12 +18,27 @@ final class HeroTextFieldStyle {
               .paddingX(12)
               .paddingY(8),
         )
-        .text(TextStyler().style($paragraphSmall.mix()).color($fieldForeground()).height(1.4))
-        .hintText(TextStyler().style($paragraphSmall.mix()).color($fieldPlaceholder()))
-        .label(
-          TextStyler().style($labelSmall.mix()).color($foreground()).wrap(.padding(.bottom(6))),
+        .text(
+          TextStyler()
+              .style($paragraphSmall.mix())
+              .color($fieldForeground())
+              .height(1.4),
         )
-        .helperText(TextStyler().style($paragraphXSmall.mix()).color($muted()).wrap(.padding(.top(4))))
+        .hintText(
+          TextStyler().style($paragraphSmall.mix()).color($fieldPlaceholder()),
+        )
+        .label(
+          TextStyler()
+              .style($labelSmall.mix())
+              .color($foreground())
+              .wrap(.padding(.bottom(6))),
+        )
+        .helperText(
+          TextStyler()
+              .style($paragraphXSmall.mix())
+              .color($muted())
+              .wrap(.padding(.top(4))),
+        )
         .cursorColor($accent())
         .spacing(4)
         .mainAxisSize(.min)
@@ -38,9 +53,9 @@ final class HeroTextFieldStyle {
         )
         .onDisabled(RemixTextFieldStyle().wrap(.opacity(0.5)))
         .variant(ContextVariant.widgetState(.error), _errorStyle())
-        .enumVariant(
+        .variant(
           _InternalVariants.fullWidth,
-          style: RemixTextFieldStyle().mainAxisSize(.max),
+          RemixTextFieldStyle().mainAxisSize(.max),
         )
         .animate(.ease(100.ms));
   }

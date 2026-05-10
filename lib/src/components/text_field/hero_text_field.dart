@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../../utils/inherited_variant.dart';
 
 part 'hero_text_field_style.dart';
 
@@ -67,9 +66,7 @@ final class HeroTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedStyle = HeroTextFieldStyle._baseStyle()
         .merge(style)
-        .applyVariants([
-          if (fullWidth) _InternalVariants.fullWidth,
-        ]);
+        .applyVariants([if (fullWidth) _InternalVariants.fullWidth]);
 
     return RemixTextField(
       style: resolvedStyle,

@@ -31,7 +31,7 @@ final style = BoxStyler()
     .onDisabled(.color(Colors.grey));
 ```
 
-### Composing Styles with Variants
+### Composing Styles with EnumVariants
 
 When you override a style that already has variants, the new variant values merge with existing ones:
 

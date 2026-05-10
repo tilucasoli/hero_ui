@@ -290,6 +290,13 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                   WidgetbookUseCase(
                     name: 'Playground',
                     builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroCheckboxVariant>(
+                            label: 'Variant',
+                            options: HeroCheckboxVariant.values,
+                            initialOption: .primary,
+                            labelBuilder: (value) => value.name,
+                          );
                       final size = context.knobs.object
                           .dropdown<HeroCheckboxSize>(
                             label: 'Size',
@@ -301,8 +308,17 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                         label: 'Enabled',
                         initialValue: true,
                       );
+                      final error = context.knobs.boolean(
+                        label: 'Error',
+                        initialValue: false,
+                      );
                       return _preview(
-                        _InteractiveHeroCheckbox(size: size, enabled: enabled),
+                        _InteractiveHeroCheckbox(
+                          variant: variant,
+                          size: size,
+                          enabled: enabled,
+                          error: error,
+                        ),
                       );
                     },
                   ),
@@ -824,10 +840,17 @@ class _InteractiveHeroSelectState extends State<_InteractiveHeroSelect> {
 }
 
 class _InteractiveHeroCheckbox extends StatefulWidget {
+  final HeroCheckboxVariant variant;
   final HeroCheckboxSize size;
   final bool enabled;
+  final bool error;
 
-  const _InteractiveHeroCheckbox({required this.size, required this.enabled});
+  const _InteractiveHeroCheckbox({
+    required this.variant,
+    required this.size,
+    required this.enabled,
+    required this.error,
+  });
 
   @override
   State<_InteractiveHeroCheckbox> createState() =>
@@ -849,7 +872,9 @@ class _InteractiveHeroCheckboxState extends State<_InteractiveHeroCheckbox> {
             }
           : null,
       enabled: widget.enabled,
+      variant: widget.variant,
       size: widget.size,
+      error: widget.error,
     );
   }
 }

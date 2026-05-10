@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../../utils/inherited_variant.dart';
-
 part 'hero_divider_style.dart';
 
 final class HeroDivider extends StatelessWidget {
