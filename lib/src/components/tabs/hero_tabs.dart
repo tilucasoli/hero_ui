@@ -22,10 +22,13 @@ class _HeroTabsScope extends InheritedWidget {
 
   static _HeroTabsScope of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<_HeroTabsScope>();
-    assert(scope != null, 'HeroTabBar, HeroTab and HeroTabPanel must be '
-        'placed inside a HeroTabs.');
+    if (scope == null) {
+      throw FlutterError(
+        'HeroTabBar, HeroTab and HeroTabPanel must be placed inside a HeroTabs.',
+      );
+    }
 
-    return scope!;
+    return scope;
   }
 
   @override
