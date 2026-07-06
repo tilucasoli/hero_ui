@@ -637,6 +637,106 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                   ),
                 ],
               ),
+              WidgetbookComponent(
+                name: 'HeroTabs',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final overrideRadius = context.knobs.boolean(
+                        label: 'Override radius',
+                        initialValue: false,
+                      );
+                      final radius = context.knobs.object
+                          .dropdown<HeroTabsRadius>(
+                            label: 'Radius',
+                            options: HeroTabsRadius.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final withIcons = context.knobs.boolean(
+                        label: 'Leading icons',
+                        initialValue: false,
+                      );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+
+                      return _preview(
+                        HeroTabs(
+                          radius: overrideRadius ? radius : null,
+                          enabled: enabled,
+                          initialId: 'world',
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              HeroTabBar(
+                                children: [
+                                  HeroTab(
+                                    tabId: 'world',
+                                    label: 'World',
+                                    icon: withIcons ? Icons.public : null,
+                                  ),
+                                  HeroTab(
+                                    tabId: 'ny',
+                                    label: 'N.Y',
+                                    icon: withIcons
+                                        ? Icons.location_city
+                                        : null,
+                                  ),
+                                  HeroTab(
+                                    tabId: 'business',
+                                    label: 'Business',
+                                    icon: withIcons ? Icons.trending_up : null,
+                                  ),
+                                  HeroTab(
+                                    tabId: 'science',
+                                    label: 'Science',
+                                    icon: withIcons
+                                        ? Icons.science_outlined
+                                        : null,
+                                    enabled: false,
+                                  ),
+                                ],
+                              ),
+                              const HeroTabPanel(
+                                tabId: 'world',
+                                child: Text(
+                                  'Global headlines and international '
+                                  'coverage from around the world.',
+                                ),
+                              ),
+                              const HeroTabPanel(
+                                tabId: 'ny',
+                                child: Text(
+                                  'The latest stories and updates from '
+                                  'New York.',
+                                ),
+                              ),
+                              const HeroTabPanel(
+                                tabId: 'business',
+                                child: Text(
+                                  'Markets, finance and business news '
+                                  'you can use.',
+                                ),
+                              ),
+                              const HeroTabPanel(
+                                tabId: 'science',
+                                child: Text(
+                                  'Discoveries and research across the '
+                                  'sciences. (This tab is disabled.)',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
           WidgetbookCategory(

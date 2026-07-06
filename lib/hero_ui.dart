@@ -45,6 +45,9 @@ export 'src/components/divider/hero_divider.dart';
 export 'src/components/sidebar/hero_sidebar.dart';
 export 'src/components/sidebar/hero_sidebar_item.dart';
 
+// Tabs
+export 'src/components/tabs/hero_tabs.dart';
+
 // Blocks
 export 'src/blocks/auth/auth_block.dart';
 export 'src/blocks/dashboard/dashboard_block.dart';
