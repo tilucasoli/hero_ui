@@ -291,7 +291,7 @@ final class HeroThemeData {
       defaultForeground: kHeroEclipse,
       accent: accentColor,
       accentForeground: kHeroSnow,
-      accentSoft: _oklch(95.24, 0.0013, 286.37),
+      accentSoft: accentColor.withValues(alpha: 0.15),
       accentSoftForeground: accentColor,
       fieldBackground: kHeroWhite,
       fieldForeground: kHeroEclipse,
@@ -331,7 +331,7 @@ final class HeroThemeData {
       defaultForeground: kHeroSnow,
       accent: accentColor,
       accentForeground: kHeroSnow,
-      accentSoft: _oklch(25.70, 0.0037, 286.14),
+      accentSoft: accentColor.withValues(alpha: 0.15),
       accentSoftForeground: accentColor,
       fieldBackground: _oklch(21.03, 0.0059, 285.89),
       fieldForeground: kHeroSnow,
@@ -496,24 +496,48 @@ final class HeroTheme extends StatelessWidget {
     }
 
     // Derived hover colors: color-mix(in oklab, base X%, foreground Y%)
-    final accentHover =
-        HeroThemeData._colorMix(d.accent, 0.90, d.accentForeground);
-    final defaultHover =
-        HeroThemeData._colorMix(d.defaultColor, 0.96, d.defaultForeground);
-    final dangerHover =
-        HeroThemeData._colorMix(d.danger, 0.90, d.dangerForeground);
-    final successHover =
-        HeroThemeData._colorMix(d.success, 0.90, d.successForeground);
-    final warningHover =
-        HeroThemeData._colorMix(d.warning, 0.90, d.warningForeground);
-    final surfaceHover =
-        HeroThemeData._colorMix(d.surface, 0.92, d.surfaceForeground);
+    final accentHover = HeroThemeData._colorMix(
+      d.accent,
+      0.90,
+      d.accentForeground,
+    );
+    final defaultHover = HeroThemeData._colorMix(
+      d.defaultColor,
+      0.96,
+      d.defaultForeground,
+    );
+    final dangerHover = HeroThemeData._colorMix(
+      d.danger,
+      0.90,
+      d.dangerForeground,
+    );
+    final successHover = HeroThemeData._colorMix(
+      d.success,
+      0.90,
+      d.successForeground,
+    );
+    final warningHover = HeroThemeData._colorMix(
+      d.warning,
+      0.90,
+      d.warningForeground,
+    );
+    final surfaceHover = HeroThemeData._colorMix(
+      d.surface,
+      0.92,
+      d.surfaceForeground,
+    );
 
     // Derived background colors
-    final backgroundSecondary =
-        HeroThemeData._colorMix(d.background, 0.96, d.foreground);
-    final backgroundTertiary =
-        HeroThemeData._colorMix(d.background, 0.92, d.foreground);
+    final backgroundSecondary = HeroThemeData._colorMix(
+      d.background,
+      0.96,
+      d.foreground,
+    );
+    final backgroundTertiary = HeroThemeData._colorMix(
+      d.background,
+      0.92,
+      d.foreground,
+    );
 
     // Derived soft colors: color-mix(in oklab, base X%, transparent)
     final accentSoftHover = d.accent.withValues(alpha: 0.20);
@@ -525,23 +549,44 @@ final class HeroTheme extends StatelessWidget {
     final warningSoftHover = d.warning.withValues(alpha: 0.20);
 
     // Derived border/separator levels
-    final separatorSecondary =
-        HeroThemeData._colorMix(d.surface, 0.85, d.surfaceForeground);
-    final separatorTertiary =
-        HeroThemeData._colorMix(d.surface, 0.81, d.surfaceForeground);
-    final borderSecondary =
-        HeroThemeData._colorMix(d.surface, 0.78, d.surfaceForeground);
-    final borderTertiary =
-        HeroThemeData._colorMix(d.surface, 0.66, d.surfaceForeground);
+    final separatorSecondary = HeroThemeData._colorMix(
+      d.surface,
+      0.85,
+      d.surfaceForeground,
+    );
+    final separatorTertiary = HeroThemeData._colorMix(
+      d.surface,
+      0.81,
+      d.surfaceForeground,
+    );
+    final borderSecondary = HeroThemeData._colorMix(
+      d.surface,
+      0.78,
+      d.surfaceForeground,
+    );
+    final borderTertiary = HeroThemeData._colorMix(
+      d.surface,
+      0.66,
+      d.surfaceForeground,
+    );
 
     // Derived field interaction states
-    final fieldHover =
-        HeroThemeData._colorMix(d.fieldBackground, 0.98, d.fieldForeground);
+    final fieldHover = HeroThemeData._colorMix(
+      d.fieldBackground,
+      0.98,
+      d.fieldForeground,
+    );
     final fieldFocus = d.fieldBackground;
-    final fieldBorderHover =
-        HeroThemeData._colorMix(d.fieldBorder, 0.88, d.fieldForeground);
-    final fieldBorderFocus =
-        HeroThemeData._colorMix(d.fieldBorder, 0.74, d.fieldForeground);
+    final fieldBorderHover = HeroThemeData._colorMix(
+      d.fieldBorder,
+      0.88,
+      d.fieldForeground,
+    );
+    final fieldBorderFocus = HeroThemeData._colorMix(
+      d.fieldBorder,
+      0.74,
+      d.fieldForeground,
+    );
 
     return MixScope(
       colors: {
