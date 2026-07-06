@@ -204,6 +204,112 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                 ],
               ),
               WidgetbookComponent(
+                name: 'HeroToggleButton',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroToggleButtonVariant>(
+                            label: 'Variant',
+                            options: HeroToggleButtonVariant.values,
+                            initialOption: .defaultVariant,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final size = context.knobs.object
+                          .dropdown<HeroToggleButtonSize>(
+                            label: 'Size',
+                            options: HeroToggleButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final label = context.knobs.string(
+                        label: 'Label',
+                        initialValue: 'Bold',
+                      );
+                      final showIcon = context.knobs.boolean(
+                        label: 'Icon',
+                        initialValue: true,
+                      );
+                      final enabled = context.knobs.boolean(
+                        label: 'Enabled',
+                        initialValue: true,
+                      );
+                      final selected = context.knobs.boolean(
+                        label: 'Initially selected',
+                        initialValue: false,
+                      );
+
+                      final hasLabel = label.isNotEmpty;
+                      return _preview(
+                        _InteractiveHeroToggleButton(
+                          variant: variant,
+                          size: size,
+                          label: hasLabel ? label : null,
+                          icon: showIcon || !hasLabel
+                              ? Icons.format_bold
+                              : null,
+                          enabled: enabled,
+                          initiallySelected: selected,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'HeroToggleButtonGroup',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Playground',
+                    builder: (context) {
+                      final variant = context.knobs.object
+                          .dropdown<HeroToggleButtonVariant>(
+                            label: 'Variant',
+                            options: HeroToggleButtonVariant.values,
+                            initialOption: .defaultVariant,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final size = context.knobs.object
+                          .dropdown<HeroToggleButtonSize>(
+                            label: 'Size',
+                            options: HeroToggleButtonSize.values,
+                            initialOption: .md,
+                            labelBuilder: (value) => value.name,
+                          );
+                      final fullWidth = context.knobs.boolean(
+                        label: 'Full width',
+                        initialValue: false,
+                      );
+                      final withSeparator = context.knobs.boolean(
+                        label: 'Show separators',
+                        initialValue: true,
+                      );
+                      final orientation = context.knobs.object.dropdown<Axis>(
+                        label: 'Orientation',
+                        options: Axis.values,
+                        initialOption: Axis.horizontal,
+                        labelBuilder: (value) => value.name,
+                      );
+
+                      final group = _InteractiveHeroToggleButtonGroup(
+                        variant: variant,
+                        size: size,
+                        fullWidth: fullWidth,
+                        withSeparator: withSeparator,
+                        orientation: orientation,
+                      );
+
+                      if (fullWidth && orientation == Axis.horizontal) {
+                        return _preview(SizedBox(width: 360, child: group));
+                      }
+
+                      return _preview(group);
+                    },
+                  ),
+                ],
+              ),
+              WidgetbookComponent(
                 name: 'HeroSwitch',
                 useCases: [
                   WidgetbookUseCase(
@@ -841,6 +947,120 @@ class _InteractiveHeroSwitchState extends State<_InteractiveHeroSwitch> {
           : (_) {},
       enabled: widget.enabled,
       size: widget.size,
+    );
+  }
+}
+
+class _InteractiveHeroToggleButton extends StatefulWidget {
+  final HeroToggleButtonVariant variant;
+  final HeroToggleButtonSize size;
+  final String? label;
+  final IconData? icon;
+  final bool enabled;
+  final bool initiallySelected;
+
+  const _InteractiveHeroToggleButton({
+    required this.variant,
+    required this.size,
+    required this.label,
+    required this.icon,
+    required this.enabled,
+    required this.initiallySelected,
+  });
+
+  @override
+  State<_InteractiveHeroToggleButton> createState() =>
+      _InteractiveHeroToggleButtonState();
+}
+
+class _InteractiveHeroToggleButtonState
+    extends State<_InteractiveHeroToggleButton> {
+  late bool selected = widget.initiallySelected;
+
+  @override
+  void didUpdateWidget(covariant _InteractiveHeroToggleButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initiallySelected != widget.initiallySelected) {
+      selected = widget.initiallySelected;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HeroToggleButton(
+      selected: selected,
+      onChanged: widget.enabled
+          ? (value) => setState(() => selected = value)
+          : null,
+      variant: widget.variant,
+      size: widget.size,
+      label: widget.label,
+      icon: widget.icon,
+      enabled: widget.enabled,
+    );
+  }
+}
+
+class _InteractiveHeroToggleButtonGroup extends StatefulWidget {
+  final HeroToggleButtonVariant variant;
+  final HeroToggleButtonSize size;
+  final bool fullWidth;
+  final bool withSeparator;
+  final Axis orientation;
+
+  const _InteractiveHeroToggleButtonGroup({
+    required this.variant,
+    required this.size,
+    required this.fullWidth,
+    required this.withSeparator,
+    required this.orientation,
+  });
+
+  @override
+  State<_InteractiveHeroToggleButtonGroup> createState() =>
+      _InteractiveHeroToggleButtonGroupState();
+}
+
+class _InteractiveHeroToggleButtonGroupState
+    extends State<_InteractiveHeroToggleButtonGroup> {
+  static const _items = <(String, String, IconData)>[
+    ('bold', 'Bold', Icons.format_bold),
+    ('italic', 'Italic', Icons.format_italic),
+    ('underline', 'Underline', Icons.format_underlined),
+  ];
+
+  final Set<String> selected = {'bold'};
+
+  @override
+  Widget build(BuildContext context) {
+    final children = <Widget>[];
+    for (var i = 0; i < _items.length; i++) {
+      final (key, label, icon) = _items[i];
+      children.add(
+        HeroToggleButton(
+          selected: selected.contains(key),
+          onChanged: (value) => setState(() {
+            if (value) {
+              selected.add(key);
+            } else {
+              selected.remove(key);
+            }
+          }),
+          label: label,
+          icon: icon,
+        ),
+      );
+      if (widget.withSeparator && i < _items.length - 1) {
+        children.add(const HeroToggleButtonGroupSeparator());
+      }
+    }
+
+    return HeroToggleButtonGroup(
+      variant: widget.variant,
+      size: widget.size,
+      fullWidth: widget.fullWidth,
+      orientation: widget.orientation,
+      children: children,
     );
   }
 }

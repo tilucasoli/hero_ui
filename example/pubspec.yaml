@@ -37,7 +37,7 @@ dependencies:
   oklch: ^1.0.0
   hero_ui:
     path: ..
-  mix: ^2.0.1
+  mix: ^2.1.0
   widgetbook: ^3.22.0
 
 dev_dependencies:
