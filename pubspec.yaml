@@ -33,7 +33,7 @@ dependencies:
   oklch: ^1.0.0
   cupertino_icons: ^1.0.8
   mix: ^2.1.0
-  mix_annotations: ^2.0.0
+  mix_annotations: ^2.1.2
   remix:
     git:
       url: https://github.com/btwld/remix.git
@@ -43,6 +43,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^2.10.1
+  mix_generator: ^2.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

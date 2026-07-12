@@ -1,0 +1,21 @@
+# hero_ui only *consumes* remix's Specs/Stylers via @MixWidget recipe functions.
+# It defines no @MixableSpec/@MixableStyler/@Mixable/@MixableModifier of its own, so we
+# enable ONLY the widget generator (scoped to lib/**) and disable the other mix_generator
+# builders. Otherwise those `auto_apply: dependents` builders scan unrelated files — e.g.
+# the example app's platform plugin sources (url_launcher pigeons) — and error trying to
+# resolve non-Mix annotations.
+targets:
+  $default:
+    builders:
+      mix_generator|mix_widget_generator:
+        enabled: true
+        generate_for:
+          - lib/**/*.dart
+      mix_generator|mix_generator:
+        enabled: false
+      mix_generator|styler_generator:
+        enabled: false
+      mix_generator|mixable_generator:
+        enabled: false
+      mix_generator|modifier_generator:
+        enabled: false
