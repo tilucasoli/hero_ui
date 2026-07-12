@@ -10,7 +10,7 @@ final class HeroSwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
   final bool enabled;
   final HeroSwitchSize size;
-  final RemixSwitchStyle? style;
+  final RemixSwitchStyler? style;
   final String? semanticLabel;
 
   const HeroSwitch({

@@ -31,7 +31,7 @@ final class HeroTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Iterable<String>? autofillHints;
   final String? semanticLabel;
-  final RemixTextFieldStyle? style;
+  final RemixTextFieldStyler? style;
 
   const HeroTextField({
     super.key,

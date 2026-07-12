@@ -14,7 +14,7 @@ final class HeroButton extends StatelessWidget {
   final bool enabled;
   final bool fullWidth;
   final VoidCallback? onPressed;
-  final RemixButtonStyle? style;
+  final RemixButtonStyler? style;
 
   const HeroButton({
     super.key,
@@ -36,6 +36,7 @@ final class HeroButton extends StatelessWidget {
 
     final resolvedVariant = groupData?.variant ?? variant;
     final resolvedSize = groupData?.size ?? size;
+    final resolvedEnabled = enabled && (groupData?.enabled ?? true);
 
     final resolvedStyle = HeroButtonStyle.baseStyle()
         .merge(HeroButtonStyle.sizeStyle())
@@ -54,7 +55,7 @@ final class HeroButton extends StatelessWidget {
       leadingIcon: iconLeft,
       trailingIcon: iconRight,
       loading: loading,
-      enabled: enabled,
+      enabled: resolvedEnabled,
       onPressed: onPressed,
     );
   }

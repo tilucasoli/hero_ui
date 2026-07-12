@@ -9,8 +9,8 @@ enum _InternalVariants with EnumVariant { error }
 final class HeroCheckboxStyle {
   HeroCheckboxStyle._();
 
-  static RemixCheckboxStyle _baseStyle() {
-    return RemixCheckboxStyle()
+  static RemixCheckboxStyler _baseStyle() {
+    return RemixCheckboxStyler()
         .color($fieldBackground())
         .indicatorColor($accentForeground())
         .borderAll(
@@ -20,7 +20,7 @@ final class HeroCheckboxStyle {
         )
         .borderRounded(6)
         .onHovered(
-          RemixCheckboxStyle()
+          RemixCheckboxStyler()
               .color($fieldHover())
               .borderAll(
                 color: $fieldBorderHover(),
@@ -29,7 +29,7 @@ final class HeroCheckboxStyle {
               ),
         )
         .onSelected(
-          RemixCheckboxStyle()
+          RemixCheckboxStyler()
               .color($accent())
               .indicatorColor($accentForeground())
               .borderAll(color: Colors.transparent, width: 0)
@@ -44,17 +44,17 @@ final class HeroCheckboxStyle {
                   const Color(0x0A000000),
                 ).blurRadius(4).offset(x: 0, y: 2),
               ])
-              .onHovered(RemixCheckboxStyle().color($accentHover())),
+              .onHovered(RemixCheckboxStyler().color($accentHover())),
         )
-        .onDisabled(RemixCheckboxStyle().wrap(.opacity(0.5)))
+        .onDisabled(RemixCheckboxStyler().wrap(.opacity(0.5)))
         .animate(.spring(200.ms));
   }
 
-  static RemixCheckboxStyle _variantStyles() {
-    return RemixCheckboxStyle()
+  static RemixCheckboxStyler _variantStyles() {
+    return RemixCheckboxStyler()
         .variant(
           HeroCheckboxVariant.primary,
-          RemixCheckboxStyle().shadows([
+          RemixCheckboxStyler().shadows([
             .color(const Color(0x0F000000)).blurRadius(1).offset(x: 0, y: 0),
             .color(const Color(0x0F000000)).blurRadius(2).offset(x: 0, y: 1),
             .color(const Color(0x0A000000)).blurRadius(4).offset(x: 0, y: 2),
@@ -62,40 +62,40 @@ final class HeroCheckboxStyle {
         )
         .variant(
           HeroCheckboxVariant.secondary,
-          RemixCheckboxStyle()
+          RemixCheckboxStyler()
               .color($default())
-              .onHovered(RemixCheckboxStyle().color($defaultHover())),
+              .onHovered(RemixCheckboxStyler().color($defaultHover())),
         )
         .variant(
           _InternalVariants.error,
-          RemixCheckboxStyle()
+          RemixCheckboxStyler()
               .borderAll(
                 color: $danger(),
                 width: 1,
                 strokeAlign: BorderSide.strokeAlignOutside,
               )
               .onSelected(
-                RemixCheckboxStyle()
+                RemixCheckboxStyler()
                     .color($danger())
                     .borderAll(color: Colors.transparent, width: 0)
-                    .onHovered(RemixCheckboxStyle().color($dangerHover())),
+                    .onHovered(RemixCheckboxStyler().color($dangerHover())),
               ),
         );
   }
 
-  static RemixCheckboxStyle _sizeStyle() {
-    return RemixCheckboxStyle()
+  static RemixCheckboxStyler _sizeStyle() {
+    return RemixCheckboxStyler()
         .variant(
           HeroCheckboxSize.sm,
-          RemixCheckboxStyle().size(14, 14).iconSize(10),
+          RemixCheckboxStyler().size(14, 14).iconSize(10),
         )
         .variant(
           HeroCheckboxSize.md,
-          RemixCheckboxStyle().size(16, 16).iconSize(12),
+          RemixCheckboxStyler().size(16, 16).iconSize(12),
         )
         .variant(
           HeroCheckboxSize.lg,
-          RemixCheckboxStyle().size(20, 20).iconSize(16),
+          RemixCheckboxStyler().size(20, 20).iconSize(16),
         );
   }
 }

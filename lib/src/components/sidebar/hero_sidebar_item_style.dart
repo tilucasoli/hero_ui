@@ -3,8 +3,8 @@ part of 'hero_sidebar_item.dart';
 final class HeroSidebarItemStyle {
   HeroSidebarItemStyle._();
 
-  static RemixToggleStyle _baseStyle() {
-    return RemixToggleStyle()
+  static RemixToggleStyler _baseStyle() {
+    return RemixToggleStyler()
         .borderRounded(8)
         .paddingX(12)
         .paddingY(8)
@@ -16,13 +16,13 @@ final class HeroSidebarItemStyle {
         .iconColor($muted())
         .labelStyle($labelSmall.mix())
         .labelColor($foreground())
-        .onHovered(RemixToggleStyle().backgroundColor($default()))
+        .onHovered(RemixToggleStyler().backgroundColor($default()))
         .onSelected(
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor($default())
               .iconColor($accentSoftForeground()),
         )
-        .onPressed(RemixToggleStyle().scale(0.98))
+        .onPressed(RemixToggleStyler().scale(0.98))
         .animate(.ease(150.ms));
   }
 }

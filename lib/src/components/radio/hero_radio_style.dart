@@ -9,8 +9,8 @@ enum _InternalVariants with EnumVariant { error }
 final class HeroRadioStyle {
   HeroRadioStyle._();
 
-  static RemixRadioStyle _baseStyle() {
-    return RemixRadioStyle()
+  static RemixRadioStyler _baseStyle() {
+    return RemixRadioStyler()
         .container(
           BoxStyler()
               .borderRounded(999)
@@ -45,15 +45,15 @@ final class HeroRadioStyle {
               ),
         )
         .onHovered(
-          RemixRadioStyle().container(
+          RemixRadioStyler().container(
             BoxStyler()
                 .color($fieldHover())
                 .borderAll(color: $fieldBorderHover(), width: 1),
           ),
         )
-        .onPressed(RemixRadioStyle().container(BoxStyler().scale(0.95)))
+        .onPressed(RemixRadioStyler().container(BoxStyler().scale(0.95)))
         .onSelected(
-          RemixRadioStyle()
+          RemixRadioStyler()
               .container(
                 BoxStyler()
                     .color($accent())
@@ -61,32 +61,32 @@ final class HeroRadioStyle {
               )
               .indicator(BoxStyler().color($accentForeground()))
               .onHovered(
-                RemixRadioStyle().container(BoxStyler().color($accentHover())),
+                RemixRadioStyler().container(BoxStyler().color($accentHover())),
               )
               .onPressed(
-                RemixRadioStyle().container(BoxStyler().color($accentHover())),
+                RemixRadioStyler().container(BoxStyler().color($accentHover())),
               ),
         )
-        .onDisabled(RemixRadioStyle().wrap(.opacity(0.5)))
+        .onDisabled(RemixRadioStyler().wrap(.opacity(0.5)))
         .animate(AnimationConfig.spring(200.ms));
   }
 
-  static RemixRadioStyle _variantStyles() {
-    return RemixRadioStyle()
+  static RemixRadioStyler _variantStyles() {
+    return RemixRadioStyler()
         .variant(
           HeroRadioVariant.secondary,
-          RemixRadioStyle()
+          RemixRadioStyler()
               .container(BoxStyler().color($default()))
               .onHovered(
-                RemixRadioStyle().container(BoxStyler().color($defaultHover())),
+                RemixRadioStyler().container(BoxStyler().color($defaultHover())),
               ),
         )
         .variant(
           _InternalVariants.error,
-          RemixRadioStyle()
+          RemixRadioStyler()
               .container(BoxStyler().borderAll(color: $danger(), width: 1))
               .onSelected(
-                RemixRadioStyle()
+                RemixRadioStyler()
                     .container(
                       .color($danger()).borderAll(color: $danger(), width: 1),
                     )
@@ -95,19 +95,19 @@ final class HeroRadioStyle {
         );
   }
 
-  static RemixRadioStyle _sizeStyle() {
-    return RemixRadioStyle()
+  static RemixRadioStyler _sizeStyle() {
+    return RemixRadioStyler()
         .variant(
           HeroRadioSize.sm,
-          RemixRadioStyle().container(.size(16, 16)).indicator(.size(6, 6)),
+          RemixRadioStyler().container(.size(16, 16)).indicator(.size(6, 6)),
         )
         .variant(
           HeroRadioSize.md,
-          RemixRadioStyle().container(.size(20, 20)).indicator(.size(8, 8)),
+          RemixRadioStyler().container(.size(20, 20)).indicator(.size(8, 8)),
         )
         .variant(
           HeroRadioSize.lg,
-          RemixRadioStyle().container(.size(24, 24)).indicator(.size(10, 10)),
+          RemixRadioStyler().container(.size(24, 24)).indicator(.size(10, 10)),
         );
   }
 }

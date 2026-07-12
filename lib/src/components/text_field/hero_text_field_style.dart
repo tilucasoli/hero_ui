@@ -5,8 +5,8 @@ enum _InternalVariants with EnumVariant { fullWidth }
 final class HeroTextFieldStyle {
   HeroTextFieldStyle._();
 
-  static RemixTextFieldStyle _baseStyle() {
-    return RemixTextFieldStyle()
+  static RemixTextFieldStyler _baseStyle() {
+    return RemixTextFieldStyler()
         .container(
           .color($fieldBackground())
               .borderAll(
@@ -43,7 +43,7 @@ final class HeroTextFieldStyle {
         .spacing(4)
         .mainAxisSize(.min)
         .onFocused(
-          RemixTextFieldStyle().container(
+          RemixTextFieldStyler().container(
             FlexBoxStyler().borderAll(
               color: $accent(),
               width: 2,
@@ -51,21 +51,21 @@ final class HeroTextFieldStyle {
             ),
           ),
         )
-        .onDisabled(RemixTextFieldStyle().wrap(.opacity(0.5)))
+        .onDisabled(RemixTextFieldStyler().wrap(.opacity(0.5)))
         .variant(ContextVariant.widgetState(.error), _errorStyle())
         .variant(
           _InternalVariants.fullWidth,
-          RemixTextFieldStyle().mainAxisSize(.max),
+          RemixTextFieldStyler().mainAxisSize(.max),
         )
         .animate(.ease(100.ms));
   }
 
-  static RemixTextFieldStyle _errorStyle() {
-    return RemixTextFieldStyle()
+  static RemixTextFieldStyler _errorStyle() {
+    return RemixTextFieldStyler()
         .container(FlexBoxStyler().borderAll(color: $danger(), width: 1))
         .helperText(.color($danger()))
         .onFocused(
-          RemixTextFieldStyle().container(
+          RemixTextFieldStyler().container(
             FlexBoxStyler().borderAll(color: $danger(), width: 2),
           ),
         );

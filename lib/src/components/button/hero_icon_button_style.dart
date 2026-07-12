@@ -3,107 +3,107 @@ part of 'hero_icon_button.dart';
 final class HeroIconButtonStyle {
   HeroIconButtonStyle._();
 
-  static RemixIconButtonStyle baseStyle() {
-    return RemixIconButtonStyle()
+  static RemixIconButtonStyler baseStyle() {
+    return RemixIconButtonStyler()
         .animate(.easeOut(250.ms))
-        .onDisabled(RemixIconButtonStyle().wrap(.opacity(0.5)));
+        .onDisabled(RemixIconButtonStyler().wrap(.opacity(0.5)));
   }
 
-  static RemixIconButtonStyle sizeStyle() {
-    return RemixIconButtonStyle()
+  static RemixIconButtonStyler sizeStyle() {
+    return RemixIconButtonStyler()
         .variant(
           HeroButtonSize.sm,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .scale(1)
               .height(32)
               .width(32)
               .borderRounded(24)
               .iconSize(16)
-              .onPressed(RemixIconButtonStyle().container(.scale(0.98))),
+              .onPressed(RemixIconButtonStyler().container(.scale(0.98))),
         )
         .variant(
           HeroButtonSize.md,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .scale(1)
               .height(36)
               .width(36)
               .borderRounded(24)
               .iconSize(16)
-              .onPressed(RemixIconButtonStyle().container(.scale(0.97))),
+              .onPressed(RemixIconButtonStyler().container(.scale(0.97))),
         )
         .variant(
           HeroButtonSize.lg,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .scale(1)
               .height(40)
               .width(40)
               .borderRounded(24)
               .iconSize(16)
-              .onPressed(RemixIconButtonStyle().container(.scale(0.96))),
+              .onPressed(RemixIconButtonStyler().container(.scale(0.96))),
         )
         .variant(
           HeroButtonGroupVariant.group,
-          RemixIconButtonStyle().borderRounded(0).border(.none),
+          RemixIconButtonStyler().borderRounded(0).border(.none),
         );
   }
 
-  static RemixIconButtonStyle variantStyles() {
-    return RemixIconButtonStyle()
+  static RemixIconButtonStyler variantStyles() {
+    return RemixIconButtonStyler()
         .variant(
           HeroButtonVariant.primary,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color($accent())
               .iconColor($accentForeground())
-              .onHovered(RemixIconButtonStyle().color($accentHover()))
-              .onPressed(RemixIconButtonStyle().color($accentHover())),
+              .onHovered(RemixIconButtonStyler().color($accentHover()))
+              .onPressed(RemixIconButtonStyler().color($accentHover())),
         )
         .variant(
           HeroButtonVariant.secondary,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color($default())
               .iconColor($accentSoftForeground())
-              .onHovered(RemixIconButtonStyle().color($defaultHover()))
-              .onPressed(RemixIconButtonStyle().color($defaultHover())),
+              .onHovered(RemixIconButtonStyler().color($defaultHover()))
+              .onPressed(RemixIconButtonStyler().color($defaultHover())),
         )
         .variant(
           HeroButtonVariant.tertiary,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color($default())
-              .onHovered(RemixIconButtonStyle().color($defaultHover()))
-              .onPressed(RemixIconButtonStyle().color($defaultHover())),
+              .onHovered(RemixIconButtonStyler().color($defaultHover()))
+              .onPressed(RemixIconButtonStyler().color($defaultHover())),
         )
         .variant(
           HeroButtonVariant.outline,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color(Colors.transparent)
               .borderAll(color: $border(), width: 1)
               .iconColor($defaultForeground())
-              .onHovered(RemixIconButtonStyle().color($default()))
-              .onPressed(RemixIconButtonStyle().color($default())),
+              .onHovered(RemixIconButtonStyler().color($default()))
+              .onPressed(RemixIconButtonStyler().color($default())),
         )
         .variant(
           HeroButtonVariant.ghost,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color(Colors.transparent)
               .iconColor($defaultForeground())
-              .onHovered(RemixIconButtonStyle().color($default()))
-              .onPressed(RemixIconButtonStyle().color($default())),
+              .onHovered(RemixIconButtonStyler().color($default()))
+              .onPressed(RemixIconButtonStyler().color($default())),
         )
         .variant(
           HeroButtonVariant.danger,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color($danger())
               .iconColor($dangerForeground())
-              .onHovered(RemixIconButtonStyle().color($dangerHover()))
-              .onPressed(RemixIconButtonStyle().color($dangerHover())),
+              .onHovered(RemixIconButtonStyler().color($dangerHover()))
+              .onPressed(RemixIconButtonStyler().color($dangerHover())),
         )
         .variant(
           HeroButtonVariant.dangerSoft,
-          RemixIconButtonStyle()
+          RemixIconButtonStyler()
               .color($dangerSoft())
               .iconColor($dangerSoftForeground())
-              .onHovered(RemixIconButtonStyle().color($dangerSoftHover()))
-              .onPressed(RemixIconButtonStyle().color($dangerSoftHover())),
+              .onHovered(RemixIconButtonStyler().color($dangerSoftHover()))
+              .onPressed(RemixIconButtonStyler().color($dangerSoftHover())),
         );
   }
 }

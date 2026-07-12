@@ -11,7 +11,7 @@ final class HeroRadio<T> extends StatelessWidget {
   final bool error;
   final HeroRadioSize size;
   final HeroRadioVariant variant;
-  final RemixRadioStyle? style;
+  final RemixRadioStyler? style;
 
   const HeroRadio({
     super.key,

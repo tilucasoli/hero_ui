@@ -10,7 +10,7 @@ final class HeroSidebarItem extends StatelessWidget {
   final IconData? icon;
   final bool selected;
   final VoidCallback? onPressed;
-  final RemixToggleStyle? style;
+  final RemixToggleStyler? style;
 
   const HeroSidebarItem({
     super.key,

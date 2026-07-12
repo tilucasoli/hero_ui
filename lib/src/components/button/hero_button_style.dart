@@ -17,8 +17,8 @@ enum _InternalVariants with EnumVariant { fullWidth }
 final class HeroButtonStyle {
   HeroButtonStyle._();
 
-  static RemixButtonStyle baseStyle() {
-    return RemixButtonStyle()
+  static RemixButtonStyler baseStyle() {
+    return RemixButtonStyler()
         .mainAxisSize(.min)
         .mainAxisAlignment(.center)
         .crossAxisAlignment(.center)
@@ -30,31 +30,31 @@ final class HeroButtonStyle {
                 .applyHeightToLastDescent(false),
           ),
         )
-        .spinner(RemixSpinnerStyle().size(16).strokeWidth(0.8))
+        .spinner(RemixSpinnerStyler().size(16).strokeWidth(0.8))
         .animate(.easeOut(250.ms))
         .variant(
           _InternalVariants.fullWidth,
-          RemixButtonStyle().mainAxisSize(.max),
+          RemixButtonStyler().mainAxisSize(.max),
         )
-        .onDisabled(RemixButtonStyle().wrap(.opacity(0.5)));
+        .onDisabled(RemixButtonStyler().wrap(.opacity(0.5)));
   }
 
-  static RemixButtonStyle sizeStyle() {
-    return RemixButtonStyle()
+  static RemixButtonStyler sizeStyle() {
+    return RemixButtonStyler()
         .variant(
           HeroButtonSize.sm,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .scale(1)
               .height(32)
               .paddingX(12)
               .borderRounded(24)
               .labelStyle($labelSmall.mix())
               .iconSize(16)
-              .onPressed(RemixButtonStyle().container(.scale(0.98))),
+              .onPressed(RemixButtonStyler().container(.scale(0.98))),
         )
         .variant(
           HeroButtonSize.md,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .height(36)
               .paddingX(16)
               .scale(1)
@@ -65,7 +65,7 @@ final class HeroButtonStyle {
         )
         .variant(
           HeroButtonSize.lg,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .height(40)
               .paddingX(16)
               .scale(1)
@@ -76,79 +76,79 @@ final class HeroButtonStyle {
         )
         .variant(
           HeroButtonGroupVariant.group,
-          RemixButtonStyle().borderRounded(0),
+          RemixButtonStyler().borderRounded(0),
         );
   }
 
-  static RemixButtonStyle variantStyles() {
-    return RemixButtonStyle()
+  static RemixButtonStyler variantStyles() {
+    return RemixButtonStyler()
         .variant(
           HeroButtonVariant.primary,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color($accent())
               .foregroundColorWithSpinner($accentForeground())
-              .onHovered(RemixButtonStyle().color($accentHover()))
-              .onPressed(RemixButtonStyle().color($accentHover())),
+              .onHovered(RemixButtonStyler().color($accentHover()))
+              .onPressed(RemixButtonStyler().color($accentHover())),
         )
         .variant(
           HeroButtonVariant.secondary,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color($default())
               .foregroundColorWithSpinner($accentSoftForeground())
-              .onHovered(RemixButtonStyle().color($defaultHover()))
-              .onPressed(RemixButtonStyle().color($defaultHover())),
+              .onHovered(RemixButtonStyler().color($defaultHover()))
+              .onPressed(RemixButtonStyler().color($defaultHover())),
         )
         .variant(
           HeroButtonVariant.tertiary,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color($default())
-              .onHovered(RemixButtonStyle().color($defaultHover()))
-              .onPressed(RemixButtonStyle().color($defaultHover())),
+              .onHovered(RemixButtonStyler().color($defaultHover()))
+              .onPressed(RemixButtonStyler().color($defaultHover())),
         )
         .variant(
           HeroButtonVariant.outline,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color(Colors.transparent)
               .borderAll(color: $border(), width: 1)
               .foregroundColorWithSpinner($defaultForeground())
-              .onHovered(RemixButtonStyle().color($default()))
-              .onPressed(RemixButtonStyle().color($default())),
+              .onHovered(RemixButtonStyler().color($default()))
+              .onPressed(RemixButtonStyler().color($default())),
         )
         .variant(
           HeroButtonVariant.ghost,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color(Colors.transparent)
               .foregroundColorWithSpinner($defaultForeground())
-              .onHovered(RemixButtonStyle().color($default()))
-              .onPressed(RemixButtonStyle().color($default())),
+              .onHovered(RemixButtonStyler().color($default()))
+              .onPressed(RemixButtonStyler().color($default())),
         )
         .variant(
           HeroButtonVariant.danger,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color($danger())
               .foregroundColorWithSpinner($dangerForeground())
-              .onHovered(RemixButtonStyle().color($dangerHover()))
-              .onPressed(RemixButtonStyle().color($dangerHover())),
+              .onHovered(RemixButtonStyler().color($dangerHover()))
+              .onPressed(RemixButtonStyler().color($dangerHover())),
         )
         .variant(
           HeroButtonVariant.dangerSoft,
-          RemixButtonStyle()
+          RemixButtonStyler()
               .color($dangerSoft())
               .foregroundColorWithSpinner($dangerSoftForeground())
-              .onHovered(RemixButtonStyle().color($dangerSoftHover()))
-              .onPressed(RemixButtonStyle().color($dangerSoftHover())),
+              .onHovered(RemixButtonStyler().color($dangerSoftHover()))
+              .onPressed(RemixButtonStyler().color($dangerSoftHover())),
         )
         .variant(
           HeroButtonGroupVariant.group,
-          RemixButtonStyle().borderRounded(0).border(.none),
+          RemixButtonStyler().borderRounded(0).border(.none),
         );
   }
 }
 
-extension on RemixButtonStyle {
-  RemixButtonStyle foregroundColorWithSpinner(Color color) {
+extension on RemixButtonStyler {
+  RemixButtonStyler foregroundColorWithSpinner(Color color) {
     return spinner(
-      RemixSpinnerStyle().indicatorColor(color),
+      RemixSpinnerStyler().indicatorColor(color),
     ).foregroundColor(color);
   }
 }

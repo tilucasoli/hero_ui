@@ -23,7 +23,7 @@ final class HeroToggleButton extends StatelessWidget {
   final HeroToggleButtonVariant variant;
   final HeroToggleButtonSize size;
   final bool enabled;
-  final RemixToggleStyle? style;
+  final RemixToggleStyler? style;
 
   const HeroToggleButton({
     super.key,

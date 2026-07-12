@@ -8,7 +8,7 @@ import 'hero_card_style.dart';
 
 final class HeroCard extends StatelessWidget {
   final HeroCardVariant variant;
-  final RemixCardStyle? style;
+  final RemixCardStyler? style;
   final Widget? child;
 
   const HeroCard({

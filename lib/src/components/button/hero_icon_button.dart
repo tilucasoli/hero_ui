@@ -16,7 +16,7 @@ final class HeroIconButton extends StatelessWidget {
   final bool loading;
   final bool enabled;
   final VoidCallback? onPressed;
-  final RemixIconButtonStyle? style;
+  final RemixIconButtonStyler? style;
 
   const HeroIconButton({
     super.key,

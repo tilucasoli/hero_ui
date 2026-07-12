@@ -12,8 +12,8 @@ enum HeroToggleButtonSize with EnumVariant { sm, md, lg }
 final class HeroToggleButtonStyle {
   HeroToggleButtonStyle._();
 
-  static RemixToggleStyle baseStyle() {
-    return RemixToggleStyle()
+  static RemixToggleStyler baseStyle() {
+    return RemixToggleStyler()
         .mainAxisSize(.min)
         .mainAxisAlignment(.center)
         .crossAxisAlignment(.center)
@@ -28,25 +28,25 @@ final class HeroToggleButtonStyle {
           ),
         )
         .animate(.easeOut(250.ms))
-        .onPressed(RemixToggleStyle().container(.scale(0.97)))
+        .onPressed(RemixToggleStyler().container(.scale(0.97)))
         // Selected state is shared across variants (accent-soft).
-        .onDisabled(RemixToggleStyle().wrap(.opacity(0.5)));
+        .onDisabled(RemixToggleStyler().wrap(.opacity(0.5)));
   }
 
-  static RemixToggleStyle sizeStyle() {
-    return RemixToggleStyle()
+  static RemixToggleStyler sizeStyle() {
+    return RemixToggleStyler()
         .variant(
           HeroToggleButtonSize.sm,
-          RemixToggleStyle()
+          RemixToggleStyler()
               .height(32)
               .paddingX(12)
               .labelStyle($labelSmall.mix())
               .iconSize(16)
-              .onPressed(RemixToggleStyle().container(.scale(0.98))),
+              .onPressed(RemixToggleStyler().container(.scale(0.98))),
         )
         .variant(
           HeroToggleButtonSize.md,
-          RemixToggleStyle()
+          RemixToggleStyler()
               .height(36)
               .paddingX(16)
               .labelStyle($labelSmall.mix())
@@ -54,55 +54,55 @@ final class HeroToggleButtonStyle {
         )
         .variant(
           HeroToggleButtonSize.lg,
-          RemixToggleStyle()
+          RemixToggleStyler()
               .height(40)
               .paddingX(16)
               .labelStyle($labelMedium.mix())
               .iconSize(16)
-              .onPressed(RemixToggleStyle().container(.scale(0.96))),
+              .onPressed(RemixToggleStyler().container(.scale(0.96))),
         );
   }
 
-  static RemixToggleStyle variantStyles() {
-    return RemixToggleStyle()
-        .onHovered(RemixToggleStyle().backgroundColor($default()))
-        .onPressed(RemixToggleStyle().backgroundColor($default()))
+  static RemixToggleStyler variantStyles() {
+    return RemixToggleStyler()
+        .onHovered(RemixToggleStyler().backgroundColor($default()))
+        .onPressed(RemixToggleStyler().backgroundColor($default()))
         .variant(
           HeroToggleButtonVariant.defaultVariant,
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor($default())
               .foregroundColor($defaultForeground()),
         )
         .variant(
           HeroToggleButtonVariant.ghost,
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor(Colors.transparent)
               .foregroundColor($defaultForeground()),
         )
         .variant(
           HeroToggleButtonGroupVariant.group,
-          RemixToggleStyle().borderRounded(0).border(.none),
+          RemixToggleStyler().borderRounded(0).border(.none),
         )
         .onSelected(
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor($accentSoft())
               .foregroundColor($accentSoftForeground())
-              .onHovered(RemixToggleStyle().backgroundColor($accentSoftHover()))
+              .onHovered(RemixToggleStyler().backgroundColor($accentSoftHover()))
               .onPressed(
-                RemixToggleStyle().backgroundColor($accentSoftHover()),
+                RemixToggleStyler().backgroundColor($accentSoftHover()),
               ),
         );
   }
 
   /// Icon-only toggles are square with no horizontal padding
   /// (`.toggle-button--icon-only`).
-  static RemixToggleStyle iconOnlyStyle(HeroToggleButtonSize size) {
+  static RemixToggleStyler iconOnlyStyle(HeroToggleButtonSize size) {
     final side = switch (size) {
       HeroToggleButtonSize.sm => 32.0,
       HeroToggleButtonSize.md => 36.0,
       HeroToggleButtonSize.lg => 40.0,
     };
 
-    return RemixToggleStyle().paddingX(0).width(side);
+    return RemixToggleStyler().paddingX(0).width(side);
   }
 }

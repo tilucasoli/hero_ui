@@ -17,7 +17,7 @@ final class HeroSlider extends StatelessWidget {
   final int? snapDivisions;
   final FocusNode? focusNode;
   final HeroSliderSize size;
-  final RemixSliderStyle? style;
+  final RemixSliderStyler? style;
   final String? label;
   final bool showOutput;
   final String? semanticLabel;

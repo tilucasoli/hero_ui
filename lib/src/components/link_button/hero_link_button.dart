@@ -12,7 +12,7 @@ final class HeroLinkButton extends StatelessWidget {
   final IconData? iconRight;
   final bool enabled;
   final VoidCallback? onPressed;
-  final RemixButtonStyle? style;
+  final RemixButtonStyler? style;
 
   const HeroLinkButton({
     super.key,

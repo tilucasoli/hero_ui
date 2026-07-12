@@ -17,8 +17,8 @@ final class HeroSwitchStyle {
       .offset(x: 0, y: 2)
       .blurRadius(10);
 
-  static RemixSwitchStyle _baseStyle() {
-    return RemixSwitchStyle()
+  static RemixSwitchStyler _baseStyle() {
+    return RemixSwitchStyler()
         .container(
           BoxStyler().alignment(.centerLeft).paddingAll(2).borderRounded(999),
         )
@@ -26,38 +26,38 @@ final class HeroSwitchStyle {
         .thumbColor(Colors.white)
         .thumb(BoxStyler().borderRounded(999).shadow(_thumbShadow))
         .onSelected(
-          RemixSwitchStyle()
+          RemixSwitchStyler()
               .color($accent())
               .thumbColor($accentForeground())
               .thumb(BoxStyler().shadow(_thumbShadowSelected))
-              .onHovered(RemixSwitchStyle().color($accentHover()))
-              .onPressed(RemixSwitchStyle().color($accentHover())),
+              .onHovered(RemixSwitchStyler().color($accentHover()))
+              .onPressed(RemixSwitchStyler().color($accentHover())),
         )
         .onDisabled(
-          RemixSwitchStyle()
+          RemixSwitchStyler()
               .color($default())
               .thumbColor(const Color(0x33000000))
               .wrap(.opacity(0.5))
               .onSelected(
-                RemixSwitchStyle().thumbColor(const Color(0x66FFFFFF)),
+                RemixSwitchStyler().thumbColor(const Color(0x66FFFFFF)),
               ),
         )
         .animate(.easeOut(200.ms));
   }
 
-  static RemixSwitchStyle _sizeStyle() {
-    return RemixSwitchStyle()
+  static RemixSwitchStyler _sizeStyle() {
+    return RemixSwitchStyler()
         .variant(
           HeroSwitchSize.sm,
-          RemixSwitchStyle().size(32, 16).thumb(.size(16.5, 12)),
+          RemixSwitchStyler().size(32, 16).thumb(.size(16.5, 12)),
         )
         .variant(
           HeroSwitchSize.md,
-          RemixSwitchStyle().size(40, 20).thumb(.size(22, 16)),
+          RemixSwitchStyler().size(40, 20).thumb(.size(22, 16)),
         )
         .variant(
           HeroSwitchSize.lg,
-          RemixSwitchStyle().size(48, 24).thumb(.size(27.5, 20)),
+          RemixSwitchStyler().size(48, 24).thumb(.size(27.5, 20)),
         );
   }
 }

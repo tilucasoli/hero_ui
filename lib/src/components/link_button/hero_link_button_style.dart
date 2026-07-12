@@ -5,8 +5,8 @@ enum HeroLinkButtonSize with EnumVariant { sm, md, lg }
 final class HeroLinkButtonStyle {
   HeroLinkButtonStyle._();
 
-  static RemixButtonStyle _baseStyle() {
-    return RemixButtonStyle()
+  static RemixButtonStyler _baseStyle() {
+    return RemixButtonStyler()
         .mainAxisSize(.min)
         .mainAxisAlignment(.center)
         .crossAxisAlignment(.center)
@@ -15,32 +15,32 @@ final class HeroLinkButtonStyle {
         .labelColor($accent())
         .iconColor($accent())
         .onHovered(
-          RemixButtonStyle()
+          RemixButtonStyler()
               .labelColor($accentHover())
               .iconColor($accentHover()),
         )
         .onPressed(
-          RemixButtonStyle()
+          RemixButtonStyler()
               .labelColor($accentHover())
               .iconColor($accentHover()),
         )
-        .onDisabled(RemixButtonStyle().wrap(.opacity(0.5)))
+        .onDisabled(RemixButtonStyler().wrap(.opacity(0.5)))
         .animate(.easeOut(100.ms));
   }
 
-  static RemixButtonStyle _sizeStyle() {
-    return RemixButtonStyle()
+  static RemixButtonStyler _sizeStyle() {
+    return RemixButtonStyler()
         .variant(
           HeroLinkButtonSize.sm,
-          RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(14),
+          RemixButtonStyler().labelStyle($labelSmall.mix()).iconSize(14),
         )
         .variant(
           HeroLinkButtonSize.md,
-          RemixButtonStyle().labelStyle($labelSmall.mix()).iconSize(16),
+          RemixButtonStyler().labelStyle($labelSmall.mix()).iconSize(16),
         )
         .variant(
           HeroLinkButtonSize.lg,
-          RemixButtonStyle().labelStyle($labelMedium.mix()).iconSize(18),
+          RemixButtonStyler().labelStyle($labelMedium.mix()).iconSize(18),
         );
   }
 }

@@ -13,7 +13,7 @@ final class HeroCheckbox extends StatelessWidget {
   final HeroCheckboxSize size;
   final HeroCheckboxVariant variant;
   final bool error;
-  final RemixCheckboxStyle? style;
+  final RemixCheckboxStyler? style;
   final String? semanticLabel;
 
   const HeroCheckbox({

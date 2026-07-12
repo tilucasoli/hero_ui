@@ -7,8 +7,8 @@ enum _InternalVariants with EnumVariant { error }
 final class HeroSelectStyle {
   HeroSelectStyle._();
 
-  static RemixSelectMenuItemStyle _itemStyle() {
-    return RemixSelectMenuItemStyle()
+  static RemixSelectMenuItemStyler _itemStyle() {
+    return RemixSelectMenuItemStyler()
         .color(Colors.transparent)
         .borderRadiusAll(Radius.circular(20))
         .paddingX(12)
@@ -16,13 +16,13 @@ final class HeroSelectStyle {
         .minHeight(36)
         .text(TextStyler().style($labelSmall.mix()).color($defaultForeground()))
         .icon(.color($muted()).size(16))
-        .onHovered(RemixSelectMenuItemStyle().color($default()));
+        .onHovered(RemixSelectMenuItemStyler().color($default()));
   }
 
-  static RemixSelectStyle _baseStyle() {
-    return RemixSelectStyle()
+  static RemixSelectStyler _baseStyle() {
+    return RemixSelectStyler()
         .trigger(
-          RemixSelectTriggerStyle()
+          RemixSelectTriggerStyler()
               .color($fieldBackground())
               .borderAll(
                 color: $fieldBorder(),
@@ -58,31 +58,31 @@ final class HeroSelectStyle {
               ]),
         )
         .onFocused(
-          RemixSelectStyle().trigger(
-            RemixSelectTriggerStyle().borderAll(
+          RemixSelectStyler().trigger(
+            RemixSelectTriggerStyler().borderAll(
               color: $accent(),
               width: 2,
               strokeAlign: BorderSide.strokeAlignOutside,
             ),
           ),
         )
-        .onDisabled(RemixSelectStyle().wrap(.opacity(0.5)))
+        .onDisabled(RemixSelectStyler().wrap(.opacity(0.5)))
         .variant(
           _InternalVariants.error,
-          RemixSelectStyle().trigger(
-            RemixSelectTriggerStyle().borderAll(color: $danger(), width: 1),
+          RemixSelectStyler().trigger(
+            RemixSelectTriggerStyler().borderAll(color: $danger(), width: 1),
           ),
         )
         .animate(.ease(100.ms));
   }
 
-  static RemixSelectStyle _variantStyles() {
-    return RemixSelectStyle().variant(
+  static RemixSelectStyler _variantStyles() {
+    return RemixSelectStyler().variant(
       HeroSelectVariant.secondary,
-      RemixSelectStyle().trigger(
-        RemixSelectTriggerStyle()
+      RemixSelectStyler().trigger(
+        RemixSelectTriggerStyler()
             .color($default())
-            .onHovered(RemixSelectTriggerStyle().color($defaultHover())),
+            .onHovered(RemixSelectTriggerStyler().color($defaultHover())),
       ),
     );
   }

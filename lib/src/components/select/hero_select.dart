@@ -16,7 +16,7 @@ final class HeroSelectItem<T> {
     this.enabled = true,
   });
 
-  RemixSelectItem<T> _toRemix(RemixSelectMenuItemStyle itemStyle) {
+  RemixSelectItem<T> _toRemix(RemixSelectMenuItemStyler itemStyle) {
     return RemixSelectItem<T>(
       value: value,
       label: label,
@@ -41,7 +41,7 @@ final class HeroSelect<T> extends StatelessWidget {
   final VoidCallback? onClose;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final RemixSelectStyle? style;
+  final RemixSelectStyler? style;
 
   const HeroSelect({
     super.key,

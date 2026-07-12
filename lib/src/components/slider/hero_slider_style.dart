@@ -5,8 +5,8 @@ enum HeroSliderSize with EnumVariant { sm, md, lg }
 final class HeroSliderStyle {
   HeroSliderStyle._();
 
-  static RemixSliderStyle _baseStyle() {
-    return RemixSliderStyle()
+  static RemixSliderStyler _baseStyle() {
+    return RemixSliderStyler()
         .trackColor($default())
         .rangeColor($accent())
         .thumb(
@@ -16,14 +16,14 @@ final class HeroSliderStyle {
               .borderRounded(999),
         )
         .onPressed(.new().thumb(.border(.all(.width(3)))))
-        .onDisabled(RemixSliderStyle().wrap(.opacity(0.5)));
+        .onDisabled(RemixSliderStyler().wrap(.opacity(0.5)));
   }
 
-  static RemixSliderStyle _sizeStyle() {
-    return RemixSliderStyle()
+  static RemixSliderStyler _sizeStyle() {
+    return RemixSliderStyler()
         .variant(
           HeroSliderSize.sm,
-          RemixSliderStyle(
+          RemixSliderStyler(
             thumb: BoxStyler().size(24, 16),
             trackWidth: 16,
             rangeWidth: 16,
@@ -31,7 +31,7 @@ final class HeroSliderStyle {
         )
         .variant(
           HeroSliderSize.md,
-          RemixSliderStyle(
+          RemixSliderStyler(
             thumb: BoxStyler().size(28, 20),
             trackWidth: 20,
             rangeWidth: 20,
@@ -39,7 +39,7 @@ final class HeroSliderStyle {
         )
         .variant(
           HeroSliderSize.lg,
-          RemixSliderStyle(
+          RemixSliderStyler(
             thumb: BoxStyler().size(32, 24),
             trackWidth: 24,
             rangeWidth: 24,
