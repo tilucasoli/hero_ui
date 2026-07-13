@@ -18,7 +18,7 @@ enum _InternalVariants with EnumVariant { error }
 /// function (`heroRadioStyle` → `HeroRadio`). The generated widget is generic
 /// (`HeroRadio<T>`), inheriting `<T>` from `RemixRadioStyler.call<T>`; `variant`
 /// also produces the `.primary()` / `.secondary()` named constructors.
-@MixWidget()
+@MixWidget(widgetParameters: .only({'value', 'enabled'}))
 RemixRadioStyler heroRadioStyle({
   HeroRadioSize size = .md,
   HeroRadioVariant variant = .primary,
@@ -46,15 +46,9 @@ RemixRadioStyler _baseStyle() {
             .alignment(.center)
             .scale(1)
             .shadows([
-              .color(
-                const Color(0x0F000000),
-              ).blurRadius(1).offset(x: 0, y: 0),
-              .color(
-                const Color(0x0F000000),
-              ).blurRadius(2).offset(x: 0, y: 1),
-              .color(
-                const Color(0x0A000000),
-              ).blurRadius(4).offset(x: 0, y: 2),
+              .color(const Color(0x0F000000)).blurRadius(1).offset(x: 0, y: 0),
+              .color(const Color(0x0F000000)).blurRadius(2).offset(x: 0, y: 1),
+              .color(const Color(0x0A000000)).blurRadius(4).offset(x: 0, y: 2),
             ]),
       )
       .indicator(
@@ -62,9 +56,7 @@ RemixRadioStyler _baseStyle() {
             .borderRounded(999)
             .color($fieldBackground())
             .shadow(
-              .color(
-                const Color(0x0D000000),
-              ).blurRadius(1).offset(x: 0, y: 1),
+              .color(const Color(0x0D000000)).blurRadius(1).offset(x: 0, y: 1),
             ),
       )
       .onHovered(

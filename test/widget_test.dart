@@ -112,9 +112,7 @@ void main() {
   group('HeroIconButton', () {
     testWidgets('renders with icon', (tester) async {
       await tester.pumpWidget(
-        wrapWithTheme(
-          HeroIconButton(icon: Icons.favorite, onPressed: () {}),
-        ),
+        wrapWithTheme(HeroIconButton(icon: Icons.favorite, onPressed: () {})),
       );
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.favorite), findsOneWidget);
@@ -124,10 +122,7 @@ void main() {
       var pressed = false;
       await tester.pumpWidget(
         wrapWithTheme(
-          HeroIconButton(
-            icon: Icons.favorite,
-            onPressed: () => pressed = true,
-          ),
+          HeroIconButton(icon: Icons.favorite, onPressed: () => pressed = true),
         ),
       );
       await tester.pumpAndSettle();
@@ -157,11 +152,7 @@ void main() {
       for (final size in HeroButtonSize.values) {
         await tester.pumpWidget(
           wrapWithTheme(
-            HeroIconButton(
-              size: size,
-              icon: Icons.favorite,
-              onPressed: () {},
-            ),
+            HeroIconButton(size: size, icon: Icons.favorite, onPressed: () {}),
           ),
         );
         await tester.pumpAndSettle();
@@ -177,9 +168,7 @@ void main() {
           HeroButtonGroup(
             variant: HeroButtonVariant.danger,
             size: HeroButtonSize.lg,
-            children: [
-              HeroIconButton(icon: Icons.favorite, onPressed: () {}),
-            ],
+            children: [HeroIconButton(icon: Icons.favorite, onPressed: () {})],
           ),
         ),
       );
@@ -311,6 +300,38 @@ void main() {
       );
 
       expect(groupStrokeFinder, findsOneWidget);
+    });
+  });
+
+  group('HeroTextField', () {
+    testWidgets('generated widget forwards curated input parameters', (
+      tester,
+    ) async {
+      final controller = TextEditingController();
+      addTearDown(controller.dispose);
+      String? changedValue;
+
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroTextField(
+            controller: controller,
+            label: 'Email',
+            hintText: 'name@example.com',
+            fullWidth: true,
+            onChanged: (value) => changedValue = value,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Email'), findsOneWidget);
+      expect(find.text('name@example.com'), findsOneWidget);
+
+      await tester.enterText(find.byType(EditableText), 'user@example.com');
+      await tester.pump();
+
+      expect(controller.text, 'user@example.com');
+      expect(changedValue, 'user@example.com');
     });
   });
 }

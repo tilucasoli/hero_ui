@@ -1,98 +1,116 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-part 'hero_text_field_style.dart';
+part 'hero_text_field.g.dart';
 
-final class HeroTextField extends StatelessWidget {
-  final bool fullWidth;
-  final bool enabled;
-  final bool error;
-  final bool readOnly;
-  final bool obscureText;
-  final bool autofocus;
-  final TextEditingController? controller;
-  final FocusNode? focusNode;
-  final String? label;
-  final String? hintText;
-  final String? helperText;
-  final Widget? leading;
-  final Widget? trailing;
-  final int? maxLines;
-  final int? minLines;
-  final int? maxLength;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
-  final ValueChanged<String>? onChanged;
-  final ValueChanged<String>? onSubmitted;
-  final VoidCallback? onEditingComplete;
-  final List<TextInputFormatter>? inputFormatters;
-  final Iterable<String>? autofillHints;
-  final String? semanticLabel;
-  final RemixTextFieldStyler? style;
+enum _InternalVariants with EnumVariant { fullWidth }
 
-  const HeroTextField({
-    super.key,
-    this.fullWidth = false,
-    this.enabled = true,
-    this.error = false,
-    this.readOnly = false,
-    this.obscureText = false,
-    this.autofocus = false,
-    this.controller,
-    this.focusNode,
-    this.label,
-    this.hintText,
-    this.helperText,
-    this.leading,
-    this.trailing,
-    this.maxLines = 1,
-    this.minLines,
-    this.maxLength,
-    this.keyboardType,
-    this.textInputAction,
-    this.onChanged,
-    this.onSubmitted,
-    this.onEditingComplete,
-    this.inputFormatters,
-    this.autofillHints,
-    this.semanticLabel,
-    this.style,
-  });
+/// Styler recipe for `HeroTextField`.
+///
+/// `widgetParameters` keeps the generated widget API aligned with the curated
+/// design-system surface instead of exposing the full editable-text API.
+@MixWidget(
+  widgetParameters: .only({
+    'controller',
+    'focusNode',
+    'label',
+    'hintText',
+    'helperText',
+    'leading',
+    'trailing',
+    'enabled',
+    'readOnly',
+    'obscureText',
+    'autofocus',
+    'error',
+    'maxLines',
+    'minLines',
+    'maxLength',
+    'keyboardType',
+    'textInputAction',
+    'onChanged',
+    'onSubmitted',
+    'onEditingComplete',
+    'inputFormatters',
+    'autofillHints',
+    'semanticLabel',
+  }),
+)
+RemixTextFieldStyler heroTextFieldStyle({
+  bool fullWidth = false,
+  RemixTextFieldStyler? style,
+}) {
+  return _baseStyle().merge(style).applyVariants([
+    if (fullWidth) _InternalVariants.fullWidth,
+  ]);
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final resolvedStyle = HeroTextFieldStyle._baseStyle()
-        .merge(style)
-        .applyVariants([if (fullWidth) _InternalVariants.fullWidth]);
+RemixTextFieldStyler _baseStyle() {
+  return RemixTextFieldStyler()
+      .container(
+        .color($fieldBackground())
+            .borderAll(
+              color: $fieldBorder(),
+              width: 1,
+              strokeAlign: BorderSide.strokeAlignOutside,
+            )
+            .borderRadiusAll($fieldRadius())
+            .paddingX(12)
+            .paddingY(8),
+      )
+      .text(
+        TextStyler()
+            .style($paragraphSmall.mix())
+            .color($fieldForeground())
+            .height(1.4),
+      )
+      .hintText(
+        TextStyler().style($paragraphSmall.mix()).color($fieldPlaceholder()),
+      )
+      .label(
+        TextStyler()
+            .style($labelSmall.mix())
+            .color($foreground())
+            .wrap(.padding(.bottom(6))),
+      )
+      .helperText(
+        TextStyler()
+            .style($paragraphXSmall.mix())
+            .color($muted())
+            .wrap(.padding(.top(4))),
+      )
+      .cursorColor($accent())
+      .spacing(4)
+      .mainAxisSize(.min)
+      .onFocused(
+        RemixTextFieldStyler().container(
+          FlexBoxStyler().borderAll(
+            color: $accent(),
+            width: 2,
+            strokeAlign: BorderSide.strokeAlignOutside,
+          ),
+        ),
+      )
+      .onDisabled(RemixTextFieldStyler().wrap(.opacity(0.5)))
+      .variant(ContextVariant.widgetState(.error), _errorStyle())
+      .variant(
+        _InternalVariants.fullWidth,
+        RemixTextFieldStyler().mainAxisSize(.max),
+      )
+      .animate(.ease(100.ms));
+}
 
-    return RemixTextField(
-      style: resolvedStyle,
-      controller: controller,
-      focusNode: focusNode,
-      label: label,
-      hintText: hintText,
-      helperText: helperText,
-      leading: leading,
-      trailing: trailing,
-      enabled: enabled,
-      readOnly: readOnly,
-      obscureText: obscureText,
-      autofocus: autofocus,
-      error: error,
-      maxLines: maxLines,
-      minLines: minLines,
-      maxLength: maxLength,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      onChanged: onChanged,
-      onSubmitted: onSubmitted,
-      onEditingComplete: onEditingComplete,
-      inputFormatters: inputFormatters,
-      autofillHints: autofillHints,
-      semanticLabel: semanticLabel,
-    );
-  }
+RemixTextFieldStyler _errorStyle() {
+  return RemixTextFieldStyler()
+      .container(FlexBoxStyler().borderAll(color: $danger(), width: 1))
+      .helperText(.color($danger()))
+      .onFocused(
+        RemixTextFieldStyler().container(
+          FlexBoxStyler().borderAll(color: $danger(), width: 2),
+        ),
+      );
 }

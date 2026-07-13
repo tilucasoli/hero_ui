@@ -18,7 +18,15 @@ enum _InternalVariants with EnumVariant { error }
 /// function (`heroCheckboxStyle` → `HeroCheckbox`). The `variant` parameter also
 /// produces the `HeroCheckbox.primary()` / `HeroCheckbox.secondary()` named
 /// constructors.
-@MixWidget()
+@MixWidget(
+  widgetParameters: .only({
+    'selected',
+    'onChanged',
+    'enabled',
+    'tristate',
+    'semanticLabel',
+  }),
+)
 RemixCheckboxStyler heroCheckboxStyle({
   HeroCheckboxSize size = .md,
   HeroCheckboxVariant variant = .primary,
@@ -57,15 +65,9 @@ RemixCheckboxStyler _baseStyle() {
             .indicatorColor($accentForeground())
             .borderAll(color: Colors.transparent, width: 0)
             .shadows([
-              .color(
-                const Color(0x0F000000),
-              ).blurRadius(1).offset(x: 0, y: 0),
-              .color(
-                const Color(0x0F000000),
-              ).blurRadius(2).offset(x: 0, y: 1),
-              .color(
-                const Color(0x0A000000),
-              ).blurRadius(4).offset(x: 0, y: 2),
+              .color(const Color(0x0F000000)).blurRadius(1).offset(x: 0, y: 0),
+              .color(const Color(0x0F000000)).blurRadius(2).offset(x: 0, y: 1),
+              .color(const Color(0x0A000000)).blurRadius(4).offset(x: 0, y: 2),
             ])
             .onHovered(RemixCheckboxStyler().color($accentHover())),
       )

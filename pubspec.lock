@@ -326,18 +326,20 @@ packages:
   mix_annotations:
     dependency: "direct main"
     description:
-      name: mix_annotations
-      sha256: "73d25392f50e9ae34ed75528403881623eac1257501fec9d9b6bb57685fbc5bb"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/mix_annotations"
+      ref: "fix/973"
+      resolved-ref: ade73c06fb76b353b5c964bd9bf74800e0ef60cc
+      url: "https://github.com/btwld/mix.git"
+    source: git
     version: "2.1.2"
   mix_generator:
     dependency: "direct dev"
     description:
-      name: mix_generator
-      sha256: "9261595aefaa00146d2d84d0500f3c116cf15a0fc5c5ea2266f7feb3d84cec4e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/mix_generator"
+      ref: "fix/973"
+      resolved-ref: ade73c06fb76b353b5c964bd9bf74800e0ef60cc
+      url: "https://github.com/btwld/mix.git"
+    source: git
     version: "2.1.2"
   naked_ui:
     dependency: transitive

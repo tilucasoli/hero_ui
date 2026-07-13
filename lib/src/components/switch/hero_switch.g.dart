@@ -18,11 +18,7 @@ class HeroSwitch extends StatelessWidget {
     required this.selected,
     this.onChanged,
     this.enabled = true,
-    this.enableFeedback = true,
-    this.focusNode,
-    this.autofocus = false,
     this.semanticLabel,
-    this.mouseCursor = SystemMouseCursors.click,
   });
 
   final HeroSwitchSize size;
@@ -35,15 +31,7 @@ class HeroSwitch extends StatelessWidget {
 
   final bool enabled;
 
-  final bool enableFeedback;
-
-  final FocusNode? focusNode;
-
-  final bool autofocus;
-
   final String? semanticLabel;
-
-  final MouseCursor mouseCursor;
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +40,7 @@ class HeroSwitch extends StatelessWidget {
       selected: this.selected,
       onChanged: this.onChanged,
       enabled: this.enabled,
-      enableFeedback: this.enableFeedback,
-      focusNode: this.focusNode,
-      autofocus: this.autofocus,
       semanticLabel: this.semanticLabel,
-      mouseCursor: this.mouseCursor,
     );
   }
 }

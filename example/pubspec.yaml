@@ -51,6 +51,13 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
+dependency_overrides:
+  mix_annotations:
+    git:
+      url: https://github.com/btwld/mix.git
+      ref: fix/973
+      path: packages/mix_annotations
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -23,14 +23,7 @@ class HeroCheckbox extends StatelessWidget {
     this.onChanged,
     this.enabled = true,
     this.tristate = false,
-    this.checkedIcon = Icons.check_rounded,
-    this.uncheckedIcon,
-    this.indeterminateIcon = Icons.horizontal_rule,
-    this.focusNode,
-    this.autofocus = false,
-    this.enableFeedback = true,
     this.semanticLabel,
-    this.mouseCursor = SystemMouseCursors.click,
   });
 
   const HeroCheckbox.primary({
@@ -42,14 +35,7 @@ class HeroCheckbox extends StatelessWidget {
     this.onChanged,
     this.enabled = true,
     this.tristate = false,
-    this.checkedIcon = Icons.check_rounded,
-    this.uncheckedIcon,
-    this.indeterminateIcon = Icons.horizontal_rule,
-    this.focusNode,
-    this.autofocus = false,
-    this.enableFeedback = true,
     this.semanticLabel,
-    this.mouseCursor = SystemMouseCursors.click,
   }) : variant = HeroCheckboxVariant.primary;
 
   const HeroCheckbox.secondary({
@@ -61,14 +47,7 @@ class HeroCheckbox extends StatelessWidget {
     this.onChanged,
     this.enabled = true,
     this.tristate = false,
-    this.checkedIcon = Icons.check_rounded,
-    this.uncheckedIcon,
-    this.indeterminateIcon = Icons.horizontal_rule,
-    this.focusNode,
-    this.autofocus = false,
-    this.enableFeedback = true,
     this.semanticLabel,
-    this.mouseCursor = SystemMouseCursors.click,
   }) : variant = HeroCheckboxVariant.secondary;
 
   final HeroCheckboxSize size;
@@ -87,21 +66,7 @@ class HeroCheckbox extends StatelessWidget {
 
   final bool tristate;
 
-  final IconData checkedIcon;
-
-  final IconData? uncheckedIcon;
-
-  final IconData indeterminateIcon;
-
-  final FocusNode? focusNode;
-
-  final bool autofocus;
-
-  final bool enableFeedback;
-
   final String? semanticLabel;
-
-  final MouseCursor mouseCursor;
 
   @override
   Widget build(BuildContext context) {
@@ -116,14 +81,7 @@ class HeroCheckbox extends StatelessWidget {
       onChanged: this.onChanged,
       enabled: this.enabled,
       tristate: this.tristate,
-      checkedIcon: this.checkedIcon,
-      uncheckedIcon: this.uncheckedIcon,
-      indeterminateIcon: this.indeterminateIcon,
-      focusNode: this.focusNode,
-      autofocus: this.autofocus,
-      enableFeedback: this.enableFeedback,
       semanticLabel: this.semanticLabel,
-      mouseCursor: this.mouseCursor,
     );
   }
 }

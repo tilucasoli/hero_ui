@@ -21,10 +21,6 @@ class HeroRadio<T> extends StatelessWidget {
     this.style,
     required this.value,
     this.enabled = true,
-    this.toggleable = false,
-    this.mouseCursor,
-    this.focusNode,
-    this.autofocus = false,
   });
 
   const HeroRadio.primary({
@@ -34,10 +30,6 @@ class HeroRadio<T> extends StatelessWidget {
     this.style,
     required this.value,
     this.enabled = true,
-    this.toggleable = false,
-    this.mouseCursor,
-    this.focusNode,
-    this.autofocus = false,
   }) : variant = HeroRadioVariant.primary;
 
   const HeroRadio.secondary({
@@ -47,10 +39,6 @@ class HeroRadio<T> extends StatelessWidget {
     this.style,
     required this.value,
     this.enabled = true,
-    this.toggleable = false,
-    this.mouseCursor,
-    this.focusNode,
-    this.autofocus = false,
   }) : variant = HeroRadioVariant.secondary;
 
   final HeroRadioSize size;
@@ -65,14 +53,6 @@ class HeroRadio<T> extends StatelessWidget {
 
   final bool enabled;
 
-  final bool toggleable;
-
-  final MouseCursor? mouseCursor;
-
-  final FocusNode? focusNode;
-
-  final bool autofocus;
-
   @override
   Widget build(BuildContext context) {
     return heroRadioStyle(
@@ -80,14 +60,6 @@ class HeroRadio<T> extends StatelessWidget {
       variant: this.variant,
       error: this.error,
       style: this.style,
-    ).call<T>(
-      key: this.key,
-      value: this.value,
-      enabled: this.enabled,
-      toggleable: this.toggleable,
-      mouseCursor: this.mouseCursor,
-      focusNode: this.focusNode,
-      autofocus: this.autofocus,
-    );
+    ).call<T>(key: this.key, value: this.value, enabled: this.enabled);
   }
 }
