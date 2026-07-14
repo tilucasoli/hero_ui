@@ -1,90 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-part 'hero_select_style.dart';
+part 'hero_select.g.dart';
 
-final class HeroSelectItem<T> {
-  final T value;
-  final String label;
-  final bool enabled;
+typedef HeroSelectTrigger = RemixSelectTrigger;
+typedef HeroSelectItem<T> = RemixSelectItem<T>;
 
-  const HeroSelectItem({
-    required this.value,
-    required this.label,
-    this.enabled = true,
-  });
+enum HeroSelectVariant with EnumVariant { primary, secondary }
 
-  RemixSelectItem<T> _toRemix(RemixSelectMenuItemStyler itemStyle) {
-    return RemixSelectItem<T>(
-      value: value,
-      label: label,
-      enabled: enabled,
-      style: itemStyle,
-    );
-  }
+enum _InternalVariants with EnumVariant { error }
+
+@MixWidget(
+  widgetParameters: .only({
+    'trigger',
+    'items',
+    'selectedValue',
+    'onChanged',
+    'onOpen',
+    'onClose',
+    'enabled',
+    'closeOnSelect',
+    'semanticLabel',
+    'focusNode',
+  }),
+)
+RemixSelectStyler heroSelectStyle({
+  HeroSelectVariant variant = .primary,
+  bool error = false,
+  RemixSelectStyler? style,
+}) {
+  return _baseStyle().merge(_variantStyles()).merge(style).applyVariants([
+    variant,
+    if (error) _InternalVariants.error,
+  ]);
 }
 
-final class HeroSelect<T> extends StatelessWidget {
-  final HeroSelectVariant variant;
-  final bool fullWidth;
-  final bool enabled;
-  final bool error;
-  final bool closeOnSelect;
-  final String placeholder;
-  final IconData? icon;
-  final List<HeroSelectItem<T>> items;
-  final T? selectedValue;
-  final ValueChanged<T?>? onChanged;
-  final VoidCallback? onOpen;
-  final VoidCallback? onClose;
-  final FocusNode? focusNode;
-  final String? semanticLabel;
-  final RemixSelectStyler? style;
-
-  const HeroSelect({
-    super.key,
-    this.variant = .primary,
-    this.fullWidth = false,
-    this.enabled = true,
-    this.error = false,
-    this.closeOnSelect = true,
-    required this.placeholder,
-    this.icon,
-    required this.items,
-    this.selectedValue,
-    this.onChanged,
-    this.onOpen,
-    this.onClose,
-    this.focusNode,
-    this.semanticLabel,
-    this.style,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final resolvedStyle = HeroSelectStyle._baseStyle()
-        .merge(HeroSelectStyle._variantStyles())
-        .merge(style)
-        .applyVariants([variant, if (error) _InternalVariants.error]);
-
-    final itemStyle = HeroSelectStyle._itemStyle();
-
-    return RemixSelect<T>(
-      style: resolvedStyle,
-      trigger: RemixSelectTrigger(placeholder: placeholder, icon: icon),
-      items: items.map((item) => item._toRemix(itemStyle)).toList(),
-      selectedValue: selectedValue,
-      onChanged: onChanged,
-      onOpen: onOpen,
-      onClose: onClose,
-      enabled: enabled,
-      closeOnSelect: closeOnSelect,
-      focusNode: focusNode,
-      semanticLabel: semanticLabel,
-    );
-  }
+RemixSelectMenuItemStyler _itemStyle() {
+  return RemixSelectMenuItemStyler()
+      .color(Colors.transparent)
+      .borderRadiusAll(Radius.circular(20))
+      .paddingX(12)
+      .paddingY(6)
+      .minHeight(36)
+      .text(TextStyler().style($labelSmall.mix()).color($defaultForeground()))
+      .icon(.color($muted()).size(16))
+      .onHovered(RemixSelectMenuItemStyler().color($default()));
 }
 
-// TODO: Remix should add support for force the menu to open with the same size as the trigger
+RemixSelectStyler _baseStyle() {
+  return RemixSelectStyler()
+      .trigger(
+        RemixSelectTriggerStyler()
+            .color($fieldBackground())
+            .borderAll(
+              color: $fieldBorder(),
+              width: 1,
+              strokeAlign: BorderSide.strokeAlignOutside,
+            )
+            .borderRadiusAll($fieldRadius())
+            .paddingX(12)
+            .paddingY(8)
+            .label(
+              TextStyler()
+                  .style($paragraphSmall.mix())
+                  .color($fieldPlaceholder())
+                  .height(1.4),
+            )
+            .icon(.color($fieldForeground()).size(16))
+            .shadows([
+              .color(Color(0x0F000000)).blurRadius(1).offset(x: 0, y: 0),
+              .color(Color(0x0F000000)).blurRadius(2).offset(x: 0, y: 1),
+              .color(Color(0x0A000000)).blurRadius(4).offset(x: 0, y: 2),
+            ]),
+      )
+      .menuContainer(
+        FlexBoxStyler()
+            .color($overlay())
+            .borderRadiusAll(Radius.circular(24))
+            .paddingAll(4)
+            .marginTop(4)
+            .shadows([
+              .color(Color(0x0F000000)).blurRadius(8).offset(x: 0, y: 2),
+              .color(Color(0x08000000)).blurRadius(12).offset(x: 0, y: -6),
+              .color(Color(0x14000000)).blurRadius(28).offset(x: 0, y: 14),
+            ]),
+      )
+      .item(_itemStyle())
+      .onFocused(
+        RemixSelectStyler().trigger(
+          RemixSelectTriggerStyler().borderAll(
+            color: $accent(),
+            width: 2,
+            strokeAlign: BorderSide.strokeAlignOutside,
+          ),
+        ),
+      )
+      .onDisabled(RemixSelectStyler().wrap(.opacity(0.5)))
+      .variant(
+        _InternalVariants.error,
+        RemixSelectStyler().trigger(
+          RemixSelectTriggerStyler().borderAll(color: $danger(), width: 1),
+        ),
+      )
+      .animate(.ease(100.ms));
+}
+
+RemixSelectStyler _variantStyles() {
+  return RemixSelectStyler().variant(
+    HeroSelectVariant.secondary,
+    RemixSelectStyler().trigger(
+      RemixSelectTriggerStyler()
+          .color($default())
+          .onHovered(RemixSelectTriggerStyler().color($defaultHover())),
+    ),
+  );
+}

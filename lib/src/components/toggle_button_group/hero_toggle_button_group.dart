@@ -58,21 +58,45 @@ final class HeroToggleButtonGroup extends StatelessWidget {
     required this.children,
   });
 
+  Widget _resolveChild(Widget child) {
+    return switch (child) {
+      HeroToggleButton button => HeroToggleButton(
+        key: button.key,
+        variant: variant,
+        size: size,
+        iconOnly: button.iconOnly || button.label == null,
+        grouped: true,
+        style: button.style,
+        selected: button.selected,
+        onChanged: button.onChanged,
+        enabled: button.enabled,
+        label: button.label,
+        icon: button.icon,
+        enableFeedback: button.enableFeedback,
+        focusNode: button.focusNode,
+        autofocus: button.autofocus,
+        semanticLabel: button.semanticLabel,
+      ),
+      _ => child,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final wrappedChildren = <Widget>[];
 
     for (var i = 0; i < children.length; i++) {
       final child = children[i];
+      final resolvedChild = _resolveChild(child);
       wrappedChildren.add(
         HeroToggleButtonGroupData(
           variant: variant,
           size: size,
           fullWidth: fullWidth,
           orientation: orientation,
-          child: fullWidth && child is! HeroToggleButtonGroupSeparator
-              ? Expanded(child: child)
-              : child,
+          child: fullWidth && resolvedChild is! HeroToggleButtonGroupSeparator
+              ? Expanded(child: resolvedChild)
+              : resolvedChild,
         ),
       );
     }

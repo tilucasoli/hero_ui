@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import '../toggle_button_group/hero_toggle_button_group.dart';
 import '../toggle_button_group/hero_toggle_button_group_style.dart';
 
-part 'hero_toggle_button_style.dart';
+part 'hero_toggle_button.g.dart';
+
+enum HeroToggleButtonVariant with EnumVariant { defaultVariant, ghost }
+
+enum HeroToggleButtonSize with EnumVariant { sm, md, lg }
 
 /// A pressable button that stays visually active while [selected].
 ///
@@ -13,61 +17,123 @@ part 'hero_toggle_button_style.dart';
 /// a button that reflects an on/off state in place. At least one of [label] or
 /// [icon] must be provided.
 ///
-/// When placed inside a [HeroToggleButtonGroup], the group's [variant] and
-/// [size] take precedence over the ones set on the button itself.
-final class HeroToggleButton extends StatelessWidget {
-  final bool selected;
-  final ValueChanged<bool>? onChanged;
-  final String? label;
-  final IconData? icon;
-  final HeroToggleButtonVariant variant;
-  final HeroToggleButtonSize size;
-  final bool enabled;
-  final RemixToggleStyler? style;
+@MixWidget(
+  widgetParameters: .only({
+    'selected',
+    'onChanged',
+    'enabled',
+    'label',
+    'icon',
+    'enableFeedback',
+    'focusNode',
+    'autofocus',
+    'semanticLabel',
+  }),
+)
+RemixToggleStyler heroToggleButtonStyle({
+  HeroToggleButtonVariant variant = .defaultVariant,
+  HeroToggleButtonSize size = .md,
+  bool iconOnly = false,
+  bool grouped = false,
+  RemixToggleStyler? style,
+}) {
+  return _baseStyle()
+      .merge(_sizeStyle())
+      .merge(_variantStyles())
+      .merge(iconOnly ? _iconOnlyStyle(size) : null)
+      .merge(style)
+      .applyVariants([
+        variant,
+        size,
+        if (grouped) HeroToggleButtonGroupVariant.group,
+      ]);
+}
 
-  const HeroToggleButton({
-    super.key,
-    required this.selected,
-    this.onChanged,
-    this.label,
-    this.icon,
-    this.variant = .defaultVariant,
-    this.size = .md,
-    this.enabled = true,
-    this.style,
-  }) : assert(
-         label != null || icon != null,
-         'At least one of label or icon must be provided',
-       );
+RemixToggleStyler _baseStyle() {
+  return RemixToggleStyler()
+      .mainAxisSize(.min)
+      .mainAxisAlignment(.center)
+      .crossAxisAlignment(.center)
+      .spacing(8)
+      .borderRounded(24)
+      .labelFontWeight(.w500)
+      .label(
+        .textHeightBehavior(
+          TextHeightBehaviorMix()
+              .applyHeightToFirstAscent(false)
+              .applyHeightToLastDescent(false),
+        ),
+      )
+      .animate(.easeOut(250.ms))
+      .onPressed(RemixToggleStyler().container(.scale(0.97)))
+      .onDisabled(RemixToggleStyler().wrap(.opacity(0.5)));
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final groupData = HeroToggleButtonGroupData.maybeOf(context);
+RemixToggleStyler _sizeStyle() {
+  return RemixToggleStyler()
+      .variant(
+        HeroToggleButtonSize.sm,
+        RemixToggleStyler()
+            .height(32)
+            .paddingX(12)
+            .labelStyle($labelSmall.mix())
+            .iconSize(16)
+            .onPressed(RemixToggleStyler().container(.scale(0.98))),
+      )
+      .variant(
+        HeroToggleButtonSize.md,
+        RemixToggleStyler()
+            .height(36)
+            .paddingX(16)
+            .labelStyle($labelSmall.mix())
+            .iconSize(16),
+      )
+      .variant(
+        HeroToggleButtonSize.lg,
+        RemixToggleStyler()
+            .height(40)
+            .paddingX(16)
+            .labelStyle($labelMedium.mix())
+            .iconSize(16)
+            .onPressed(RemixToggleStyler().container(.scale(0.96))),
+      );
+}
 
-    final resolvedVariant = groupData?.variant ?? variant;
-    final resolvedSize = groupData?.size ?? size;
-    final iconOnly = label == null;
+RemixToggleStyler _variantStyles() {
+  return RemixToggleStyler()
+      .onHovered(RemixToggleStyler().backgroundColor($default()))
+      .onPressed(RemixToggleStyler().backgroundColor($default()))
+      .variant(
+        HeroToggleButtonVariant.defaultVariant,
+        RemixToggleStyler()
+            .backgroundColor($default())
+            .foregroundColor($defaultForeground()),
+      )
+      .variant(
+        HeroToggleButtonVariant.ghost,
+        RemixToggleStyler()
+            .backgroundColor(Colors.transparent)
+            .foregroundColor($defaultForeground()),
+      )
+      .variant(
+        HeroToggleButtonGroupVariant.group,
+        RemixToggleStyler().borderRounded(0).border(.none),
+      )
+      .onSelected(
+        RemixToggleStyler()
+            .backgroundColor($accentSoft())
+            .foregroundColor($accentSoftForeground())
+            .onHovered(RemixToggleStyler().backgroundColor($accentSoftHover()))
+            .onPressed(RemixToggleStyler().backgroundColor($accentSoftHover())),
+      );
+}
 
-    final resolvedStyle = HeroToggleButtonStyle.baseStyle()
-        .merge(HeroToggleButtonStyle.sizeStyle())
-        .merge(HeroToggleButtonStyle.variantStyles())
-        .merge(
-          iconOnly ? HeroToggleButtonStyle.iconOnlyStyle(resolvedSize) : null,
-        )
-        .merge(style)
-        .applyVariants([
-          resolvedVariant,
-          resolvedSize,
-          if (groupData != null) HeroToggleButtonGroupVariant.group,
-        ]);
+RemixToggleStyler _iconOnlyStyle(HeroToggleButtonSize size) {
+  final side = switch (size) {
+    HeroToggleButtonSize.sm => 32.0,
+    HeroToggleButtonSize.md => 36.0,
+    HeroToggleButtonSize.lg => 40.0,
+  };
 
-    return RemixToggle(
-      style: resolvedStyle,
-      selected: selected,
-      onChanged: onChanged ?? (_) {},
-      enabled: enabled && onChanged != null,
-      label: label,
-      icon: icon,
-    );
-  }
+  return RemixToggleStyler().paddingX(0).width(side);
 }

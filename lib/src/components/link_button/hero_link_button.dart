@@ -1,44 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-part 'hero_link_button_style.dart';
+part 'hero_link_button.g.dart';
 
-final class HeroLinkButton extends StatelessWidget {
-  final String label;
-  final HeroLinkButtonSize size;
-  final IconData? iconLeft;
-  final IconData? iconRight;
-  final bool enabled;
-  final VoidCallback? onPressed;
-  final RemixButtonStyler? style;
+enum HeroLinkButtonSize with EnumVariant { sm, md, lg }
 
-  const HeroLinkButton({
-    super.key,
-    required this.label,
-    this.size = .md,
-    this.iconLeft,
-    this.iconRight,
-    this.enabled = true,
-    this.onPressed,
-    this.style,
-  });
+@MixWidget(
+  widgetParameters: .only({
+    'label',
+    'leadingIcon',
+    'trailingIcon',
+    'enabled',
+    'onPressed',
+  }),
+)
+RemixButtonStyler heroLinkButtonStyle({
+  HeroLinkButtonSize size = .md,
+  RemixButtonStyler? style,
+}) {
+  return _baseStyle().merge(_sizeStyle()).merge(style).applyVariants([size]);
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final resolvedStyle = HeroLinkButtonStyle._baseStyle()
-        .merge(HeroLinkButtonStyle._sizeStyle())
-        .merge(style)
-        .applyVariants([size]);
+RemixButtonStyler _baseStyle() {
+  return RemixButtonStyler()
+      .mainAxisSize(.min)
+      .mainAxisAlignment(.center)
+      .crossAxisAlignment(.center)
+      .spacing(4)
+      .color(Colors.transparent)
+      .labelColor($accent())
+      .iconColor($accent())
+      .onHovered(
+        RemixButtonStyler()
+            .labelColor($accentHover())
+            .iconColor($accentHover()),
+      )
+      .onPressed(
+        RemixButtonStyler()
+            .labelColor($accentHover())
+            .iconColor($accentHover()),
+      )
+      .onDisabled(RemixButtonStyler().wrap(.opacity(0.5)))
+      .animate(.easeOut(100.ms));
+}
 
-    return RemixButton(
-      style: resolvedStyle,
-      label: label,
-      leadingIcon: iconLeft,
-      trailingIcon: iconRight,
-      enabled: enabled,
-      onPressed: onPressed,
-    );
-  }
+RemixButtonStyler _sizeStyle() {
+  return RemixButtonStyler()
+      .variant(
+        HeroLinkButtonSize.sm,
+        RemixButtonStyler().labelStyle($labelSmall.mix()).iconSize(14),
+      )
+      .variant(
+        HeroLinkButtonSize.md,
+        RemixButtonStyler().labelStyle($labelSmall.mix()).iconSize(16),
+      )
+      .variant(
+        HeroLinkButtonSize.lg,
+        RemixButtonStyler().labelStyle($labelMedium.mix()).iconSize(18),
+      );
 }

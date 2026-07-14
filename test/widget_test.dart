@@ -69,7 +69,7 @@ void main() {
           HeroButton(
             variant: HeroButtonVariant.primary,
             label: 'Search',
-            iconLeft: Icons.search,
+            leadingIcon: Icons.search,
             onPressed: () {},
           ),
         ),
@@ -174,6 +174,28 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.favorite), findsOneWidget);
+    });
+
+    testWidgets('inherits disabled state from HeroButtonGroup', (tester) async {
+      var pressed = false;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroButtonGroup(
+            enabled: false,
+            children: [
+              HeroIconButton(
+                icon: Icons.favorite,
+                onPressed: () => pressed = true,
+              ),
+            ],
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(Icons.favorite));
+      await tester.pumpAndSettle();
+      expect(pressed, isFalse);
     });
   });
 
@@ -332,6 +354,132 @@ void main() {
 
       expect(controller.text, 'user@example.com');
       expect(changedValue, 'user@example.com');
+    });
+  });
+
+  group('generated component migration', () {
+    testWidgets('HeroCard renders its child', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(const HeroCard(child: Text('Card content'))),
+      );
+
+      expect(find.text('Card content'), findsOneWidget);
+    });
+
+    testWidgets('HeroLinkButton renders icons and forwards presses', (
+      tester,
+    ) async {
+      var pressed = false;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroLinkButton(
+            label: 'Learn more',
+            leadingIcon: Icons.arrow_back,
+            trailingIcon: Icons.arrow_forward,
+            onPressed: () => pressed = true,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+      expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
+      await tester.tap(find.text('Learn more'));
+      await tester.pumpAndSettle();
+      expect(pressed, isTrue);
+    });
+
+    testWidgets('HeroSlider renders a configured value range', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(HeroSlider(value: 30, max: 100, onChanged: (_) {})),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HeroSlider), findsOneWidget);
+    });
+
+    testWidgets('HeroSelect renders its placeholder', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroSelect<String>(
+            trigger: const HeroSelectTrigger(placeholder: 'Select a state'),
+            items: const [HeroSelectItem(value: 'ny', label: 'New York')],
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Select a state'), findsOneWidget);
+    });
+  });
+
+  group('remaining primitive migration', () {
+    testWidgets('HeroToggleButton renders and forwards selection', (
+      tester,
+    ) async {
+      bool? selected;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroToggleButton(
+            selected: false,
+            label: 'Bold',
+            onChanged: (value) => selected = value,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Bold'));
+      await tester.pumpAndSettle();
+      expect(selected, isTrue);
+    });
+
+    testWidgets('HeroSidebarItem forwards presses', (tester) async {
+      var pressed = false;
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroSidebarItem(
+            selected: false,
+            label: 'Settings',
+            onChanged: (_) => pressed = true,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Settings'));
+      await tester.pumpAndSettle();
+      expect(pressed, isTrue);
+    });
+
+    testWidgets('HeroRadioGroup renders its child', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(
+          HeroRadioGroup<String>(
+            groupValue: 'one',
+            onChanged: (_) {},
+            child: const Text('Radio group content'),
+          ),
+        ),
+      );
+
+      expect(find.text('Radio group content'), findsOneWidget);
+    });
+
+    testWidgets('HeroDivider renders plain and labeled forms', (tester) async {
+      await tester.pumpWidget(
+        wrapWithTheme(
+          const Column(
+            children: [
+              HeroDivider(),
+              HeroLabeledDivider(label: 'Continue'),
+            ],
+          ),
+        ),
+      );
+
+      expect(find.byType(HeroDivider), findsNWidgets(3));
+      expect(find.text('Continue'), findsOneWidget);
     });
   });
 }

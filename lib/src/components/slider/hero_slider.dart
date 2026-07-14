@@ -1,97 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-part 'hero_slider_style.dart';
+part 'hero_slider.g.dart';
 
-final class HeroSlider extends StatelessWidget {
-  final double value;
-  final ValueChanged<double>? onChanged;
-  final ValueChanged<double>? onChangeStart;
-  final ValueChanged<double>? onChangeEnd;
-  final double min;
-  final double max;
-  final bool enabled;
-  final bool autofocus;
-  final int? snapDivisions;
-  final FocusNode? focusNode;
-  final HeroSliderSize size;
-  final RemixSliderStyler? style;
-  final String? label;
-  final bool showOutput;
-  final String? semanticLabel;
-  final String Function(double value)? outputFormatter;
+enum HeroSliderSize with EnumVariant { sm, md, lg }
 
-  const HeroSlider({
-    super.key,
-    required this.value,
-    required this.onChanged,
-    this.onChangeStart,
-    this.onChangeEnd,
-    this.min = 0.0,
-    this.max = 100.0,
-    this.enabled = true,
-    this.autofocus = false,
-    this.snapDivisions,
-    this.focusNode,
-    this.size = .md,
-    this.style,
-    this.label,
-    this.showOutput = true,
-    this.semanticLabel,
-    this.outputFormatter,
-  });
+@MixWidget(
+  widgetParameters: .only({
+    'value',
+    'onChanged',
+    'onChangeStart',
+    'onChangeEnd',
+    'min',
+    'max',
+    'enabled',
+    'enableFeedback',
+    'focusNode',
+    'autofocus',
+    'snapDivisions',
+  }),
+)
+RemixSliderStyler heroSliderStyle({
+  HeroSliderSize size = .md,
+  RemixSliderStyler? style,
+}) {
+  return _baseStyle().merge(_sizeStyle()).merge(style).applyVariants([size]);
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final resolvedStyle = HeroSliderStyle._baseStyle()
-        .merge(HeroSliderStyle._sizeStyle())
-        .merge(style)
-        .applyVariants([size]);
+RemixSliderStyler _baseStyle() {
+  return RemixSliderStyler()
+      .trackColor($default())
+      .rangeColor($accent())
+      .thumb(
+        BoxStyler()
+            .color(Colors.white)
+            .border(.all(.width(2).color($accent())))
+            .borderRounded(999),
+      )
+      .onPressed(.new().thumb(.border(.all(.width(3)))))
+      .onDisabled(RemixSliderStyler().wrap(.opacity(0.5)));
+}
 
-    final labelStyle = TextStyler().style($labelSmall.mix());
-    final outputValue = outputFormatter?.call(value) ?? _defaultOutput(value);
-
-    return ColumnBox(
-      style: FlexBoxStyler().crossAxisAlignment(.start).mainAxisSize(.min),
-      children: [
-        if (label != null || showOutput)
-          RowBox(
-            style: FlexBoxStyler()
-                .paddingBottom(4)
-                .mainAxisAlignment(.spaceBetween)
-                .crossAxisAlignment(.center),
-            children: [
-              if (label != null) StyledText(label!, style: labelStyle),
-              if (showOutput) StyledText(outputValue, style: labelStyle),
-            ],
-          ),
-        Semantics(
-          label: semanticLabel ?? label,
-          child: RemixSlider(
-            value: value,
-            onChanged: onChanged,
-            onChangeStart: onChangeStart,
-            onChangeEnd: onChangeEnd,
-            min: min,
-            max: max,
-            enabled: enabled,
-            autofocus: autofocus,
-            focusNode: focusNode,
-            snapDivisions: snapDivisions,
-            style: resolvedStyle,
-          ),
+RemixSliderStyler _sizeStyle() {
+  return RemixSliderStyler()
+      .variant(
+        HeroSliderSize.sm,
+        RemixSliderStyler(
+          thumb: BoxStyler().size(24, 16),
+          trackWidth: 16,
+          rangeWidth: 16,
         ),
-      ],
-    );
-  }
-
-  static String _defaultOutput(double value) {
-    final rounded = value.roundToDouble();
-    if ((value - rounded).abs() < 0.0001) {
-      return rounded.toInt().toString();
-    }
-    return value.toStringAsFixed(2);
-  }
+      )
+      .variant(
+        HeroSliderSize.md,
+        RemixSliderStyler(
+          thumb: BoxStyler().size(28, 20),
+          trackWidth: 20,
+          rangeWidth: 20,
+        ),
+      )
+      .variant(
+        HeroSliderSize.lg,
+        RemixSliderStyler(
+          thumb: BoxStyler().size(32, 24),
+          trackWidth: 24,
+          rangeWidth: 24,
+        ),
+      );
 }

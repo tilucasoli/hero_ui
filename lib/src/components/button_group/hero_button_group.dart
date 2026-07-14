@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../tokens/hero_tokens.dart';
 import '../button/hero_button.dart';
+import '../button/hero_icon_button.dart';
 import 'hero_button_group_style.dart';
 
 final class HeroButtonGroupData extends InheritedWidget {
@@ -53,12 +54,44 @@ final class HeroButtonGroup extends StatelessWidget {
     required this.children,
   });
 
+  Widget _resolveChild(Widget child) {
+    return switch (child) {
+      HeroButton button => HeroButton(
+        key: button.key,
+        variant: variant,
+        size: size,
+        fullWidth: button.fullWidth,
+        grouped: true,
+        style: button.style,
+        label: button.label,
+        leadingIcon: button.leadingIcon,
+        trailingIcon: button.trailingIcon,
+        loading: button.loading,
+        enabled: enabled && button.enabled,
+        onPressed: button.onPressed,
+      ),
+      HeroIconButton button => HeroIconButton(
+        key: button.key,
+        variant: variant,
+        size: size,
+        grouped: true,
+        style: button.style,
+        icon: button.icon,
+        loading: button.loading,
+        enabled: enabled && button.enabled,
+        onPressed: button.onPressed,
+      ),
+      _ => child,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final wrappedChildren = <Widget>[];
 
     for (var i = 0; i < children.length; i++) {
       final child = children[i];
+      final resolvedChild = _resolveChild(child);
       wrappedChildren.add(
         HeroButtonGroupData(
           variant: variant,
@@ -66,9 +99,9 @@ final class HeroButtonGroup extends StatelessWidget {
           enabled: enabled,
           fullWidth: fullWidth,
           orientation: orientation,
-          child: fullWidth && child is! HeroButtonGroupSeparator
-              ? Expanded(child: child)
-              : child,
+          child: fullWidth && resolvedChild is! HeroButtonGroupSeparator
+              ? Expanded(child: resolvedChild)
+              : resolvedChild,
         ),
       );
     }

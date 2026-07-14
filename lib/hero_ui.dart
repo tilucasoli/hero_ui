@@ -40,7 +40,6 @@ export 'src/components/select/hero_select.dart';
 
 // Card
 export 'src/components/card/hero_card.dart';
-export 'src/components/card/hero_card_style.dart';
 
 // LinkButton
 export 'src/components/link_button/hero_link_button.dart';
