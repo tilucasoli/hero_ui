@@ -1,1 +1,1 @@
-{"v":1,"type":"theme","colors":{"hero.accent":"#0485F7","hero.accentHover":"#1D91F8"}}
+{"v":1,"type":"theme","colors":{"hero.background":"#F5F5F5","hero.foreground":"#18181B","hero.surface":"#FFFFFF","hero.accent":"#0485F7","hero.accentForeground":"#FCFCFC","hero.accentHover":"#1D91F8","hero.default":"#EBEBEC","hero.defaultForeground":"#18181B","hero.danger":"#FF383C","hero.dangerForeground":"#FCFCFC"}}
