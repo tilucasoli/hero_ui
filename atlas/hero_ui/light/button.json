@@ -1,0 +1,1 @@
+{"schema":"mix_atlas/atlas/v1","component":"button","componentLabel":"Hero Button","theme":"light","themeLabel":"Light","brightness":"light","file":"button.png","rowAxes":[{"id":"variant","label":"Variant"}],"rows":[{"id":"primary-md","values":{"variant":{"id":"primary","label":"Primary / Medium"}}}],"columns":[{"id":"default","label":"Default"}]}

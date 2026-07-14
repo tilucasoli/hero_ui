@@ -1,0 +1,1 @@
+{"schema":"mix_atlas/catalog/v1","id":"hero-ui","label":"Hero UI","themes":[{"id":"light","label":"Light","brightness":"light"}],"atlases":[{"id":"button","label":"Hero Button","files":[{"theme":"light","image":"light/button.png","metadata":"light/button.json"}]}]}
