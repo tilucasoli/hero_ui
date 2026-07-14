@@ -1,0 +1,124 @@
+{
+  "type": "text",
+  "style": {
+    "$merge": [
+      {
+        "$token": "hero.label.medium"
+      },
+      {
+        "color": {
+          "$token": "hero.defaultForeground"
+        }
+      }
+    ]
+  },
+  "textHeightBehavior": {
+    "applyHeightToFirstAscent": false,
+    "applyHeightToLastDescent": false
+  },
+  "variants": [
+    {
+      "kind": "named",
+      "name": "sm",
+      "style": {
+        "type": "text",
+        "style": {
+          "$token": "hero.label.small"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "md",
+      "style": {
+        "type": "text",
+        "style": {
+          "$token": "hero.label.small"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "lg",
+      "style": {
+        "type": "text",
+        "style": {
+          "$token": "hero.label.medium"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "primary",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.accentForeground"
+          }
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "secondary",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.accentSoftForeground"
+          }
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "outline",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.defaultForeground"
+          }
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "ghost",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.defaultForeground"
+          }
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "danger",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.dangerForeground"
+          }
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "dangerSoft",
+      "style": {
+        "type": "text",
+        "style": {
+          "color": {
+            "$token": "hero.dangerSoftForeground"
+          }
+        }
+      }
+    }
+  ],
+  "v": 1
+}
