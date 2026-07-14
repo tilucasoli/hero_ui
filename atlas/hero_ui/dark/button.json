@@ -1,0 +1,337 @@
+{
+  "schema": "mix_atlas/atlas/v1",
+  "component": "button",
+  "componentLabel": "Hero Button",
+  "theme": "dark",
+  "themeLabel": "Dark",
+  "brightness": "dark",
+  "file": "button.png",
+  "rowAxes": [
+    {
+      "id": "variant",
+      "label": "Variant"
+    },
+    {
+      "id": "size",
+      "label": "Size"
+    }
+  ],
+  "rows": [
+    {
+      "id": "primary-sm",
+      "values": {
+        "variant": {
+          "id": "primary",
+          "label": "Primary"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "primary-md",
+      "values": {
+        "variant": {
+          "id": "primary",
+          "label": "Primary"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "primary-lg",
+      "values": {
+        "variant": {
+          "id": "primary",
+          "label": "Primary"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "secondary-sm",
+      "values": {
+        "variant": {
+          "id": "secondary",
+          "label": "Secondary"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "secondary-md",
+      "values": {
+        "variant": {
+          "id": "secondary",
+          "label": "Secondary"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "secondary-lg",
+      "values": {
+        "variant": {
+          "id": "secondary",
+          "label": "Secondary"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "tertiary-sm",
+      "values": {
+        "variant": {
+          "id": "tertiary",
+          "label": "Tertiary"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "tertiary-md",
+      "values": {
+        "variant": {
+          "id": "tertiary",
+          "label": "Tertiary"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "tertiary-lg",
+      "values": {
+        "variant": {
+          "id": "tertiary",
+          "label": "Tertiary"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "outline-sm",
+      "values": {
+        "variant": {
+          "id": "outline",
+          "label": "Outline"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "outline-md",
+      "values": {
+        "variant": {
+          "id": "outline",
+          "label": "Outline"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "outline-lg",
+      "values": {
+        "variant": {
+          "id": "outline",
+          "label": "Outline"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "ghost-sm",
+      "values": {
+        "variant": {
+          "id": "ghost",
+          "label": "Ghost"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "ghost-md",
+      "values": {
+        "variant": {
+          "id": "ghost",
+          "label": "Ghost"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "ghost-lg",
+      "values": {
+        "variant": {
+          "id": "ghost",
+          "label": "Ghost"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "danger-sm",
+      "values": {
+        "variant": {
+          "id": "danger",
+          "label": "Danger"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "danger-md",
+      "values": {
+        "variant": {
+          "id": "danger",
+          "label": "Danger"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "danger-lg",
+      "values": {
+        "variant": {
+          "id": "danger",
+          "label": "Danger"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-sm",
+      "values": {
+        "variant": {
+          "id": "dangerSoft",
+          "label": "Danger Soft"
+        },
+        "size": {
+          "id": "sm",
+          "label": "SM"
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-md",
+      "values": {
+        "variant": {
+          "id": "dangerSoft",
+          "label": "Danger Soft"
+        },
+        "size": {
+          "id": "md",
+          "label": "MD"
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-lg",
+      "values": {
+        "variant": {
+          "id": "dangerSoft",
+          "label": "Danger Soft"
+        },
+        "size": {
+          "id": "lg",
+          "label": "LG"
+        }
+      }
+    }
+  ],
+  "columns": [
+    {
+      "id": "default",
+      "states": [],
+      "props": {}
+    },
+    {
+      "id": "hovered",
+      "states": [
+        "hovered"
+      ],
+      "props": {}
+    },
+    {
+      "id": "pressed",
+      "states": [
+        "pressed"
+      ],
+      "props": {}
+    },
+    {
+      "id": "focused",
+      "states": [
+        "focused"
+      ],
+      "props": {}
+    },
+    {
+      "id": "disabled",
+      "states": [
+        "disabled"
+      ],
+      "props": {}
+    },
+    {
+      "id": "loading",
+      "label": "Loading",
+      "states": [],
+      "props": {
+        "loading": true
+      }
+    }
+  ]
+}

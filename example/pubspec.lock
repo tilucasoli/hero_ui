@@ -176,21 +176,22 @@ packages:
     source: hosted
     version: "2.1.0"
   mix_annotations:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: mix_annotations
-      sha256: "926c11dbc6d0df9f7b5eeb22491bb76500d4427bd6a639776216abd5ac71a9d0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
+      path: "packages/mix_annotations"
+      ref: "fix/973"
+      resolved-ref: ade73c06fb76b353b5c964bd9bf74800e0ef60cc
+      url: "https://github.com/btwld/mix.git"
+    source: git
+    version: "2.1.2"
   naked_ui:
     dependency: transitive
     description:
       name: naked_ui
-      sha256: "7c908f67a5b37d6434183bf261d0adc9cd53a52b62e58dca6f1e2e78929b29f7"
+      sha256: d83e2dbb89daad44243dae199ebe9a7149086be43ec4732a77128270d2f6ac69
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0-beta.7"
+    version: "1.0.0-beta.3"
   nested:
     dependency: transitive
     description:
@@ -223,30 +224,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
-  prism:
-    dependency: transitive
-    description:
-      name: prism
-      sha256: cb5b80867392ed138ca7651d55c1c0013903f20355e3e015e2f6be5c1dcf7020
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  prism_flutter:
-    dependency: transitive
-    description:
-      name: prism_flutter
-      sha256: c915d488b864d92dc605091f28e631748a723f77d5c755d08dc4b70726a7bef4
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   remix:
     dependency: transitive
     description:
-      name: remix
-      sha256: ada40eeb64342eeeb6b294598b147c38f00baf581f1936931e90dfae6e4b8311
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
+      path: "packages/remix"
+      ref: "chore/1.0-release"
+      resolved-ref: "6ce0cedf2547accaf799692f2dad6a451e90545f"
+      url: "https://github.com/btwld/remix.git"
+    source: git
+    version: "1.0.0"
   resizable_widget:
     dependency: transitive
     description:

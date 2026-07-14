@@ -1,0 +1,236 @@
+{
+  "v": 1,
+  "type": "theme",
+  "colors": {
+    "hero.white": "#FFFFFF",
+    "hero.black": "#000000",
+    "hero.snow": "#FCFCFC",
+    "hero.eclipse": "#18181B",
+    "hero.background": "#060607",
+    "hero.foreground": "#FCFCFC",
+    "hero.backgroundSecondary": "#101011",
+    "hero.backgroundTertiary": "#1A1A1B",
+    "hero.backgroundInverse": "#FCFCFC",
+    "hero.surface": "#18181B",
+    "hero.surfaceForeground": "#FCFCFC",
+    "hero.surfaceSecondary": "#232325",
+    "hero.surfaceSecondaryForeground": "#FCFCFC",
+    "hero.surfaceTertiary": "#262728",
+    "hero.surfaceTertiaryForeground": "#FCFCFC",
+    "hero.surfaceHover": "#2A2A2D",
+    "hero.overlay": "#18181B",
+    "hero.overlayForeground": "#FCFCFC",
+    "hero.muted": "#9F9FA9",
+    "hero.scrollbar": "#9F9FA9",
+    "hero.default": "#27272A",
+    "hero.defaultForeground": "#FCFCFC",
+    "hero.accent": "#0485F7",
+    "hero.accentForeground": "#FCFCFC",
+    "hero.fieldBackground": "#18181B",
+    "hero.fieldForeground": "#FCFCFC",
+    "hero.fieldPlaceholder": "#9F9FA9",
+    "hero.fieldBorder": "#00000000",
+    "hero.segment": "#46464C",
+    "hero.segmentForeground": "#FCFCFC",
+    "hero.success": "#17C964",
+    "hero.successForeground": "#18181B",
+    "hero.warning": "#F7B750",
+    "hero.warningForeground": "#18181B",
+    "hero.danger": "#DB3B3E",
+    "hero.dangerForeground": "#FCFCFC",
+    "hero.border": "#28282C",
+    "hero.separator": "#212124",
+    "hero.focus": "#0485F7",
+    "hero.link": "#FCFCFC",
+    "hero.backdrop": "#99000000",
+    "hero.accentHover": "#1D91F8",
+    "hero.defaultHover": "#303032",
+    "hero.accentSoft": "#260485F7",
+    "hero.accentSoftForeground": "#0485F7",
+    "hero.accentSoftHover": "#330485F7",
+    "hero.dangerHover": "#DE4E51",
+    "hero.dangerSoft": "#26DB3B3E",
+    "hero.dangerSoftHover": "#33DB3B3E",
+    "hero.dangerSoftForeground": "#DB3B3E",
+    "hero.successHover": "#17B75D",
+    "hero.successSoft": "#2617C964",
+    "hero.successSoftForeground": "#17C964",
+    "hero.successSoftHover": "#3317C964",
+    "hero.warningHover": "#E1A74B",
+    "hero.warningSoft": "#26F7B750",
+    "hero.warningSoftForeground": "#F7B750",
+    "hero.warningSoftHover": "#33F7B750",
+    "hero.borderSecondary": "#4A4A4D",
+    "hero.borderTertiary": "#666668",
+    "hero.separatorSecondary": "#3A3A3D",
+    "hero.separatorTertiary": "#434346",
+    "hero.fieldHover": "#1D1D20",
+    "hero.fieldFocus": "#18181B",
+    "hero.fieldBorderHover": "#1F1E1E1E",
+    "hero.fieldBorderFocus": "#42424242"
+  },
+  "spaces": {
+    "hero.spacing": 4.0
+  },
+  "doubles": {
+    "hero.disabledOpacity": 0.5,
+    "hero.borderWidth": 1.0,
+    "hero.ringOffsetWidth": 2.0
+  },
+  "radii": {
+    "hero.radius": 8.0,
+    "hero.fieldRadius": 12.0
+  },
+  "textStyles": {
+    "hero.title.h1": {
+      "fontSize": 56.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.56,
+      "height": 1.1428571428571428,
+      "fontFamily": "Roboto"
+    },
+    "hero.title.h2": {
+      "fontSize": 48.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.48,
+      "height": 1.1666666666666667,
+      "fontFamily": "Roboto"
+    },
+    "hero.title.h3": {
+      "fontSize": 40.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.4,
+      "height": 1.2,
+      "fontFamily": "Roboto"
+    },
+    "hero.title.h4": {
+      "fontSize": 32.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.16,
+      "height": 1.25,
+      "fontFamily": "Roboto"
+    },
+    "hero.title.h5": {
+      "fontSize": 24.0,
+      "fontWeight": "w500",
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.title.h6": {
+      "fontSize": 20.0,
+      "fontWeight": "w500",
+      "height": 1.4,
+      "fontFamily": "Roboto"
+    },
+    "hero.label.xlarge": {
+      "fontSize": 24.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.36,
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.label.large": {
+      "fontSize": 18.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.27,
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.label.medium": {
+      "fontSize": 16.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.176,
+      "height": 1.5,
+      "fontFamily": "Roboto"
+    },
+    "hero.label.small": {
+      "fontSize": 14.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.084,
+      "height": 1.4285714285714286,
+      "fontFamily": "Roboto"
+    },
+    "hero.label.xsmall": {
+      "fontSize": 12.0,
+      "fontWeight": "w500",
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.paragraph.xlarge": {
+      "fontSize": 24.0,
+      "fontWeight": "w400",
+      "letterSpacing": -0.36,
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.paragraph.large": {
+      "fontSize": 18.0,
+      "fontWeight": "w400",
+      "letterSpacing": -0.27,
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.paragraph.medium": {
+      "fontSize": 16.0,
+      "fontWeight": "w400",
+      "letterSpacing": -0.176,
+      "height": 1.5,
+      "fontFamily": "Roboto"
+    },
+    "hero.paragraph.small": {
+      "fontSize": 14.0,
+      "fontWeight": "w400",
+      "letterSpacing": -0.084,
+      "height": 1.4285714285714286,
+      "fontFamily": "Roboto"
+    },
+    "hero.paragraph.xsmall": {
+      "fontSize": 12.0,
+      "fontWeight": "w400",
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.subheading.medium": {
+      "fontSize": 16.0,
+      "fontWeight": "w500",
+      "letterSpacing": 0.96,
+      "height": 1.5,
+      "fontFamily": "Roboto"
+    },
+    "hero.subheading.small": {
+      "fontSize": 14.0,
+      "fontWeight": "w500",
+      "letterSpacing": 0.84,
+      "height": 1.4285714285714286,
+      "fontFamily": "Roboto"
+    },
+    "hero.subheading.xsmall": {
+      "fontSize": 12.0,
+      "fontWeight": "w500",
+      "letterSpacing": 0.48,
+      "height": 1.3333333333333333,
+      "fontFamily": "Roboto"
+    },
+    "hero.subheading.2xsmall": {
+      "fontSize": 11.0,
+      "fontWeight": "w500",
+      "letterSpacing": 0.22,
+      "height": 1.0909090909090908,
+      "fontFamily": "Roboto"
+    },
+    "hero.doc.label": {
+      "fontSize": 18.0,
+      "fontWeight": "w500",
+      "letterSpacing": -0.27,
+      "height": 1.7777777777777777,
+      "fontFamily": "Roboto"
+    },
+    "hero.doc.paragraph": {
+      "fontSize": 18.0,
+      "fontWeight": "w400",
+      "letterSpacing": -0.27,
+      "height": 1.7777777777777777,
+      "fontFamily": "Roboto"
+    }
+  }
+}

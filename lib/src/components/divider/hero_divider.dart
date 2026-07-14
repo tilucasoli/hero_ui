@@ -1,38 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:mix/mix.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 
 import '../../tokens/hero_tokens.dart';
-part 'hero_divider_style.dart';
+part 'hero_divider.g.dart';
 
-final class HeroDivider extends StatelessWidget {
-  final HeroDividerOrientation orientation;
-  final String? label;
+enum HeroDividerOrientation with EnumVariant { horizontal, vertical }
+
+@MixWidget(widgetParameters: .only({}))
+BoxStyler heroDividerStyle({
+  HeroDividerOrientation orientation = .horizontal,
+  BoxStyler? style,
+}) {
+  final baseStyle = switch (orientation) {
+    HeroDividerOrientation.horizontal =>
+      BoxStyler().color($separator()).height(1),
+    HeroDividerOrientation.vertical => BoxStyler().color($separator()).width(1),
+  };
+
+  return baseStyle.merge(style);
+}
+
+final class HeroLabeledDivider extends StatelessWidget {
+  final String label;
   final BoxStyler? style;
 
-  const HeroDivider({
-    super.key,
-    this.orientation = .horizontal,
-    this.label,
-    this.style,
-  });
+  const HeroLabeledDivider({super.key, required this.label, this.style});
 
   @override
   Widget build(BuildContext context) {
-    final resolvedStyle = HeroDividerStyle._baseStyle(orientation).merge(style);
-
-    if (label == null) {
-      return Box(style: resolvedStyle);
-    }
-
     return Row(
       spacing: 12,
       children: [
-        Expanded(child: Box(style: resolvedStyle)),
+        Expanded(child: HeroDivider(style: style)),
         StyledText(
-          label!,
+          label,
           style: TextStyler().style($paragraphXSmall.mix()).color($muted()),
         ),
-        Expanded(child: Box(style: resolvedStyle)),
+        Expanded(child: HeroDivider(style: style)),
       ],
     );
   }

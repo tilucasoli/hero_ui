@@ -1,0 +1,639 @@
+{
+  "type": "flex_box",
+  "padding": {
+    "left": 12.0,
+    "right": 12.0
+  },
+  "constraints": {
+    "minHeight": 32.0,
+    "maxHeight": 32.0
+  },
+  "transform": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "transformAlignment": "center",
+  "decoration": {
+    "$merge": [
+      {
+        "borderRadius": 24.0
+      },
+      {
+        "color": {
+          "$token": "hero.danger"
+        }
+      }
+    ]
+  },
+  "mainAxisAlignment": "center",
+  "crossAxisAlignment": "center",
+  "mainAxisSize": {
+    "$merge": [
+      "min",
+      "min"
+    ]
+  },
+  "spacing": 8.0,
+  "variants": [
+    {
+      "kind": "named",
+      "name": "fullWidth",
+      "style": {
+        "type": "flex_box",
+        "mainAxisSize": "max"
+      }
+    },
+    {
+      "kind": "named",
+      "name": "sm",
+      "style": {
+        "type": "flex_box",
+        "padding": {
+          "left": 12.0,
+          "right": 12.0
+        },
+        "constraints": {
+          "minHeight": 32.0,
+          "maxHeight": 32.0
+        },
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "transformAlignment": "center",
+        "decoration": {
+          "borderRadius": 24.0
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "transform": [
+                0.98,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.98,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "transformAlignment": "center"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "md",
+      "style": {
+        "type": "flex_box",
+        "padding": {
+          "left": 16.0,
+          "right": 16.0
+        },
+        "constraints": {
+          "minHeight": 36.0,
+          "maxHeight": 36.0
+        },
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "transformAlignment": "center",
+        "decoration": {
+          "borderRadius": 24.0
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "transform": [
+                0.97,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.97,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "transformAlignment": "center"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "lg",
+      "style": {
+        "type": "flex_box",
+        "padding": {
+          "left": 16.0,
+          "right": 16.0
+        },
+        "constraints": {
+          "minHeight": 40.0,
+          "maxHeight": 40.0
+        },
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "transformAlignment": "center",
+        "decoration": {
+          "borderRadius": 24.0
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "transform": [
+                0.96,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.96,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "transformAlignment": "center"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "group",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "$merge": [
+            {
+              "borderRadius": 0.0
+            },
+            {
+              "borderRadius": 0.0
+            },
+            {
+              "border": {
+                "top": {
+                  "color": "#000000",
+                  "width": 0.0,
+                  "style": "none",
+                  "strokeAlign": -1.0
+                },
+                "right": {
+                  "color": "#000000",
+                  "width": 0.0,
+                  "style": "none",
+                  "strokeAlign": -1.0
+                },
+                "bottom": {
+                  "color": "#000000",
+                  "width": 0.0,
+                  "style": "none",
+                  "strokeAlign": -1.0
+                },
+                "left": {
+                  "color": "#000000",
+                  "width": 0.0,
+                  "style": "none",
+                  "strokeAlign": -1.0
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "primary",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.accent"
+          }
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.accentHover"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.accentHover"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "secondary",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.default"
+          }
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.defaultHover"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.defaultHover"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "tertiary",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.default"
+          }
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.defaultHover"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.defaultHover"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "outline",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "$merge": [
+            {
+              "color": "#00000000"
+            },
+            {
+              "border": {
+                "top": {
+                  "color": {
+                    "$token": "hero.border"
+                  },
+                  "width": 1.0
+                },
+                "right": {
+                  "color": {
+                    "$token": "hero.border"
+                  },
+                  "width": 1.0
+                },
+                "bottom": {
+                  "color": {
+                    "$token": "hero.border"
+                  },
+                  "width": 1.0
+                },
+                "left": {
+                  "color": {
+                    "$token": "hero.border"
+                  },
+                  "width": 1.0
+                }
+              }
+            }
+          ]
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.default"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.default"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "ghost",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": "#00000000"
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.default"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.default"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "danger",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.danger"
+          }
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.dangerHover"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.dangerHover"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "named",
+      "name": "dangerSoft",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.dangerSoft"
+          }
+        },
+        "variants": [
+          {
+            "kind": "widget_state",
+            "state": "hovered",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.dangerSoftHover"
+                }
+              }
+            }
+          },
+          {
+            "kind": "widget_state",
+            "state": "pressed",
+            "style": {
+              "type": "flex_box",
+              "decoration": {
+                "color": {
+                  "$token": "hero.dangerSoftHover"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "widget_state",
+      "state": "pressed",
+      "style": {
+        "type": "flex_box",
+        "transform": [
+          0.98,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.98,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "transformAlignment": "center",
+        "decoration": {
+          "color": {
+            "$token": "hero.dangerHover"
+          }
+        }
+      }
+    },
+    {
+      "kind": "widget_state",
+      "state": "hovered",
+      "style": {
+        "type": "flex_box",
+        "decoration": {
+          "color": {
+            "$token": "hero.dangerHover"
+          }
+        }
+      }
+    }
+  ],
+  "v": 1
+}

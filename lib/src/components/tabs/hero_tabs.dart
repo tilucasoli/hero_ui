@@ -147,7 +147,7 @@ final class HeroTabBar extends StatelessWidget {
   final List<Widget> children;
 
   /// Style override merged onto the resolved tab-list (bar) style.
-  final RemixTabBarStyle? style;
+  final RemixTabBarStyler? style;
 
   const HeroTabBar({super.key, required this.children, this.style});
 
@@ -199,7 +199,7 @@ final class HeroTab extends StatelessWidget {
   final bool enabled;
 
   /// Style override merged onto the resolved individual-tab style.
-  final RemixTabStyle? style;
+  final RemixTabStyler? style;
 
   const HeroTab({
     super.key,
@@ -242,7 +242,7 @@ final class HeroTabPanel extends StatelessWidget {
   final Widget child;
 
   /// Style override merged onto the resolved panel style.
-  final RemixTabViewStyle? style;
+  final RemixTabViewStyler? style;
 
   const HeroTabPanel({
     super.key,

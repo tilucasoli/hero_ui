@@ -1,0 +1,94 @@
+{
+  "type": "icon",
+  "color": {
+    "$token": "hero.dangerSoftForeground"
+  },
+  "size": 16.0,
+  "variants": [
+    {
+      "kind": "named",
+      "name": "sm",
+      "style": {
+        "type": "icon",
+        "size": 16.0
+      }
+    },
+    {
+      "kind": "named",
+      "name": "md",
+      "style": {
+        "type": "icon",
+        "size": 16.0
+      }
+    },
+    {
+      "kind": "named",
+      "name": "lg",
+      "style": {
+        "type": "icon",
+        "size": 16.0
+      }
+    },
+    {
+      "kind": "named",
+      "name": "primary",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.accentForeground"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "secondary",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.accentSoftForeground"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "outline",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.defaultForeground"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "ghost",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.defaultForeground"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "danger",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.dangerForeground"
+        }
+      }
+    },
+    {
+      "kind": "named",
+      "name": "dangerSoft",
+      "style": {
+        "type": "icon",
+        "color": {
+          "$token": "hero.dangerSoftForeground"
+        }
+      }
+    }
+  ],
+  "v": 1
+}

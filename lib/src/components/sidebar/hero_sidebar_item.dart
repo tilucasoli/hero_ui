@@ -1,37 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
 
-part 'hero_sidebar_item_style.dart';
+part 'hero_sidebar_item.g.dart';
 
-final class HeroSidebarItem extends StatelessWidget {
-  final String label;
-  final IconData? icon;
-  final bool selected;
-  final VoidCallback? onPressed;
-  final RemixToggleStyle? style;
+@MixWidget(
+  widgetParameters: .only({
+    'selected',
+    'onChanged',
+    'enabled',
+    'label',
+    'icon',
+    'enableFeedback',
+    'focusNode',
+    'autofocus',
+    'semanticLabel',
+  }),
+)
+RemixToggleStyler heroSidebarItemStyle({RemixToggleStyler? style}) {
+  return _baseStyle().merge(style);
+}
 
-  const HeroSidebarItem({
-    super.key,
-    required this.label,
-    this.icon,
-    this.selected = false,
-    this.onPressed,
-    this.style,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final resolvedStyle =
-        HeroSidebarItemStyle._baseStyle().merge(style);
-
-    return RemixToggle(
-      selected: selected,
-      onChanged: (_) => onPressed?.call(),
-      label: label,
-      icon: icon,
-      style: resolvedStyle,
-    );
-  }
+RemixToggleStyler _baseStyle() {
+  return RemixToggleStyler()
+      .borderRounded(8)
+      .paddingX(12)
+      .paddingY(8)
+      .backgroundColor($background())
+      .spacing(10)
+      .marginY(1)
+      .scale(1)
+      .iconSize(18)
+      .iconColor($muted())
+      .labelStyle($labelSmall.mix())
+      .labelColor($foreground())
+      .onHovered(RemixToggleStyler().backgroundColor($default()))
+      .onSelected(
+        RemixToggleStyler()
+            .backgroundColor($default())
+            .iconColor($accentSoftForeground()),
+      )
+      .onPressed(RemixToggleStyler().scale(0.98))
+      .animate(.ease(150.ms));
 }

@@ -1,0 +1,108 @@
+{
+  "schema": "mix_atlas/protocol-coverage/v1",
+  "mixProtocolVersion": "1.0.0",
+  "mixProtocolFormat": 1,
+  "themes": [
+    {
+      "id": "dark",
+      "status": "supported",
+      "tokenCount": 94,
+      "rawDiagnostics": []
+    },
+    {
+      "id": "light",
+      "status": "supported",
+      "tokenCount": 94,
+      "rawDiagnostics": []
+    }
+  ],
+  "styles": [
+    {
+      "id": "hero-button-portable",
+      "runtimeType": "RemixButtonStyler projection",
+      "status": "partial",
+      "recipeCount": 21,
+      "stateCount": 6,
+      "themeCount": 2,
+      "totalMatrixCells": 252,
+      "nonLoadingCells": 210,
+      "loadingUnsupportedCells": 42,
+      "supportedContainerRecipes": 21,
+      "diagnostics": [
+        {
+          "code": "unsupported_component_animation",
+          "severity": "warning",
+          "path": "button/animation",
+          "message": "Button-level animation is omitted from the static portable capture."
+        },
+        {
+          "code": "unsupported_component_modifier",
+          "severity": "warning",
+          "path": "button/variants/WidgetStateVariant/modifier",
+          "message": "Button-level widget modifiers are not projected to a leaf slot."
+        },
+        {
+          "code": "unsupported_slot_primitive",
+          "severity": "error",
+          "path": "spinner",
+          "message": "RemixSpinner has no neutral Mix protocol primitive."
+        }
+      ]
+    },
+    {
+      "id": "hero-button-composite",
+      "runtimeType": "RemixButtonStyler",
+      "status": "unsupported",
+      "diagnostics": [
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected box, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected text, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected flex, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected stack, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected icon, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected image, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected flex_box, got RemixButtonStyler."
+        },
+        {
+          "code": "unsupported_encode_value",
+          "severity": "error",
+          "path": "",
+          "message": "Expected stack_box, got RemixButtonStyler."
+        }
+      ]
+    }
+  ]
+}

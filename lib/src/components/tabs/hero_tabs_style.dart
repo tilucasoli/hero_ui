@@ -37,8 +37,8 @@ final class HeroTabsStyle {
   // == Styles ==
 
   /// The tab-list container (React's `tabList` slot).
-  static RemixTabBarStyle barStyle({HeroTabsRadius? radius}) {
-    return RemixTabBarStyle().container(
+  static RemixTabBarStyler barStyle({HeroTabsRadius? radius}) {
+    return RemixTabBarStyler().container(
       FlexBoxStyler()
           .direction(.horizontal)
           .mainAxisSize(.max)
@@ -51,8 +51,8 @@ final class HeroTabsStyle {
   }
 
   /// A single tab button (React's `tab` + `tabContent` slots).
-  static RemixTabStyle tabStyle({HeroTabsRadius? radius}) {
-    return RemixTabStyle()
+  static RemixTabStyler tabStyle({HeroTabsRadius? radius}) {
+    return RemixTabStyler()
         .container(
           FlexBoxStyler()
               .height(_tabHeight)
@@ -66,10 +66,10 @@ final class HeroTabsStyle {
         .label(_labelStyle().color($muted()))
         .icon(IconStyler(color: $muted(), size: _iconSize))
         .animate(.easeOut(250.ms))
-        .onHovered(RemixTabStyle().wrap(.opacity(0.7)))
-        .onDisabled(RemixTabStyle().wrap(.opacity(0.4)))
+        .onHovered(RemixTabStyler().wrap(.opacity(0.7)))
+        .onDisabled(RemixTabStyler().wrap(.opacity(0.4)))
         .onSelected(
-          RemixTabStyle()
+          RemixTabStyler()
               .wrap(.opacity(1))
               .color($segment())
               .label(
@@ -80,8 +80,8 @@ final class HeroTabsStyle {
   }
 
   /// A tab panel (React's `panel` slot).
-  static RemixTabViewStyle panelStyle() {
-    return RemixTabViewStyle().padding(
+  static RemixTabViewStyler panelStyle() {
+    return RemixTabViewStyler().padding(
       .only(top: 12, bottom: 12, left: 4, right: 4),
     );
   }

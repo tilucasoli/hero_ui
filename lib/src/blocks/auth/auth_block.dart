@@ -155,7 +155,7 @@ class _AuthBlockState extends State<AuthBlock> {
               onPressed: _handleSignIn,
             ),
 
-            const HeroDivider(label: 'or continue with'),
+            const HeroLabeledDivider(label: 'or continue with'),
 
             // Social login buttons
             Row(
@@ -164,7 +164,7 @@ class _AuthBlockState extends State<AuthBlock> {
                 Expanded(
                   child: HeroButton(
                     variant: HeroButtonVariant.outline,
-                    iconLeft: Icons.g_translate,
+                    leadingIcon: Icons.g_translate,
                     label: 'Google',
                     fullWidth: true,
                     onPressed: widget.onSignInWithGoogle,
@@ -173,7 +173,7 @@ class _AuthBlockState extends State<AuthBlock> {
                 Expanded(
                   child: HeroButton(
                     variant: HeroButtonVariant.outline,
-                    iconLeft: Icons.apple,
+                    leadingIcon: Icons.apple,
                     label: 'Apple',
                     fullWidth: true,
                     onPressed: widget.onSignInWithApple,

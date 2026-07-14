@@ -1,0 +1,1079 @@
+{
+  "schema": "mix_atlas/component/v1",
+  "id": "button",
+  "label": "Hero Button",
+  "properties": [
+    {
+      "id": "variant",
+      "kind": "enum",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "outline",
+        "ghost",
+        "danger",
+        "dangerSoft"
+      ],
+      "default": "primary"
+    },
+    {
+      "id": "size",
+      "kind": "enum",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "md"
+    },
+    {
+      "id": "label",
+      "kind": "string",
+      "default": "Button"
+    },
+    {
+      "id": "leadingIcon",
+      "kind": "icon",
+      "required": false
+    },
+    {
+      "id": "trailingIcon",
+      "kind": "icon",
+      "required": false
+    },
+    {
+      "id": "enabled",
+      "kind": "boolean",
+      "default": true
+    },
+    {
+      "id": "loading",
+      "kind": "boolean",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "id": "default",
+      "widgetStates": [],
+      "properties": {}
+    },
+    {
+      "id": "hovered",
+      "widgetStates": [
+        "hovered"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "pressed",
+      "widgetStates": [
+        "pressed"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "focused",
+      "widgetStates": [
+        "focused"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "disabled",
+      "widgetStates": [
+        "disabled"
+      ],
+      "properties": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "loading",
+      "widgetStates": [
+        "disabled"
+      ],
+      "properties": {
+        "enabled": false,
+        "loading": true
+      }
+    }
+  ],
+  "slots": [
+    {
+      "id": "container",
+      "kind": "flex_box"
+    },
+    {
+      "id": "label",
+      "kind": "text"
+    },
+    {
+      "id": "leadingIcon",
+      "kind": "icon"
+    },
+    {
+      "id": "trailingIcon",
+      "kind": "icon"
+    },
+    {
+      "id": "spinner",
+      "kind": "spinner"
+    }
+  ],
+  "anatomy": {
+    "root": "root",
+    "nodes": [
+      {
+        "id": "root",
+        "kind": "stack",
+        "alignment": "center",
+        "children": [
+          "content",
+          "spinner"
+        ]
+      },
+      {
+        "id": "content",
+        "kind": "slot",
+        "slot": "container",
+        "children": [
+          "leadingIcon",
+          "label",
+          "trailingIcon"
+        ],
+        "visibleWhen": {
+          "property": "loading",
+          "operator": "equals",
+          "value": false
+        },
+        "maintain": [
+          "size",
+          "state",
+          "animation"
+        ]
+      },
+      {
+        "id": "leadingIcon",
+        "kind": "slot",
+        "slot": "leadingIcon",
+        "children": [],
+        "visibleWhen": {
+          "property": "leadingIcon",
+          "operator": "present"
+        }
+      },
+      {
+        "id": "label",
+        "kind": "slot",
+        "slot": "label",
+        "children": []
+      },
+      {
+        "id": "trailingIcon",
+        "kind": "slot",
+        "slot": "trailingIcon",
+        "children": [],
+        "visibleWhen": {
+          "property": "trailingIcon",
+          "operator": "present"
+        }
+      },
+      {
+        "id": "spinner",
+        "kind": "slot",
+        "slot": "spinner",
+        "children": [],
+        "visibleWhen": {
+          "property": "loading",
+          "operator": "equals",
+          "value": true
+        }
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "primary-sm",
+      "properties": {
+        "variant": "primary",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "primary-md",
+      "properties": {
+        "variant": "primary",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "primary-lg",
+      "properties": {
+        "variant": "primary",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/primary-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "secondary-sm",
+      "properties": {
+        "variant": "secondary",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "secondary-md",
+      "properties": {
+        "variant": "secondary",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "secondary-lg",
+      "properties": {
+        "variant": "secondary",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/secondary-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tertiary-sm",
+      "properties": {
+        "variant": "tertiary",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tertiary-md",
+      "properties": {
+        "variant": "tertiary",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tertiary-lg",
+      "properties": {
+        "variant": "tertiary",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/tertiary-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "outline-sm",
+      "properties": {
+        "variant": "outline",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "outline-md",
+      "properties": {
+        "variant": "outline",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "outline-lg",
+      "properties": {
+        "variant": "outline",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/outline-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ghost-sm",
+      "properties": {
+        "variant": "ghost",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ghost-md",
+      "properties": {
+        "variant": "ghost",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ghost-lg",
+      "properties": {
+        "variant": "ghost",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/ghost-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "danger-sm",
+      "properties": {
+        "variant": "danger",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "danger-md",
+      "properties": {
+        "variant": "danger",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "danger-lg",
+      "properties": {
+        "variant": "danger",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/danger-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-sm",
+      "properties": {
+        "variant": "dangerSoft",
+        "size": "sm"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-sm/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-sm/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-sm/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-sm/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-md",
+      "properties": {
+        "variant": "dangerSoft",
+        "size": "md"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-md/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-md/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-md/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-md/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dangerSoft-lg",
+      "properties": {
+        "variant": "dangerSoft",
+        "size": "lg"
+      },
+      "styles": {
+        "container": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-lg/container.mix.json"
+        },
+        "label": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-lg/label.mix.json"
+        },
+        "leadingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-lg/icon.mix.json"
+        },
+        "trailingIcon": {
+          "status": "supported",
+          "evidence": "declared",
+          "document": "styles/button/dangerSoft-lg/icon.mix.json"
+        },
+        "spinner": {
+          "status": "unsupported",
+          "evidence": "declared",
+          "diagnostics": [
+            {
+              "code": "unsupported_slot_primitive",
+              "severity": "error",
+              "path": "spinner",
+              "message": "RemixSpinner has no neutral Mix protocol primitive."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "role": "button",
+    "labelProperty": "label",
+    "enabledProperty": "enabled",
+    "loadingProperty": "loading"
+  },
+  "oracles": [
+    {
+      "theme": "light",
+      "image": "light/button.png",
+      "metadata": "light/button.json",
+      "evidence": "rendered"
+    },
+    {
+      "theme": "dark",
+      "image": "dark/button.png",
+      "metadata": "dark/button.json",
+      "evidence": "rendered"
+    }
+  ]
+}

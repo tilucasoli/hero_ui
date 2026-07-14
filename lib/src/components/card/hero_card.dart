@@ -1,30 +1,42 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:mix_annotations/mix_annotations.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/hero_tokens.dart';
-import 'hero_card_style.dart';
 
-final class HeroCard extends StatelessWidget {
-  final HeroCardVariant variant;
-  final RemixCardStyle? style;
-  final Widget? child;
+part 'hero_card.g.dart';
 
-  const HeroCard({
-    super.key,
-    this.variant = .defaultVariant,
-    this.style,
-    this.child,
-  });
+enum HeroCardVariant with EnumVariant { defaultVariant, secondary, tertiary }
 
-  @override
-  Widget build(BuildContext context) {
-    return RemixCard(
-      style: heroCardStyle.merge(style).applyVariants([variant]),
-      child: child,
-    );
-  }
+@MixWidget(widgetParameters: .only({'child'}))
+RemixCardStyler heroCardStyle({
+  HeroCardVariant variant = .defaultVariant,
+  RemixCardStyler? style,
+}) {
+  return _baseStyle().merge(style).applyVariants([variant]);
+}
+
+RemixCardStyler _baseStyle() {
+  return RemixCardStyler()
+      .borderRounded(12)
+      .paddingAll(0)
+      .borderAll(
+        color: $border(),
+        width: 1,
+        strokeAlign: BorderSide.strokeAlignOutside,
+      )
+      .container(.clipBehavior(.antiAlias))
+      .variant(
+        HeroCardVariant.defaultVariant,
+        RemixCardStyler().color($surface()),
+      )
+      .variant(HeroCardVariant.secondary, RemixCardStyler().color($default()))
+      .variant(
+        HeroCardVariant.tertiary,
+        RemixCardStyler().color($background()),
+      );
 }
 
 final HeroCardHeader = BoxStyler().padding(.fromLTRB(24, 24, 24, 0));

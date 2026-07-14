@@ -64,8 +64,8 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                           variant: variant,
                           size: size,
                           label: label,
-                          iconLeft: iconLeft ? Icons.arrow_back : null,
-                          iconRight: iconRight ? Icons.arrow_forward : null,
+                          leadingIcon: iconLeft ? Icons.arrow_back : null,
+                          trailingIcon: iconRight ? Icons.arrow_forward : null,
                           loading: loading,
                           enabled: enabled,
                           fullWidth: fullWidth,
@@ -664,8 +664,8 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                           label: label,
                           size: size,
                           enabled: enabled,
-                          iconLeft: iconLeft ? Icons.arrow_back : null,
-                          iconRight: iconRight
+                          leadingIcon: iconLeft ? Icons.arrow_back : null,
+                          trailingIcon: iconRight
                               ? Icons.arrow_outward_rounded
                               : null,
                           onPressed: _noop,
@@ -706,17 +706,19 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                                     label: 'Home',
                                     icon: Icons.home_outlined,
                                     selected: true,
-                                    onPressed: _noop,
+                                    onChanged: (_) => _noop(),
                                   ),
                                   HeroSidebarItem(
                                     label: 'Search',
                                     icon: Icons.search,
-                                    onPressed: _noop,
+                                    selected: false,
+                                    onChanged: (_) => _noop(),
                                   ),
                                   HeroSidebarItem(
                                     label: 'Notifications',
                                     icon: Icons.notifications_outlined,
-                                    onPressed: _noop,
+                                    selected: false,
+                                    onChanged: (_) => _noop(),
                                   ),
                                 ],
                               ),
@@ -726,12 +728,14 @@ class HeroUiWidgetbookApp extends StatelessWidget {
                                   HeroSidebarItem(
                                     label: 'Profile',
                                     icon: Icons.person_outline,
-                                    onPressed: _noop,
+                                    selected: false,
+                                    onChanged: (_) => _noop(),
                                   ),
                                   HeroSidebarItem(
                                     label: 'Settings',
                                     icon: Icons.settings_outlined,
-                                    onPressed: _noop,
+                                    selected: false,
+                                    onChanged: (_) => _noop(),
                                   ),
                                 ],
                               ),
@@ -994,6 +998,7 @@ class _InteractiveHeroToggleButtonState
           : null,
       variant: widget.variant,
       size: widget.size,
+      iconOnly: widget.label == null,
       label: widget.label,
       icon: widget.icon,
       enabled: widget.enabled,
@@ -1097,20 +1102,50 @@ class _InteractiveHeroSliderState extends State<_InteractiveHeroSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return HeroSlider(
-      value: value,
-      onChanged: widget.enabled
-          ? (nextValue) {
-              setState(() {
-                value = nextValue;
-              });
-            }
-          : (_) {},
-      enabled: widget.enabled,
-      size: widget.size,
-      label: widget.label,
-      showOutput: widget.showOutput,
+    final labelStyle = TextStyler().style($labelSmall.mix());
+
+    return ColumnBox(
+      style: FlexBoxStyler().crossAxisAlignment(.start).mainAxisSize(.min),
+      children: [
+        if (widget.label != null || widget.showOutput)
+          RowBox(
+            style: FlexBoxStyler()
+                .paddingBottom(4)
+                .mainAxisAlignment(.spaceBetween)
+                .crossAxisAlignment(.center),
+            children: [
+              if (widget.label != null)
+                StyledText(widget.label!, style: labelStyle),
+              if (widget.showOutput)
+                StyledText(_formatSliderValue(value), style: labelStyle),
+            ],
+          ),
+        Semantics(
+          label: widget.label,
+          child: HeroSlider(
+            value: value,
+            max: 100,
+            onChanged: widget.enabled
+                ? (nextValue) {
+                    setState(() {
+                      value = nextValue;
+                    });
+                  }
+                : (_) {},
+            enabled: widget.enabled,
+            size: widget.size,
+          ),
+        ),
+      ],
     );
+  }
+
+  String _formatSliderValue(double value) {
+    final rounded = value.roundToDouble();
+    if ((value - rounded).abs() < 0.0001) {
+      return rounded.toInt().toString();
+    }
+    return value.toStringAsFixed(2);
   }
 }
 
@@ -1140,7 +1175,7 @@ class _InteractiveHeroSelectState extends State<_InteractiveHeroSelect> {
       variant: widget.variant,
       enabled: widget.enabled,
       error: widget.error,
-      placeholder: widget.placeholder,
+      trigger: HeroSelectTrigger(placeholder: widget.placeholder),
       selectedValue: selectedValue,
       onChanged: (value) {
         setState(() {
@@ -1224,7 +1259,7 @@ class _InteractiveHeroRadioGroupState
                 selected = value;
               });
             }
-          : (_) {},
+          : null,
 
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -1307,8 +1342,8 @@ class _InteractiveDashboardBlockState
               HeroSidebarItem(
                 label: 'Settings',
                 icon: Icons.settings_outlined,
-                // isSelected: selectedItem == 'overview',
-                onPressed: () => showDialog(
+                selected: false,
+                onChanged: (_) => showDialog(
                   context: context,
                   useRootNavigator: false,
                   builder: (context) => Center(
@@ -1324,12 +1359,14 @@ class _InteractiveDashboardBlockState
                                 HeroSidebarItem(
                                   label: 'Account',
                                   icon: Icons.person_outline,
-                                  onPressed: () => Navigator.pop(context),
+                                  selected: false,
+                                  onChanged: (_) => Navigator.pop(context),
                                 ),
                                 HeroSidebarItem(
                                   label: 'Preferences',
                                   icon: Icons.settings_outlined,
-                                  onPressed: () => Navigator.pop(context),
+                                  selected: false,
+                                  onChanged: (_) => Navigator.pop(context),
                                 ),
                               ],
                             ),
@@ -1390,19 +1427,19 @@ class _InteractiveDashboardBlockState
               label: 'Overview',
               icon: Icons.dashboard_outlined,
               selected: selectedItem == 'overview',
-              onPressed: () => setState(() => selectedItem = 'overview'),
+              onChanged: (_) => setState(() => selectedItem = 'overview'),
             ),
             HeroSidebarItem(
               label: 'Analytics',
               icon: Icons.bar_chart_outlined,
               selected: selectedItem == 'analytics',
-              onPressed: () => setState(() => selectedItem = 'analytics'),
+              onChanged: (_) => setState(() => selectedItem = 'analytics'),
             ),
             HeroSidebarItem(
               label: 'Reports',
               icon: Icons.description_outlined,
               selected: selectedItem == 'reports',
-              onPressed: () => setState(() => selectedItem = 'reports'),
+              onChanged: (_) => setState(() => selectedItem = 'reports'),
             ),
           ],
         ),
@@ -1413,7 +1450,7 @@ class _InteractiveDashboardBlockState
               label: 'Account',
               icon: Icons.person_outline,
               selected: selectedItem == 'account',
-              onPressed: () => setState(() => selectedItem = 'account'),
+              onChanged: (_) => setState(() => selectedItem = 'account'),
             ),
           ],
         ),
