@@ -22,6 +22,8 @@ void main(List<String> arguments) {
     metadata: AtlasCapturePackageMetadata(
       id: 'hero-ui',
       atlasVersion: '0.1.0',
+      // Keep this CLI on the pure-Dart producer entrypoint. The final bundle
+      // test loads the capture and rejects protocol metadata drift.
       mixProtocolVersion: '1.0.0',
       mixProtocolFormat: 1,
       flutterVersion: _flutterVersion(repositoryRoot),

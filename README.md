@@ -31,5 +31,8 @@ fvm dart run tool/atlas.dart
 fvm dart run tool/atlas.dart --check
 ```
 
+Run `--check` on macOS in CI when rendered golden drift must be enforced;
+protocol JSON and capture integrity are portable, but image bytes are not.
+
 The capture intentionally records unsupported portable primitives as structured
 diagnostics instead of substituting invented behavior.
